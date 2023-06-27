@@ -5,6 +5,8 @@ edition = "2021"
 
 [dependencies]
 ev3dev-lang-rust = "0.12.1"
+log = "0.4.19"
+log4rs = "1.2.0"
 rand = "0.8.5"
 
 [profile.release]
