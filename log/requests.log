@@ -1,0 +1,19 @@
+2023-06-28T06:46:29.250614182+02:00 - log4rs Logger Initialized!
+2023-06-28T06:46:53.337981803+02:00 - log4rs Logger Initialized!
+2023-06-28T06:46:53.338096474+02:00 - Will be logging to: log/log4rs.yaml
+2023-06-28 04:47:22 - ERROR: log4rs Logger Initialized!
+2023-06-28 04:47:22 - INFO: Will be logging to: log/log4rs.yaml
+{ERROR: invalid timezone `utc+2`} - ERROR: log4rs Logger Initialized!
+{ERROR: invalid timezone `utc+2`} - INFO: Will be logging to: log/log4rs.yaml
+{ERROR: invalid timezone `eet`} - ERROR: log4rs Logger Initialized!
+{ERROR: invalid timezone `eet`} - INFO: Will be logging to: log/log4rs.yaml
+{ERROR: invalid timezone `mez`} - ERROR: log4rs Logger Initialized!
+{ERROR: invalid timezone `mez`} - INFO: Will be logging to: log/log4rs.yaml
+{ERROR: invalid timezone `cet`} - ERROR: log4rs Logger Initialized!
+{ERROR: invalid timezone `cet`} - INFO: Will be logging to: log/log4rs.yaml
+{ERROR: invalid timezone `uct`} - ERROR: log4rs Logger Initialized!
+{ERROR: invalid timezone `uct`} - INFO: Will be logging to: log/log4rs.yaml
+2023-06-28 04:50:54 - ERROR: log4rs Logger Initialized!
+2023-06-28 04:50:54 - INFO: Will be logging to: log/log4rs.yaml
+2023-06-28T06:51:41.066884784+02:00 - log4rs Logger Initialized!
+2023-06-28T06:51:41.067018931+02:00 - Will be logging to: log/log4rs.yaml

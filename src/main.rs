@@ -132,11 +132,23 @@ fn startExecution(
     event_list: &mut Vec<Event>,
     term_list: &mut Vec<Condition>,
     port_definitions: PortDefinition,
+    log_config_file: String,
     debug: bool,
 ) {
+    // prepare Logger
+    init_logger(log_config_file);
+
     // prepare motors sensors struct
     let mut motors_sensors: MotorsSensors;
-    motors_sensors = prepare_motors_sensor(port_definitions)
+    motors_sensors = prepare_motors_sensor(port_definitions);
+
+    ProcessLoop(
+        spawn_list,
+        event_list,
+        term_list,
+        &mut motors_sensors,
+        debug,
+    );
 }
 
 fn main() {
@@ -144,7 +156,8 @@ fn main() {
     let mut SpawnList: Vec<Condition> = Vec::new();
     let mut TermList: Vec<Condition> = Vec::new();
 
-    let mut debug = false;
+    let mut debug = true;
+    let logger_config_file = String::from("log/log4rs.yaml");
 
     let mut port_definitions = PortDefinition {
         lDriveMotorPort: MotorPort::OutA,
@@ -224,15 +237,12 @@ fn main() {
         }
     }
 
-    let mut motors_sensors = MotorsSensors {
-
-    };
-
-    ProcessLoop(
+    startExecution(
         &mut SpawnList,
         &mut EventList,
         &mut TermList,
-        &mut motors_sensors,
+        port_definitions,
+        logger_config_file,
         debug,
     );
     // let Events::Event::Timer { start_time, .. } = &test;
