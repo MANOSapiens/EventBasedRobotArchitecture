@@ -5,10 +5,9 @@ use ev3dev_lang_rust::motors::{LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort, Sensor};
 
 pub struct EventID {
-    pub process_id: i16,
-    pub spawn_conditions_id: i16,
-    pub term_conditions_id: i16,
-    pub active: bool
+    pub process_id: usize,
+    pub spawn_conditions_id: usize,
+    pub term_conditions_id: usize
 }
 
 // =====================
@@ -57,7 +56,21 @@ pub enum Event {
         event: EventID
     },
 
+    SensorValue {
+        event: EventID,
+        sensor_target: i32,
+        sensor_prev: i32,
+        sensor_id: i8,
+        expr: char,
+        is_set: bool
+    },
+
     // Motor Processses
+    // motor_id
+    // 0 -> left drive motor
+    // 1 -> right drive motor
+    // 2 -> left tool motor
+    // 3 -> right tool motor
 
     MotorSpeedControl {
         event: EventID,
@@ -84,8 +97,8 @@ pub enum Event {
     // Compute Processes
     Timer {
         event: EventID,
-        time: f32, // time in seconds
-        time_prev: f32,
+        time: f64,
+        time_prev: f64,
     },
 
     ComputeMotorStall {
@@ -99,10 +112,8 @@ pub enum Event {
 // =    Conditions     =
 // =====================
 pub struct CondID {
-    pub process_id: i16,
-    pub cond_id: i16,
-    pub active: bool,
-    pub result: bool
+    pub process_id: usize,
+    pub cond_id: usize
 }
 
 pub enum Condition {
@@ -110,25 +121,25 @@ pub enum Condition {
 
     IsTerminated {
         cond: CondID,
-        watch_process_id: i16,
+        watch_process_id: usize,
         
     },
 
     And {
         cond: CondID,
-        watch_cond_id0: i16,
-        watch_cond_id1: i16
+        watch_cond_id0: usize,
+        watch_cond_id1: usize
     },
 
     Or {
         cond: CondID,
-        watch_cond_id0: i16,
-        watch_cond_id1: i16
+        watch_cond_id0: usize,
+        watch_cond_id1: usize
     },
 
     Not {
         cond: CondID,
-        watch_cond_id: i16
+        watch_cond_id: usize
     },
 
     StartImmediately {
@@ -139,23 +150,11 @@ pub enum Condition {
         cond: CondID,
     },
 
-    MotorRotValue {
-        cond: CondID,
-        motor_id: i8,
-        trigger_value: i32,
-        prev_value: i32
-    },
-
     SensorValue {
-        cond: CondID,
-        sensor_id: i8,
-        trigger_value: f32,
-        prev_value: f32
+        cond: CondID
     },
 
     Timer {
         cond: CondID,
-        abs_trigger_time: f32,
-        trigger_value: f32,
     },
 }
