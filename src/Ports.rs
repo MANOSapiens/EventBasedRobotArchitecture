@@ -1,5 +1,6 @@
 extern crate ev3dev_lang_rust;
 
+use super::DEBUG;
 use ev3dev_lang_rust::motors::{MediumMotor, LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort, ColorSensor, GyroSensor};
 

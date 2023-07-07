@@ -1,5 +1,6 @@
 extern crate ev3dev_lang_rust;
 
+use super::DEBUG;
 use ev3dev_lang_rust::Ev3Result;
 use ev3dev_lang_rust::motors::{LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort, Sensor};
@@ -18,20 +19,23 @@ pub struct EventID {
 pub enum FuncTypes {
     ConstFunc {
         c: f32,
-        step: i32
     },
 
     LinearFunc {
         m: f32,
         e: f32,
-        step: i32
+        lb: f32,
+        hb: f32,
+        step_prev: f32
     },
     
     QuadFunc {
         a: f32,
-        n: i8,
-        e: f32,
-        step: i32
+        b: f32,
+        c: f32,
+        lb: f32,
+        hb: f32,
+        step_prev: f32
     }
 }
 
@@ -58,11 +62,10 @@ pub enum Event {
 
     SensorValue {
         event: EventID,
-        sensor_target: i32,
-        sensor_prev: i32,
+        sensor_target: f32,
+        sensor_prev: f32,
         sensor_id: i8,
-        expr: char,
-        is_set: bool
+        expr: char
     },
 
     // Motor Processses
@@ -75,21 +78,25 @@ pub enum Event {
     MotorSpeedControl {
         event: EventID,
         motor_id: i8,
-        accel_func: FuncTypes,
+        func: FuncTypes,
     },
 
     // PID Processes
     
     PIDGyro {
         event: EventID,
-        gyro_prev: i32,
-        heading: i16,
+        heading: f32,
         pid: PID
     },
 
     PIDLine {
         event: EventID,
-        brightness_target: i16,
+        brightness_target: f32,
+        pid: PID
+    },
+
+    PIDHold {
+        event: EventID,
         pid: PID
     },
     
@@ -97,8 +104,8 @@ pub enum Event {
     // Compute Processes
     Timer {
         event: EventID,
-        time: f64,
-        time_prev: f64,
+        time: f32,
+        time_prev: f32,
     },
 
     ComputeMotorStall {

@@ -1,0 +1,97 @@
+{
+    "EventList": [
+        {  
+            "type": "Timer",
+            "event": {
+                "process_id": 1,
+                "spawn_conditions_id": 0,
+                "term_conditions_id": 1
+            },
+            "time": 3.0
+        },
+
+        {
+            "type": "MotorSpeedControl",
+            "event": {
+                "process_id": 2,
+                "spawn_conditions_id": 2,
+                "term_conditions_id": 3
+            },
+            "motor_id": 0,
+            "func": {
+                "type": "linear",
+                "m": 0.1,
+                "e": 0.0,
+                "lb": 0.0,
+                "hb": 1.0
+            }
+        },
+
+        {
+            "type": "SensorValue",
+            "event": {
+                "process_id": 3,
+                "spawn_conditions_id": 4,
+                "term_conditions_id": 5
+            },
+            "sensor_target": 0.5, 
+            "sensor_prev": 0.0, 
+            "sensor_id": 6, 
+            "expr": ">", 
+            "is_set": false
+        }
+
+    ],
+    "SpawnList": [
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 1,
+                "cond_id": 0
+            }
+        },
+
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 3,
+                "cond_id": 4
+            }
+        },
+
+        {
+            "type": "IsTerminated",
+            "cond": {
+                "process_id": 2,
+                "cond_id": 2
+            },
+            "watch_process_id": 1
+        }
+    ],
+    "TermList": [
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 1,
+                "cond_id": 1
+            }
+        },
+
+        {
+            "type": "IsTerminated",
+            "cond": {
+                "process_id": 2,
+                "cond_id": 3
+            },
+            "watch_process_id": 3
+        },
+
+        {
+            "type": "SensorValue",
+            "cond": {
+                "process_id": 3,
+                "cond_id": 5
+            }
+        }
+    ]
+}

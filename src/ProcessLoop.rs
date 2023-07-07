@@ -9,29 +9,36 @@ use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
 
 // Local modules
+use super::DEBUG;
 use crate::Events::{Condition, Event};
 use crate::Ports::{MotorsSensors, PortDefinition};
-use crate::ReadSensors::ReadSensors;
+use crate::ReadSensors::{resetAll, ReadSensors};
 use crate::RunEvents::RunEvents;
 use crate::SpawnTerminateEvents::{SpawnEvents, TerminateEvents};
 use crate::Check::Check;
 
 pub struct SensorActuatorValues {
     // Motor encoders with ids 0-3
-    pub lDriveMotorEnc: i32,
-    pub rDriveMotorEnc: i32,
-    pub lToolMotorEnc: i32,
-    pub rToolMotorEnc: i32,
+    pub lDriveMotorEnc: f32,
+    pub rDriveMotorEnc: f32,
+    pub lToolMotorEnc: f32,
+    pub rToolMotorEnc: f32,
 
     // Gyro, Colour with ids 4-5
-    pub colourSensValue: i32,
-    pub gyroAngValue: i32,
+    pub colourSensValue: f32,
+    pub gyroAngValue: f32,
 
     // Motor power with ids 6-9
-    pub lDriveMotorPow: i32,
-    pub rDriveMotorPow: i32,
-    pub lToolMotorPow: i32,
-    pub rToolMotorPow: i32
+    pub lDriveMotorPow: f32,
+    pub rDriveMotorPow: f32,
+    pub lToolMotorPow: f32,
+    pub rToolMotorPow: f32,
+
+    // Motor power corrections by PIDs with ids 10-13
+    pub lDriveMotorCor: f32,
+    pub rDriveMotorCor: f32,
+    pub lToolMotorCor: f32,
+    pub rToolMotorCor: f32
 }
 
 pub fn ProcessLoop(
@@ -41,32 +48,38 @@ pub fn ProcessLoop(
     motors_sensors: &mut MotorsSensors,
     ActiveTable: &mut Vec<bool>,
     TerminatedTable: &mut Vec<bool>,
-    CondTable: &mut Vec<bool>,
-    debug: bool,
+    CondTable: &mut Vec<bool>
 ) {
     // Variable Definition
     let mut running: bool = true;
-    let mut loop_counter: i32 = 0;
     let mut sys_time: Instant = Instant::now();
     let mut check_last_time: f64 = 0.0;
 
     // Sensor Values
     
+    resetAll(motors_sensors);
+
     let mut sensor_act_values = SensorActuatorValues{
-        lDriveMotorEnc: 0,
-        rDriveMotorEnc: 0,
-        lToolMotorEnc : 0,
-        rToolMotorEnc: 0,
+        lDriveMotorEnc: 0.0,
+        rDriveMotorEnc: 0.0,
+        lToolMotorEnc : 0.0,
+        rToolMotorEnc: 0.0,
 
         // Gyro, Colour
-        colourSensValue: 0,
-        gyroAngValue: 0,
+        colourSensValue: 0.0,
+        gyroAngValue: 0.0,
 
         // Motor power
-        lDriveMotorPow: 0,
-        rDriveMotorPow: 0,
-        lToolMotorPow: 0,
-        rToolMotorPow: 0
+        lDriveMotorPow: 0.0,
+        rDriveMotorPow: 0.0,
+        lToolMotorPow: 0.0,
+        rToolMotorPow: 0.0,
+
+        // Motor correction
+        lDriveMotorCor: 0.0,
+        rDriveMotorCor: 0.0,
+        lToolMotorCor: 0.0,
+        rToolMotorCor: 0.0
     };
 
     loop {
@@ -77,28 +90,30 @@ pub fn ProcessLoop(
         }
 
         // ===== Reset Actuator Variables =====
-        sensor_act_values.lDriveMotorPow = 0;
-        sensor_act_values.rDriveMotorPow = 0;
-        sensor_act_values.lToolMotorPow = 0;
-        sensor_act_values.rToolMotorPow = 0;
+        sensor_act_values.lDriveMotorPow = 0.0;
+        sensor_act_values.rDriveMotorPow = 0.0;
+        sensor_act_values.lToolMotorPow = 0.0;
+        sensor_act_values.rToolMotorPow = 0.0;
+
+        sensor_act_values.lDriveMotorCor = 0.0;
+        sensor_act_values.rDriveMotorCor = 0.0;
+        sensor_act_values.lToolMotorCor = 0.0;
+        sensor_act_values.rToolMotorCor = 0.0;
 
         // ===== Read sensor values =====
         ReadSensors(
             motors_sensors,
-            &mut sensor_act_values,
-            &debug,
+            &mut sensor_act_values
         );
         SpawnEvents(event_list, spawn_list, ActiveTable, TerminatedTable, CondTable);
         // Run Events
-        RunEvents(event_list, &ActiveTable, CondTable, &mut sensor_act_values, &sys_time, debug);
+        RunEvents(event_list, &ActiveTable, CondTable, &mut sensor_act_values, &sys_time);
 
         // Spawn and Terminate
         TerminateEvents(event_list, term_list, ActiveTable, TerminatedTable, CondTable, &mut sensor_act_values);
         
 
         // ===== Perform Check ======
-        Check(&sys_time, &mut check_last_time, &mut loop_counter, &mut running, &debug);
-
-        loop_counter += 1;
+        Check(&sys_time, &mut check_last_time);
     }
 }

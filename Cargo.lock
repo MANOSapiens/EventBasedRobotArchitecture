@@ -126,6 +126,8 @@ dependencies = [
  "log",
  "log4rs",
  "rand",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

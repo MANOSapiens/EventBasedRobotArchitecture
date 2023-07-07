@@ -9,11 +9,17 @@ use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
 
 // Local modules
+use super::DEBUG;
 use crate::Events::{Condition, Event};
 use crate::Ports::{MotorsSensors, PortDefinition};
 use crate::ProcessLoop::{SensorActuatorValues};
 
-pub fn getSensorValue(sensor_id: &i8, sensor_act_values: &mut SensorActuatorValues) -> i32{
+//  =============== RESET ==================
+pub fn resetAll(motors_sensors: &mut MotorsSensors) {
+    
+}
+
+pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValues) -> f32{
     match sensor_id {
         0 => return sensor_act_values.lDriveMotorEnc,
         1 => return sensor_act_values.rDriveMotorEnc,
@@ -25,16 +31,20 @@ pub fn getSensorValue(sensor_id: &i8, sensor_act_values: &mut SensorActuatorValu
         7 => return sensor_act_values.rDriveMotorPow,
         8 => return sensor_act_values.lToolMotorPow,
         9 => return sensor_act_values.rToolMotorPow,
+        10 => return sensor_act_values.lDriveMotorCor,
+        11 => return sensor_act_values.rDriveMotorCor,
+        12 => return sensor_act_values.lToolMotorCor,
+        13 => return sensor_act_values.rToolMotorCor,
+
         _ => {
             error!("Sensor ID {} unknown while searching a value through getSensorValue()", sensor_id);
-            return 0
+            return 0.0
         }
     }
 }
 
 pub fn ReadSensors(
     motors_sensors: &mut MotorsSensors,
-    sensor_act_values: &mut SensorActuatorValues,
-    debug: &bool,
+    sensor_act_values: &mut SensorActuatorValues
 ) {
 }
