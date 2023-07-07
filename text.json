@@ -1,4 +1,8 @@
 {
+    "name": "RUNDE 1",
+    "EventListLen": 3,
+    "SpawnListLen": 3,
+    "TermListLen": 3,
     "EventList": [
         {  
             "type": "Timer",
@@ -17,7 +21,7 @@
                 "spawn_conditions_id": 2,
                 "term_conditions_id": 3
             },
-            "motor_id": 0,
+            "motor_id": 6,
             "func": {
                 "type": "linear",
                 "m": 0.1,

@@ -110,8 +110,8 @@ pub enum Event {
 
     ComputeMotorStall {
         event: EventID,
-        min_speed: i8,
-        buffer: [i8; 10]
+        min_speed: f32,
+        buffer: [f32; 10]
     }
 }
 

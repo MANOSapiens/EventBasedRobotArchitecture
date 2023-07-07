@@ -42043,3 +42043,24 @@
 2023-07-07T13:10:00.910885007+02:00 - Condition ID 2 spawned process ID 2.
 2023-07-07T13:10:05.911036181+02:00 - Condition ID 5 terminated process ID 3.
 2023-07-07T13:10:05.911145413+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-07T16:33:54.430098601+02:00 - ReadInstructions: Event type Timer unknown!
+2023-07-07T16:37:10.268731415+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-07T16:37:10.268842630+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-07T16:37:13.268992366+02:00 - Timer 1 over!, time passed 3.0000002 s
+2023-07-07T16:37:13.269110354+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-07T16:37:13.269171026+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-07T16:37:13.269313589+02:00 - Motor ID 0 unknown while assigning a power through setMotorPow()
+2023-07-07T16:37:55.137736891+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-07T16:37:55.137844490+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-07T16:37:58.138067778+02:00 - Timer 1 over!, time passed 3 s
+2023-07-07T16:37:58.138186738+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-07T16:37:58.138245707+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-07T16:38:03.138396080+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-07T16:38:03.138509179+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-07T16:38:43.423420935+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-07T16:38:43.423534054+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-07T16:38:46.423690901+02:00 - Timer 1 over!, time passed 3.0000002 s
+2023-07-07T16:38:46.423814189+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-07T16:38:46.423873478+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-07T16:38:51.425792919+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-07T16:38:51.425945461+02:00 - Condition ID 3 terminated process ID 2.

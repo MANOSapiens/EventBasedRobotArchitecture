@@ -21,6 +21,7 @@ mod Logger;
 use crate::Logger::init_logger;
 
 // Function Definition
+mod ReadInstructions;
 mod ReadSensors;
 mod RunEvents;
 mod PID;
@@ -28,6 +29,8 @@ mod SpawnTerminateEvents;
 mod Check;
 mod Actuators;
 mod ProcessLoop;
+
+use crate::ReadInstructions::ReadInstructions;
 use crate::ProcessLoop::{ProcessLoop};
 
 static DEBUG: bool = true;
@@ -66,11 +69,9 @@ fn startExecution(
     spawn_list: &mut Vec<Condition>,
     event_list: &mut Vec<Event>,
     term_list: &mut Vec<Condition>,
-    port_definitions: PortDefinition,
-    log_config_file: String
+    port_definitions: PortDefinition
 ) {
-    // prepare Logger
-    init_logger(log_config_file);
+    
 
     // prepare motors sensors struct
     let mut motors_sensors: MotorsSensors;
@@ -107,14 +108,9 @@ fn main() {
     let mut SpawnList: Vec<Condition> = Vec::new();
     let mut TermList: Vec<Condition> = Vec::new();
 
-    let file = fs::File::open("text.json")
-        .expect("file should open read only");
-    let json: serde_json::Value = serde_json::from_reader(file)
-        .unwrap();
-    
-    println!("{}",json.get("PhoneNumbers").expect("msg").get(0).expect("msg"));
-
+    // Initialize logger
     let logger_config_file = String::from("log/log4rs.yaml");
+    init_logger(logger_config_file);
 
     let mut port_definitions = PortDefinition {
         lDriveMotorPort: MotorPort::OutB,
@@ -126,100 +122,13 @@ fn main() {
         colourSensPort1: SensorPort::In2,
     };
 
-    /* EventList.push(
-        Events::Event::Timer {
-            event: Events::EventID {
-                process_id: 1,
-                spawn_conditions_id: 0,
-                term_conditions_id: 1
-            },
-            time: 3.0,
-            time_prev: -1.0,
-        }
-    );
-
-    EventList.push(
-        Events::Event::MotorSpeedControl {
-            event: Events::EventID {
-                process_id: 2,
-                spawn_conditions_id: 2,
-                term_conditions_id: 3
-            },
-            motor_id: LDRIVEPOW,
-            func: Events::FuncTypes::LinearFunc { m: 0.1, e: 0.0, lb: 0.0, hb: 1.0, step_prev: -1.0 }
-        }
-    );
-
-    EventList.push(
-        Events::Event::SensorValue {
-            event: Events::EventID {
-                process_id: 3,
-                spawn_conditions_id: 4,
-                term_conditions_id: 5
-            },
-            sensor_target: 0.5, 
-            sensor_prev: 0.0, 
-            sensor_id: 6, 
-            expr: '>'
-        }
-    );
-
-    SpawnList.push(
-        Events::Condition::StartImmediately { 
-            cond: Events::CondID {
-                process_id: 1,
-                cond_id: 0
-            } 
-        }
-    );
-
-    SpawnList.push(
-        Events::Condition::StartImmediately { 
-            cond: Events::CondID {
-                process_id: 3,
-                cond_id: 4
-            } 
-        }
-    );
-
-    SpawnList.push(
-        Events::Condition::IsTerminated { 
-            cond: Events::CondID {
-                process_id: 2,
-                cond_id: 2
-            },
-            watch_process_id: 1
-        }
-    );
-
-    TermList.push(
-        Events::Condition::Timer { 
-            cond: Events::CondID { process_id: 1, cond_id: 1 }
-        }
-    );
-
-    TermList.push(
-        Events::Condition::IsTerminated{ 
-            cond: Events::CondID { process_id: 2, cond_id: 3 },
-            watch_process_id: 3
-        }
-    );
-
-    TermList.push(
-        Events::Condition::SensorValue { 
-            cond: Events::CondID { 
-                process_id: 3, 
-                cond_id: 5 
-            }
-        }
-    ); */
+    ReadInstructions("text.json", &mut SpawnList, &mut EventList, &mut TermList);
 
     startExecution(
         &mut SpawnList,
         &mut EventList,
         &mut TermList,
-        port_definitions,
-        logger_config_file
+        port_definitions
     );
     // let Events::Event::Timer { start_time, .. } = &test;
     // println!("{}", start_time);
