@@ -9,77 +9,100 @@ use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
 
 // Local modules
-use super::{DEBUG, LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, COLOURSENS, GYRO, LDRIVEPOW, RDRIVEPOW, LTOOLPOW, RTOOLPOW, LDRIVECOR, RDRIVECOR, LTOOLCOR, RTOOLCOR};
+use super::{
+    COLOURSENS, DEBUG, GYRO, LDRIVECOR, LDRIVEENC, LDRIVEPOW, LTOOLCOR, LTOOLENC, LTOOLPOW,
+    RDRIVECOR, RDRIVEENC, RDRIVEPOW, RTOOLCOR, RTOOLENC, RTOOLPOW,
+};
+use crate::Actuators::setMotorPow;
 use crate::Events::{Condition, Event, FuncTypes};
 use crate::Ports::{MotorsSensors, PortDefinition};
 use crate::ProcessLoop::SensorActuatorValues;
 use crate::ReadSensors::getSensorValue;
-use crate::Actuators::setMotorPow;
 use crate::PID::ComputePID;
-
 
 fn MathFuncBasedOnTime(time: f32, func: &mut FuncTypes) -> f32 {
     match func {
-        FuncTypes::ConstFunc { c} => {
-            return *c
-        }
+        FuncTypes::ConstFunc { c } => return *c,
 
-        FuncTypes::LinearFunc { m, e, step_prev, lb, hb} => {
+        FuncTypes::LinearFunc {
+            m,
+            e,
+            step_prev,
+            lb,
+            hb,
+        } => {
             if *step_prev < 0.0 {
                 *step_prev = time;
             }
 
-            let result: f32 = (time - *step_prev)*(*m) + *e;
+            let result: f32 = (time - *step_prev) * (*m) + *e;
             if result > *hb {
-                return *hb
+                return *hb;
             } else if result < *lb {
-                return *lb
+                return *lb;
             } else {
-                return result
+                return result;
             }
         }
 
-        FuncTypes::QuadFunc { a, b, c, step_prev, lb, hb } => {
+        FuncTypes::QuadFunc {
+            a,
+            b,
+            c,
+            step_prev,
+            lb,
+            hb,
+        } => {
             if *step_prev == -1.0 {
                 *step_prev = time;
             }
             let x = time - *step_prev;
-            let result: f32 = (*a)*x.powf(2.0) + *b*x + *c;
+            let result: f32 = (*a) * x.powf(2.0) + *b * x + *c;
 
             if result > *hb {
-                return *hb
+                return *hb;
             } else if result < *lb {
-                return *lb
+                return *lb;
             } else {
-                return result
+                return result;
             }
         }
     }
 }
 
-pub fn RunEvents(event_list: &mut Vec<Event>, ActiveTable: &Vec<bool>, CondTable: &mut Vec<bool>, sensor_act_values: &mut SensorActuatorValues, sys_time: &Instant) {
+pub fn RunEvents(
+    event_list: &mut Vec<Event>,
+    ActiveTable: &Vec<bool>,
+    CondTable: &mut Vec<bool>,
+    sensor_act_values: &mut SensorActuatorValues,
+    sys_time: &Instant,
+    running: &mut bool
+) {
     for _event in event_list {
         match _event {
-            // Helper
-            Event::None => {
-                println!("A None event!");
-            }
 
-            Event::Placeholder { event } => {
-                println!("{}", event.process_id);
-            }
-
-            Event::SensorValue { event, sensor_target, sensor_prev, sensor_id, expr} => {
+            Event::SensorValue {
+                event,
+                sensor_target,
+                sensor_prev,
+                sensor_id,
+                expr,
+            } => {
                 if ActiveTable[event.process_id] {
                     let sensor_value: f32 = getSensorValue(*sensor_id, sensor_act_values);
-
-                    if *sensor_prev < 0.0{
+                    if *sensor_prev < 0.0 {
                         *sensor_prev = sensor_value;
                     }
 
                     match expr {
-                        '>' => {CondTable[event.term_conditions_id] = sensor_value - *sensor_prev > *sensor_target},
-                        '<' => {CondTable[event.term_conditions_id] = sensor_value - *sensor_prev < *sensor_target},
+                        '>' => {
+                            CondTable[event.term_conditions_id] =
+                                sensor_value - *sensor_prev >= *sensor_target
+                        }
+                        '<' => {
+                            CondTable[event.term_conditions_id] =
+                                sensor_value - *sensor_prev <= *sensor_target
+                        }
                         _ => {
                             error!("Invalid character {} at Events::SensorValue", expr);
                         }
@@ -88,11 +111,19 @@ pub fn RunEvents(event_list: &mut Vec<Event>, ActiveTable: &Vec<bool>, CondTable
             }
 
             // Motor Control
-            Event::MotorSpeedControl { event, motor_id, func } => {
+            Event::MotorSpeedControl {
+                event,
+                motor_id,
+                func,
+            } => {
                 if ActiveTable[event.process_id] {
                     let time: f32 = sys_time.elapsed().as_secs_f32();
 
-                    setMotorPow(MathFuncBasedOnTime(time, func), *motor_id, sensor_act_values);
+                    setMotorPow(
+                        MathFuncBasedOnTime(time, func),
+                        *motor_id,
+                        sensor_act_values,
+                    );
                 }
             }
 
@@ -103,7 +134,8 @@ pub fn RunEvents(event_list: &mut Vec<Event>, ActiveTable: &Vec<bool>, CondTable
                 pid,
             } => {
                 if ActiveTable[event.process_id] {
-                    let motor_correction: f32 = ComputePID(getSensorValue(GYRO, sensor_act_values), heading, pid);
+                    let motor_correction: f32 =
+                        ComputePID(getSensorValue(GYRO, sensor_act_values), heading, pid);
                     setMotorPow(motor_correction, LDRIVECOR, sensor_act_values);
                     setMotorPow(-motor_correction, RDRIVECOR, sensor_act_values);
                 }
@@ -115,31 +147,24 @@ pub fn RunEvents(event_list: &mut Vec<Event>, ActiveTable: &Vec<bool>, CondTable
                 pid,
             } => {
                 if ActiveTable[event.process_id] {
-                    let motor_correction: f32 = ComputePID(getSensorValue(COLOURSENS, sensor_act_values), brightness_target, pid);
+                    let motor_correction: f32 = ComputePID(
+                        getSensorValue(COLOURSENS, sensor_act_values),
+                        brightness_target,
+                        pid,
+                    );
                     setMotorPow(motor_correction, LDRIVECOR, sensor_act_values);
                     setMotorPow(-motor_correction, RDRIVECOR, sensor_act_values);
                 }
             }
 
-            Event::PIDHold {
-                event,
-                pid,
-            } => {
-                if ActiveTable[event.process_id] {
-                    
-                }
-            }
+            Event::PIDHold { event, pid } => if ActiveTable[event.process_id] {},
 
             // Compute and Timer
             Event::ComputeMotorStall {
                 event,
                 min_speed,
                 buffer,
-            } => {
-                if ActiveTable[event.process_id] {
-                
-                }
-            }
+            } => if ActiveTable[event.process_id] {},
 
             Event::Timer {
                 event,
@@ -149,7 +174,6 @@ pub fn RunEvents(event_list: &mut Vec<Event>, ActiveTable: &Vec<bool>, CondTable
                 if ActiveTable[event.process_id] {
                     if *time_prev == -1.0 {
                         *time_prev = sys_time.elapsed().as_secs_f32();
-
                     } else {
                         let time_passed = sys_time.elapsed().as_secs_f32() - *time_prev;
 
@@ -157,12 +181,28 @@ pub fn RunEvents(event_list: &mut Vec<Event>, ActiveTable: &Vec<bool>, CondTable
                             CondTable[event.term_conditions_id] = true;
 
                             if DEBUG {
-                                info!("Timer {} over!, time passed {} s", event.process_id, time_passed);
+                                info!(
+                                    "Timer {} over!, time passed {} s",
+                                    event.process_id, time_passed
+                                );
                             }
                         }
                     }
                 }
             }
+
+            Event::HaltProcessLoop { 
+                event 
+            } => {
+                if ActiveTable[event.process_id] {
+                    *running = false;
+                    if DEBUG {
+                        info!("Events::HaltProcessLoop terminated ProcessLoop!")
+                    }
+                }
+            }
+
+            _ => {}
         }
     }
 }

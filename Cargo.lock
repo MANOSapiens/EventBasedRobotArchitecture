@@ -3,6 +3,18 @@
 version = 3
 
 [[package]]
+name = "EventBasedRobotArchitecture"
+version = "0.1.0"
+dependencies = [
+ "ev3dev-lang-rust",
+ "log",
+ "log4rs",
+ "rand",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "android-tzdata"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -116,18 +128,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn 1.0.86",
-]
-
-[[package]]
-name = "ev3dev-lang-rust-template"
-version = "0.1.0"
-dependencies = [
- "ev3dev-lang-rust",
- "log",
- "log4rs",
- "rand",
- "serde",
- "serde_json",
 ]
 
 [[package]]

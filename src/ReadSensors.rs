@@ -47,4 +47,11 @@ pub fn ReadSensors(
     motors_sensors: &mut MotorsSensors,
     sensor_act_values: &mut SensorActuatorValues
 ) {
+    sensor_act_values.lDriveMotorEnc = motors_sensors.lDriveMotor.get_position().expect("lDriveEnc failed") as f32;
+    sensor_act_values.rDriveMotorEnc = motors_sensors.rDriveMotor.get_position().expect("rDriveEnc failed") as f32;
+    sensor_act_values.lToolMotorEnc = motors_sensors.lToolMotor.get_position().expect("lToolEnc failed") as f32;
+    sensor_act_values.rToolMotorEnc = motors_sensors.rToolMotor.get_position().expect("rToolEnc failed") as f32;
+
+    sensor_act_values.gyroAngValue = motors_sensors.gyroSens.get_angle().expect("gyro failed") as f32;
+    sensor_act_values.colourSensValue = motors_sensors.colourSens.get_color().expect("colour sensor failed") as f32;
 }

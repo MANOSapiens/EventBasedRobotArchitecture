@@ -1,8 +1,9 @@
 {
     "name": "RUNDE 1",
-    "EventListLen": 3,
-    "SpawnListLen": 3,
-    "TermListLen": 3,
+    "round_timeout": -1,
+    "EventListLen": 5,
+    "SpawnListLen": 5,
+    "TermListLen": 5,
     "EventList": [
         {  
             "type": "Timer",
@@ -38,11 +39,37 @@
                 "spawn_conditions_id": 4,
                 "term_conditions_id": 5
             },
-            "sensor_target": 0.5, 
-            "sensor_prev": 0.0, 
+            "sensor_target": 1.0, 
+            "sensor_prev": -1.0, 
             "sensor_id": 6, 
             "expr": ">", 
             "is_set": false
+        },
+
+        {
+            "type": "HaltProcessLoop",
+            "event": {
+                "process_id": 4,
+                "spawn_conditions_id": 6,
+                "term_conditions_id": 7
+            }
+        },
+
+        {
+            "type": "MotorSpeedControl",
+            "event": {
+                "process_id": 5,
+                "spawn_conditions_id": 8,
+                "term_conditions_id": 9
+            },
+            "motor_id": 7,
+            "func": {
+                "type": "linear",
+                "m": 0.1,
+                "e": 0.0,
+                "lb": 0.0,
+                "hb": 1.0
+            }
         }
 
     ],
@@ -68,6 +95,24 @@
             "cond": {
                 "process_id": 2,
                 "cond_id": 2
+            },
+            "watch_process_id": 1
+        },
+
+        {
+            "type": "IsTerminated",
+            "cond": {
+                "process_id": 4,
+                "cond_id": 6
+            },
+            "watch_process_id": 2
+        },
+
+        {
+            "type": "IsTerminated",
+            "cond": {
+                "process_id": 5,
+                "cond_id": 8
             },
             "watch_process_id": 1
         }
@@ -96,6 +141,25 @@
                 "process_id": 3,
                 "cond_id": 5
             }
+        },
+
+        {
+            "type": "Placeholder",
+            "cond": {
+                "process_id": 4,
+                "cond_id": 7
+            }
+        },
+
+        {
+            "type": "IsTerminated",
+            "cond": {
+                "process_id": 5,
+                "cond_id": 9
+            },
+            "watch_process_id": 3
         }
+
+
     ]
 }

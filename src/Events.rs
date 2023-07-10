@@ -1,14 +1,14 @@
 extern crate ev3dev_lang_rust;
 
 use super::DEBUG;
-use ev3dev_lang_rust::Ev3Result;
 use ev3dev_lang_rust::motors::{LargeMotor, MotorPort};
-use ev3dev_lang_rust::sensors::{SensorPort, Sensor};
+use ev3dev_lang_rust::sensors::{Sensor, SensorPort};
+use ev3dev_lang_rust::Ev3Result;
 
 pub struct EventID {
     pub process_id: usize,
     pub spawn_conditions_id: usize,
-    pub term_conditions_id: usize
+    pub term_conditions_id: usize,
 }
 
 // =====================
@@ -26,17 +26,17 @@ pub enum FuncTypes {
         e: f32,
         lb: f32,
         hb: f32,
-        step_prev: f32
+        step_prev: f32,
     },
-    
+
     QuadFunc {
         a: f32,
         b: f32,
         c: f32,
         lb: f32,
         hb: f32,
-        step_prev: f32
-    }
+        step_prev: f32,
+    },
 }
 
 pub struct PID {
@@ -45,7 +45,7 @@ pub struct PID {
     pub d: f32,
     pub max_i: f32,
     pub sum_i: f32,
-    pub prev_e: f32
+    pub prev_e: f32,
 }
 
 // =====================
@@ -57,7 +57,7 @@ pub enum Event {
     None,
 
     Placeholder {
-        event: EventID
+        event: EventID,
     },
 
     SensorValue {
@@ -65,7 +65,7 @@ pub enum Event {
         sensor_target: f32,
         sensor_prev: f32,
         sensor_id: i8,
-        expr: char
+        expr: char,
     },
 
     // Motor Processses
@@ -74,7 +74,6 @@ pub enum Event {
     // 1 -> right drive motor
     // 2 -> left tool motor
     // 3 -> right tool motor
-
     MotorSpeedControl {
         event: EventID,
         motor_id: i8,
@@ -82,24 +81,22 @@ pub enum Event {
     },
 
     // PID Processes
-    
     PIDGyro {
         event: EventID,
         heading: f32,
-        pid: PID
+        pid: PID,
     },
 
     PIDLine {
         event: EventID,
         brightness_target: f32,
-        pid: PID
+        pid: PID,
     },
 
     PIDHold {
         event: EventID,
-        pid: PID
+        pid: PID,
     },
-    
 
     // Compute Processes
     Timer {
@@ -111,7 +108,12 @@ pub enum Event {
     ComputeMotorStall {
         event: EventID,
         min_speed: f32,
-        buffer: [f32; 10]
+        buffer: [f32; 10],
+    },
+
+    // System Events
+    HaltProcessLoop {
+        event: EventID
     }
 }
 
@@ -120,33 +122,34 @@ pub enum Event {
 // =====================
 pub struct CondID {
     pub process_id: usize,
-    pub cond_id: usize
+    pub cond_id: usize,
 }
 
 pub enum Condition {
-    None,
+    Placeholder {
+        cond: CondID
+    },
 
     IsTerminated {
         cond: CondID,
         watch_process_id: usize,
-        
     },
 
     And {
         cond: CondID,
         watch_cond_id0: usize,
-        watch_cond_id1: usize
+        watch_cond_id1: usize,
     },
 
     Or {
         cond: CondID,
         watch_cond_id0: usize,
-        watch_cond_id1: usize
+        watch_cond_id1: usize,
     },
 
     Not {
         cond: CondID,
-        watch_cond_id: usize
+        watch_cond_id: usize,
     },
 
     StartImmediately {
@@ -158,7 +161,7 @@ pub enum Condition {
     },
 
     SensorValue {
-        cond: CondID
+        cond: CondID,
     },
 
     Timer {

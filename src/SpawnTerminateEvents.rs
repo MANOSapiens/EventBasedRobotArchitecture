@@ -26,6 +26,7 @@ fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut Vec<bool>, CondTab
     }
 }
 
+
 fn setVarTerm(result: bool, cond: &CondID, ActiveTable: &mut Vec<bool>, TerminatedTable: &mut Vec<bool>, CondTable: &mut Vec<bool>){
     CondTable[cond.cond_id] = result;
     if result {
@@ -40,11 +41,10 @@ fn setVarTerm(result: bool, cond: &CondID, ActiveTable: &mut Vec<bool>, Terminat
     }
 }
 
+
 pub fn SpawnEvents(event_list: &mut Vec<Event>, spawn_list: &Vec<Condition>, ActiveTable: &mut Vec<bool>, TerminatedTable: &Vec<bool>, CondTable: &mut Vec<bool>) {
     for _condition in spawn_list {
         match _condition {
-            Condition::None => {}
-
             Condition::IsTerminated { cond, watch_process_id } => {
                 if !CondTable[cond.cond_id] {
                     setVarSpawn(TerminatedTable[*watch_process_id], cond, ActiveTable, CondTable);
@@ -84,8 +84,6 @@ pub fn SpawnEvents(event_list: &mut Vec<Event>, spawn_list: &Vec<Condition>, Act
 pub fn TerminateEvents(event_list: &mut Vec<Event>, term_list: &Vec<Condition>, ActiveTable: &mut Vec<bool>, TerminatedTable: &mut Vec<bool>, CondTable: &mut Vec<bool>, sensor_act_values: &mut SensorActuatorValues) {
     for _condition in term_list {
         match _condition {
-            Condition::None => {}
-
             Condition::IsTerminated { cond, watch_process_id } => {
                 if ActiveTable[cond.process_id] {
                     setVarTerm(TerminatedTable[*watch_process_id], cond, ActiveTable, TerminatedTable, CondTable);

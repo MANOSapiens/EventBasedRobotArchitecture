@@ -42064,3 +42064,247 @@
 2023-07-07T16:38:46.423873478+02:00 - Condition ID 2 spawned process ID 2.
 2023-07-07T16:38:51.425792919+02:00 - Condition ID 5 terminated process ID 3.
 2023-07-07T16:38:51.425945461+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-07T16:56:09.663367817+02:00 - Reading JSON file text.json of  RUNDE 1
+2023-07-07T16:56:09.663496384+02:00 - Finished reading JSON. This took 0.000208896s
+2023-07-07T16:56:09.663575580+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-07T16:56:09.663634228+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-07T16:56:12.663797873+02:00 - Timer 1 over!, time passed 3 s
+2023-07-07T16:56:12.663909569+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-07T16:56:12.663968829+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-07T16:56:17.664120713+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-07T16:56:17.664235555+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-07T16:58:55.176246504+02:00 - ================== RUNDE 1 ====================
+2023-07-07T16:58:55.176353512+02:00 - Reading JSON file text.json
+2023-07-07T16:58:55.176435092+02:00 - Finished reading JSON. This took 0.000273505s
+2023-07-07T16:58:55.176512676+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-07T16:58:55.176573718+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-07T16:58:58.176744595+02:00 - Timer 1 over!, time passed 3.0000002 s
+2023-07-07T16:58:58.176888591+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-07T16:58:58.176948772+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-07T16:59:03.177093608+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-07T16:59:03.177203891+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-07T17:09:11.401289837+02:00 - ================== RUNDE 1 ====================
+2023-07-07T17:09:11.401396103+02:00 - Reading JSON file text.json
+2023-07-07T17:09:11.401476832+02:00 - Finished reading JSON. This took 0.000274126s
+2023-07-07T17:14:09.170798578+02:00 - ================== RUNDE 1 ====================
+2023-07-07T17:14:09.170904724+02:00 - Reading JSON file text.json
+2023-07-07T17:14:09.170985683+02:00 - Finished reading JSON. This took 0.000276871s
+2023-07-07T17:14:18.147604468+02:00 - ================== RUNDE 1 ====================
+2023-07-07T17:14:18.147723568+02:00 - Reading JSON file text.json
+2023-07-07T17:14:18.147810658+02:00 - Finished reading JSON. This took 0.000310644s
+2023-07-07T17:23:44.609556416+02:00 - ================== RUNDE 1 ====================
+2023-07-07T17:23:44.609661560+02:00 - Reading JSON file text.json
+2023-07-07T17:23:44.609742950+02:00 - Finished reading JSON. This took 0.000262345s
+2023-07-07T17:23:44.609819982+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-07T17:23:44.609877949+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-07T17:23:48.069236782+02:00 - Timer 1 over!, time passed 3.45916 s
+2023-07-07T17:23:48.069353948+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-07T17:23:48.069443393+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-07T17:23:53.242212318+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-07T17:23:53.242358328+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-07T17:24:16.810686946+02:00 - ================== RUNDE 1 ====================
+2023-07-07T17:24:16.810795076+02:00 - Reading JSON file text.json
+2023-07-07T17:24:16.810875504+02:00 - Finished reading JSON. This took 0.000270029s
+2023-07-07T17:24:16.810953508+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-07T17:24:16.811016334+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-07T17:24:20.474548035+02:00 - Timer 1 over!, time passed 3.6633298 s
+2023-07-07T17:24:20.474681821+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-07T17:24:20.474779141+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-07T17:24:25.478254624+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-07T17:24:25.478397527+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-08T09:44:41.211300290+02:00 - ================== RUNDE 1 ====================
+2023-07-08T09:44:41.212283084+02:00 - Reading JSON file text.json
+2023-07-08T09:44:41.212373801+02:00 - Finished reading JSON. This took 0.001320786s
+2023-07-08T09:44:41.212467714+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-08T09:44:41.212528185+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-08T09:44:41.212587314+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-08T09:44:44.223490821+02:00 - Timer 1 over!, time passed 3.0106635 s
+2023-07-08T09:44:44.223616252+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-08T09:46:48.367369494+02:00 - ================== RUNDE 1 ====================
+2023-07-08T09:46:48.367485597+02:00 - Reading JSON file text.json
+2023-07-08T09:46:48.367572037+02:00 - Finished reading JSON. This took 0.000286498s
+2023-07-08T09:46:48.367657063+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-08T09:46:48.367717795+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-08T09:46:48.367778146+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-08T09:46:51.367957978+02:00 - Timer 1 over!, time passed 3.0000153 s
+2023-07-08T09:46:51.368075554+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-08T09:48:06.879360083+02:00 - ================== RUNDE 1 ====================
+2023-07-08T09:48:06.879472230+02:00 - Reading JSON file text.json
+2023-07-08T09:48:06.879556134+02:00 - Finished reading JSON. This took 0.000278873s
+2023-07-08T09:48:06.879638005+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-08T09:48:06.879698586+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-08T09:48:06.879758897+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-08T09:48:09.879913521+02:00 - Timer 1 over!, time passed 3 s
+2023-07-08T09:48:09.880037088+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-08T09:48:16.869912386+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-08T09:48:16.870031044+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T12:28:04.640776989+02:00 - ================== RUNDE 1 ====================
+2023-07-09T12:28:04.641079265+02:00 - Reading JSON file text.json
+2023-07-09T12:28:04.641165744+02:00 - Finished reading JSON. This took 0.000477448s
+2023-07-09T12:28:04.641250300+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T12:28:04.641312474+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T12:28:04.641374388+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T12:28:07.641527753+02:00 - Timer 1 over!, time passed 3 s
+2023-07-09T12:28:07.641648606+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T12:28:14.631536182+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-09T12:28:14.631659509+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T15:58:06.235469567+02:00 - ================== RUNDE 1 ====================
+2023-07-09T15:58:06.236368430+02:00 - Reading JSON file text.json
+2023-07-09T15:58:06.236489513+02:00 - Finished reading JSON. This took 0.001153182s
+2023-07-09T15:58:06.236602682+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T15:58:06.236690764+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T15:58:06.236769649+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T15:58:09.236929310+02:00 - Timer 1 over!, time passed 3 s
+2023-07-09T15:58:09.237052277+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T15:58:16.226932911+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-09T15:58:16.227057861+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T15:58:16.227122750+02:00 - TERMINATE: All Events finished! Stopping Process Loop
+2023-07-09T15:58:16.227183001+02:00 - Note down some stats about this round ...
+2023-07-09T15:58:16.227271935+02:00 - Received termination signal, stopping all actuators (coast)
+2023-07-09T15:58:16.227331905+02:00 - =========== ROUND SUMMARY ===========
+2023-07-09T15:58:16.227392627+02:00 - Wall time: 9s
+2023-07-09T15:58:16.227454170+02:00 - Loop time maximum (higher means worse): 0.0007224599999999803s
+2023-07-09T15:58:16.227544236+02:00 - Total travelled distance in motor degrees: 0
+2023-07-09T16:30:40.983625912+02:00 - ================== RUNDE 1 ====================
+2023-07-09T16:30:40.983741765+02:00 - Reading JSON file text.json
+2023-07-09T16:30:40.983828054+02:00 - Finished reading JSON. This took 0.000283832s
+2023-07-09T16:30:40.983952262+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T16:30:40.984042749+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T16:30:40.984107318+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T16:30:43.984281619+02:00 - Timer 1 over!, time passed 3.0000002 s
+2023-07-09T16:30:43.984398394+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T16:37:16.178493434+02:00 - ================== RUNDE 1 ====================
+2023-07-09T16:37:16.178633382+02:00 - Reading JSON file text.json
+2023-07-09T16:37:16.178720592+02:00 - Finished reading JSON. This took 0.000325168s
+2023-07-09T16:37:16.178835905+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T16:37:16.178929056+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T16:37:16.178997372+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T16:37:19.179185465+02:00 - Timer 1 over!, time passed 3.0000005 s
+2023-07-09T16:37:19.179307791+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T16:39:38.053753769+02:00 - ================== RUNDE 1 ====================
+2023-07-09T16:39:38.053877436+02:00 - Reading JSON file text.json
+2023-07-09T16:39:38.053964767+02:00 - Finished reading JSON. This took 0.000308798s
+2023-07-09T16:39:38.054080039+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T16:39:38.054173411+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T16:39:38.054235645+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T16:39:41.054406039+02:00 - Timer 1 over!, time passed 3.000022 s
+2023-07-09T16:39:41.054554212+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T16:41:59.765197230+02:00 - ================== RUNDE 1 ====================
+2023-07-09T16:41:59.765310639+02:00 - Reading JSON file text.json
+2023-07-09T16:41:59.765394052+02:00 - Finished reading JSON. This took 0.000286447s
+2023-07-09T16:41:59.765503704+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T16:41:59.765592287+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T16:41:59.765680760+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T16:42:02.986916105+02:00 - Timer 1 over!, time passed 3.2208145 s
+2023-07-09T16:42:02.987037799+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T16:46:14.174200901+02:00 - ================== RUNDE 1 ====================
+2023-07-09T16:46:14.174316393+02:00 - Reading JSON file text.json
+2023-07-09T16:46:14.174404746+02:00 - Finished reading JSON. This took 0.000296225s
+2023-07-09T16:46:14.174519247+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T16:46:14.174609673+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T16:46:14.174699188+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T16:46:17.174875509+02:00 - Timer 1 over!, time passed 3.0000002 s
+2023-07-09T16:46:17.174995049+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T16:46:24.164882664+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-09T16:46:24.165000521+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T16:46:24.165064609+02:00 - TERMINATE: All Events finished! Stopping Process Loop
+2023-07-09T16:46:24.165152631+02:00 - Note down some stats about this round ...
+2023-07-09T16:46:24.165213403+02:00 - Received termination signal, stopping all actuators (coast)
+2023-07-09T16:46:24.165301765+02:00 - =========== ROUND SUMMARY ===========
+2023-07-09T16:46:24.165390188+02:00 - Wall time: 9s
+2023-07-09T16:46:24.165464024+02:00 - Loop time maximum (higher means worse): 0.000735233s
+2023-07-09T16:46:24.165550934+02:00 - Total travelled distance in motor degrees: 0
+2023-07-09T16:54:44.457388491+02:00 - ================== RUNDE 1 ====================
+2023-07-09T16:54:44.457510215+02:00 - Reading JSON file text.json
+2023-07-09T16:54:44.457595602+02:00 - Finished reading JSON. This took 0.000308818s
+2023-07-09T16:54:44.457680328+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T16:54:44.457773370+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T16:54:44.457835554+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T16:54:47.458053451+02:00 - Timer 1 over!, time passed 3 s
+2023-07-09T16:54:47.458181016+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T16:54:54.458413869+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-09T16:54:54.458540031+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T16:54:54.458604168+02:00 - TERMINATE: All Events finished! Stopping Process Loop
+2023-07-09T16:54:54.458664970+02:00 - Note down some stats about this round ...
+2023-07-09T16:54:54.458754485+02:00 - Received termination signal, stopping all actuators (coast)
+2023-07-09T16:54:54.458818773+02:00 - =========== ROUND SUMMARY ===========
+2023-07-09T16:54:54.458927202+02:00 - Wall time: 10s
+2023-07-09T16:54:54.459031203+02:00 - Loop time maximum (higher means worse): 0.000594021s
+2023-07-09T16:54:54.459134352+02:00 - Total travelled distance in motor degrees: 0
+2023-07-09T17:00:15.039281963+02:00 - ================== RUNDE 1 ====================
+2023-07-09T17:00:15.039401202+02:00 - Reading JSON file text.json
+2023-07-09T17:00:15.039488854+02:00 - Finished reading JSON. This took 0.000296275s
+2023-07-09T17:00:15.039603615+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T17:00:15.039665038+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T17:00:15.039725119+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T17:00:18.039881595+02:00 - Timer 1 over!, time passed 3 s
+2023-07-09T17:00:18.039999342+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T17:00:25.039875925+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-09T17:00:25.040005654+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T17:00:25.040069762+02:00 - TERMINATE: All Events finished! Stopping Process Loop
+2023-07-09T17:00:25.040129832+02:00 - Note down some stats about this round ...
+2023-07-09T17:00:25.040190143+02:00 - Received termination signal, stopping all actuators (coast)
+2023-07-09T17:00:25.040250464+02:00 - =========== ROUND SUMMARY ===========
+2023-07-09T17:00:25.040310084+02:00 - Wall time: 10s
+2023-07-09T17:00:25.040375855+02:00 - Loop time maximum (higher means worse): 0s
+2023-07-09T17:00:25.040463286+02:00 - Total travelled distance in motor degrees: 0
+2023-07-09T17:19:21.422992553+02:00 - ================== RUNDE 1 ====================
+2023-07-09T17:19:21.423112353+02:00 - Reading JSON file text.json
+2023-07-09T17:19:21.423199674+02:00 - Finished reading JSON. This took 0.000308026s
+2023-07-09T17:19:21.423317661+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T17:19:21.423408098+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T17:19:21.423448983+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T17:19:24.423588178+02:00 - Timer 1 over!, time passed 3 s
+2023-07-09T17:19:24.423710062+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T17:19:31.423589077+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-09T17:19:31.423705361+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T17:20:49.172724823+02:00 - ================== RUNDE 1 ====================
+2023-07-09T17:20:49.172854912+02:00 - Reading JSON file text.json
+2023-07-09T17:20:49.172948174+02:00 - Finished reading JSON. This took 0.000365593s
+2023-07-09T17:20:49.173040734+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T17:20:49.173152160+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T17:20:49.173245712+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T17:20:49.173354913+02:00 - Condition ID 6 spawned process ID 4.
+2023-07-09T17:20:49.173420173+02:00 - HaltProcessLoop terminated ProcessLoop!
+2023-07-09T17:20:49.173532409+02:00 - TERMINATE: All Events finished! Stopping Process Loop
+2023-07-09T17:20:49.173593412+02:00 - Note down some stats about this round ...
+2023-07-09T17:20:49.173653482+02:00 - =========== ROUND SUMMARY ===========
+2023-07-09T17:20:49.173713453+02:00 - Wall time: 0s
+2023-07-09T17:20:49.173794702+02:00 - Loop time maximum (higher means worse): 0s
+2023-07-09T17:20:49.173843492+02:00 - Total travelled distance in motor degrees: 0
+2023-07-09T17:21:52.199722816+02:00 - ================== RUNDE 1 ====================
+2023-07-09T17:21:52.199846123+02:00 - Reading JSON file text.json
+2023-07-09T17:21:52.199931560+02:00 - Finished reading JSON. This took 0.00029906s
+2023-07-09T17:21:52.200020984+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T17:21:52.200112493+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T17:21:52.200173365+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T17:21:52.200264553+02:00 - Condition ID 6 spawned process ID 4.
+2023-07-09T17:21:52.200330875+02:00 - HaltProcessLoop terminated ProcessLoop!
+2023-07-09T17:21:52.200422594+02:00 - TERMINATED PROCESS LOOP
+2023-07-09T17:21:52.200482544+02:00 - Note down some stats about this round ...
+2023-07-09T17:21:52.200572860+02:00 - =========== ROUND SUMMARY ===========
+2023-07-09T17:21:52.200632771+02:00 - Wall time: 0s
+2023-07-09T17:21:52.200723277+02:00 - Loop time maximum (higher means worse): 0.000312335s
+2023-07-09T17:21:52.200787525+02:00 - Total travelled distance in motor degrees: 0
+2023-07-09T17:22:55.250948411+02:00 - ================== RUNDE 1 ====================
+2023-07-09T17:22:55.251087337+02:00 - Reading JSON file text.json
+2023-07-09T17:23:05.403603539+02:00 - ================== RUNDE 1 ====================
+2023-07-09T17:23:05.403723119+02:00 - Reading JSON file text.json
+2023-07-09T17:23:11.444771229+02:00 - ================== RUNDE 1 ====================
+2023-07-09T17:23:11.444897632+02:00 - Reading JSON file text.json
+2023-07-09T17:23:11.444995532+02:00 - Finished reading JSON. This took 0.000328955s
+2023-07-09T17:23:11.445121203+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-09T17:23:11.445217711+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-09T17:23:11.445296486+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-09T17:23:14.445472392+02:00 - Timer 1 over!, time passed 3.0000005 s
+2023-07-09T17:23:14.445590509+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-09T17:23:21.445479287+02:00 - Condition ID 5 terminated process ID 3.
+2023-07-09T17:23:21.445606792+02:00 - Condition ID 3 terminated process ID 2.
+2023-07-09T17:23:21.445673014+02:00 - Condition ID 6 spawned process ID 4.
+2023-07-09T17:23:21.445736931+02:00 - HaltProcessLoop terminated ProcessLoop!
+2023-07-09T17:23:21.445803864+02:00 - TERMINATED PROCESS LOOP
+2023-07-09T17:23:21.445890464+02:00 - Note down some stats about this round ...
+2023-07-09T17:23:21.445952618+02:00 - =========== ROUND SUMMARY ===========
+2023-07-09T17:23:21.446014762+02:00 - Wall time: 10s
+2023-07-09T17:23:21.446110859+02:00 - Loop time maximum (higher means worse): 0.001098501s
+2023-07-09T17:23:21.446203029+02:00 - Total travelled distance in motor degrees: 0
