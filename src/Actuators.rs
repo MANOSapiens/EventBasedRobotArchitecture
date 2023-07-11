@@ -32,11 +32,12 @@ pub fn setMotorPow(motor_pow: f32, motor_id: i8, sensor_act_values: &mut SensorA
         LTOOLCOR => sensor_act_values.lToolMotorCor = motor_pow,
         RTOOLCOR => sensor_act_values.rToolMotorCor = motor_pow,
         _ => {
-            error!(
-                "Motor ID {} unknown while assigning a power through setMotorPow()",
-                motor_id
-            );
-            process::exit(0);
+            if DEBUG {
+                error!(
+                    "Motor ID {} unknown while assigning a power through setMotorPow()",
+                    motor_id
+                );
+            }
         }
     }
 }
@@ -53,7 +54,7 @@ pub fn ConstrainActuatorValues(value: &mut f32) -> bool {
     }
 }
 
-pub fn writeToActuators(motors_sensors: &mut MotorsSensors, sensor_act_values: &mut SensorActuatorValues) {
+pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut SensorActuatorValues) {
     let mut lDriveMotorPow: f32 = sensor_act_values.lDriveMotorPow + sensor_act_values.lDriveMotorCor;
     let mut rDriveMotorPow: f32 = sensor_act_values.rDriveMotorPow + sensor_act_values.rDriveMotorCor;
     let mut lToolMotorPow: f32 = sensor_act_values.lToolMotorPow + sensor_act_values.lToolMotorCor;

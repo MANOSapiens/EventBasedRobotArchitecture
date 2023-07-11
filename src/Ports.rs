@@ -1,6 +1,7 @@
 extern crate ev3dev_lang_rust;
 
 use super::DEBUG;
+use ev3dev_lang_rust::Ev3Button;
 use ev3dev_lang_rust::motors::{MediumMotor, LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort, ColorSensor, GyroSensor};
 
@@ -19,14 +20,15 @@ pub struct MotorsSensors {
     pub lToolMotor: MediumMotor,
     pub rToolMotor: MediumMotor,
     pub gyroSens: GyroSensor,
-    pub colourSens: ColorSensor
+    pub colourSens: ColorSensor,
+    pub button: Ev3Button
 }
 
 /* pub struct MotorsSensors {
     
 } */
 
-fn motorsRunDirect(motors_sensors: &mut MotorsSensors) {
+fn motorsRunDirect(motors_sensors: &MotorsSensors) {
     let _ = motors_sensors.lDriveMotor.run_direct(); //SET RUN DIRECT MODE 
     let _ = motors_sensors.rDriveMotor.run_direct(); //SET RUN DIRECT MODE
     let _ = motors_sensors.lToolMotor.run_direct(); //SET RUN DIRECT MODE
@@ -38,7 +40,7 @@ fn motorsRunDirect(motors_sensors: &mut MotorsSensors) {
     let _ = motors_sensors.rToolMotor.set_stop_action("brake"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
 }
 
-pub fn motorsStopCoast(motors_sensors: &mut MotorsSensors) {
+pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
     let _ = motors_sensors.lDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO roll to stop
     let _ = motors_sensors.rDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO roll to stop
     let _ = motors_sensors.lToolMotor.set_stop_action("coast"); //SET BRAKE MODE TO roll to stop
@@ -67,19 +69,18 @@ pub fn prepare_motors_sensor(port_definitions: PortDefinition) -> MotorsSensors 
         gyroSens: GyroSensor::get(port_definitions.gyroSensPort)
             .expect("failed to load Gyro"),
         colourSens: ColorSensor::get(port_definitions.colourSensPort)
-            .expect("failed to load colour sensor")
+            .expect("failed to load colour sensor"),
+        button: Ev3Button::new()
+            .expect("failed to load buttons"),
     };
 
     /* let mut motors_sensors = MotorsSensors {
     }; */
 
-    motorsRunDirect(&mut motors_sensors);
-    motors_sensors.lDriveMotor.set_position(0);
-    motors_sensors.rDriveMotor.set_position(0);
-    motors_sensors.lToolMotor.set_position(0);
-    motors_sensors.rToolMotor.set_position(0);
+    motorsRunDirect(&motors_sensors);
 
     let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
     let _ = motors_sensors.colourSens.set_mode_col_reflect();
+
     motors_sensors
 }

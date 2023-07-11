@@ -5,14 +5,21 @@
     "SpawnListLen": 5,
     "TermListLen": 5,
     "EventList": [
-        {  
-            "type": "Timer",
+        {
+            "type": "MotorSpeedControl",
             "event": {
                 "process_id": 1,
                 "spawn_conditions_id": 0,
                 "term_conditions_id": 1
             },
-            "time": 3.0
+            "motor_id": 6,
+            "func": {
+                "type": "linear",
+                "m": 0.5,
+                "e": 0.0,
+                "lb": 0.0,
+                "hb": 1.0
+            }
         },
 
         {
@@ -22,10 +29,10 @@
                 "spawn_conditions_id": 2,
                 "term_conditions_id": 3
             },
-            "motor_id": 6,
+            "motor_id": 7,
             "func": {
                 "type": "linear",
-                "m": 0.1,
+                "m": 0.5,
                 "e": 0.0,
                 "lb": 0.0,
                 "hb": 1.0
@@ -39,39 +46,31 @@
                 "spawn_conditions_id": 4,
                 "term_conditions_id": 5
             },
-            "sensor_target": 1.0, 
-            "sensor_prev": -1.0, 
-            "sensor_id": 6, 
-            "expr": ">", 
+            "sensor_target": 30.0, 
+            "sensor_prev": 0.0, 
+            "sensor_id": 4, 
+            "expr": "<", 
             "is_set": false
+        },
+
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 4,
+                "spawn_conditions_id": 6,
+                "term_conditions_id": 7
+            },
+            "time": 5
         },
 
         {
             "type": "HaltProcessLoop",
             "event": {
-                "process_id": 4,
-                "spawn_conditions_id": 6,
-                "term_conditions_id": 7
-            }
-        },
-
-        {
-            "type": "MotorSpeedControl",
-            "event": {
                 "process_id": 5,
                 "spawn_conditions_id": 8,
                 "term_conditions_id": 9
-            },
-            "motor_id": 7,
-            "func": {
-                "type": "linear",
-                "m": 0.1,
-                "e": 0.0,
-                "lb": 0.0,
-                "hb": 1.0
             }
         }
-
     ],
     "SpawnList": [
         {
@@ -85,18 +84,17 @@
         {
             "type": "StartImmediately",
             "cond": {
-                "process_id": 3,
-                "cond_id": 4
+                "process_id": 2,
+                "cond_id": 2
             }
         },
 
         {
-            "type": "IsTerminated",
+            "type": "StartImmediately",
             "cond": {
-                "process_id": 2,
-                "cond_id": 2
-            },
-            "watch_process_id": 1
+                "process_id": 3,
+                "cond_id": 4
+            }
         },
 
         {
@@ -114,16 +112,25 @@
                 "process_id": 5,
                 "cond_id": 8
             },
-            "watch_process_id": 1
+            "watch_process_id": 4
         }
     ],
     "TermList": [
         {
-            "type": "Timer",
+            "type": "SensorValue",
+            "cond": {
+                "process_id": 3,
+                "cond_id": 5
+            }
+        },
+
+        {
+            "type": "IsTerminated",
             "cond": {
                 "process_id": 1,
                 "cond_id": 1
-            }
+            },
+            "watch_process_id": 3
         },
 
         {
@@ -136,15 +143,7 @@
         },
 
         {
-            "type": "SensorValue",
-            "cond": {
-                "process_id": 3,
-                "cond_id": 5
-            }
-        },
-
-        {
-            "type": "Placeholder",
+            "type": "Timer",
             "cond": {
                 "process_id": 4,
                 "cond_id": 7
@@ -152,14 +151,11 @@
         },
 
         {
-            "type": "IsTerminated",
+            "type": "Placeholder",
             "cond": {
                 "process_id": 5,
                 "cond_id": 9
-            },
-            "watch_process_id": 3
+            }
         }
-
-
     ]
 }

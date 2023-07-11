@@ -14,6 +14,13 @@ pub const LDRIVECOR: i8 = 10;
 pub const RDRIVECOR: i8 = 11;
 pub const LTOOLCOR: i8 = 12;
 pub const RTOOLCOR: i8 = 13;
+pub const LDRIVESPEED: i8 = 14;
+pub const RDRIVESPEED: i8 = 15;
+pub const LTOOLSPEED: i8 = 16;
+pub const RTOOLSPEED: i8 = 17;
+pub const CENTERBUTTON: i8 = 18;
+
+
 
 pub const EVENT_NONE: i8 = 0;
 pub const EVENT_PLACEHOLDER: i8 = 1;

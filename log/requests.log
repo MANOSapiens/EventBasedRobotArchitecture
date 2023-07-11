@@ -42308,3 +42308,339 @@
 2023-07-09T17:23:21.446014762+02:00 - Wall time: 10s
 2023-07-09T17:23:21.446110859+02:00 - Loop time maximum (higher means worse): 0.001098501s
 2023-07-09T17:23:21.446203029+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T13:02:13.376102599+02:00 - ================== RUNDE 1 ====================
+2023-07-10T13:02:13.376303168+02:00 - Reading JSON file text.json
+2023-07-10T13:02:13.376398544+02:00 - Finished reading JSON. This took 0.000374058s
+2023-07-10T13:02:13.376518054+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T13:02:13.376607739+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T13:02:13.376669793+02:00 - Condition ID 4 spawned process ID 3.
+2023-07-10T13:08:55.139899263+02:00 - ================== RUNDE 1 ====================
+2023-07-10T13:08:55.140040644+02:00 - Reading JSON file timer5s.json
+2023-07-10T13:08:55.140112987+02:00 - Finished reading JSON. This took 0.00029904s
+2023-07-10T13:08:55.140238197+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T13:09:00.140436098+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T13:09:00.140564905+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T13:10:40.588499868+02:00 - ================== RUNDE 1 ====================
+2023-07-10T13:10:40.588653310+02:00 - Reading JSON file timer5s.json
+2023-07-10T13:10:40.588781506+02:00 - Finished reading JSON. This took 0.000414984s
+2023-07-10T13:10:40.588862806+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T13:10:45.589021495+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T13:10:45.589149670+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T13:11:38.581599697+02:00 - ================== RUNDE 1 ====================
+2023-07-10T13:11:38.581794676+02:00 - Reading JSON file timer5s.json
+2023-07-10T13:11:38.581948589+02:00 - Finished reading JSON. This took 0.000550593s
+2023-07-10T13:11:38.582068530+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T13:11:43.582253213+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T13:11:43.582376560+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T13:12:15.773571481+02:00 - ================== RUNDE 1 ====================
+2023-07-10T13:12:15.773726687+02:00 - Reading JSON file timer5s.json
+2023-07-10T13:12:15.773860673+02:00 - Finished reading JSON. This took 0.000411408s
+2023-07-10T13:12:15.773970185+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T13:12:20.774162695+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T13:12:20.774293646+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T13:12:20.774355600+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T13:12:20.774416552+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T13:12:20.774476683+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T13:12:20.774569293+02:00 - Note down some stats about this round ...
+2023-07-10T13:12:20.774628523+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T13:12:20.774689214+02:00 - Wall time: 5s
+2023-07-10T13:12:20.774749986+02:00 - Moving average mean loop time(higher means worse): 0.00012084326s
+2023-07-10T13:12:20.774810598+02:00 - Loop time maximum (higher means worse): 0.000373738s
+2023-07-10T13:12:20.774870167+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T13:13:39.728077736+02:00 - ================== RUNDE 1 ====================
+2023-07-10T13:13:39.728193329+02:00 - Reading JSON file timer5s.json
+2023-07-10T13:13:39.728269309+02:00 - Finished reading JSON. This took 0.000279575s
+2023-07-10T13:13:39.728345980+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T13:13:44.728531249+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T13:13:44.728653794+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T13:13:44.728717692+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T13:13:44.728778374+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T13:13:44.728838134+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T13:13:44.728897723+02:00 - Note down some stats about this round ...
+2023-07-10T13:13:44.728956291+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T13:13:44.729016211+02:00 - Wall time: 5s
+2023-07-10T13:13:44.729104053+02:00 - Moving average mean loop time(higher means worse): 0.00011710946s
+2023-07-10T13:13:44.729192576+02:00 - Loop time maximum (higher means worse): 0.000420434s
+2023-07-10T13:13:44.729253568+02:00 - Mean loop frequency: 0Hz
+2023-07-10T13:13:44.729340699+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T14:24:15.884301832+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:24:15.884420961+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:24:15.884502491+02:00 - Finished reading JSON. This took 0.000299121s
+2023-07-10T14:24:15.884611452+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:24:20.884789468+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:24:20.884904990+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:24:20.884965862+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:24:20.885025642+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:24:20.885117171+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T14:24:20.885176079+02:00 - Note down some stats about this round ...
+2023-07-10T14:24:20.885236130+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T14:24:20.885295850+02:00 - Wall time: 5s
+2023-07-10T14:24:20.885383281+02:00 - Moving average mean loop time(higher means worse): 0.00012327693s
+2023-07-10T14:24:20.885444253+02:00 - Loop time maximum (higher means worse): 0.000555883s
+2023-07-10T14:24:20.885531223+02:00 - Mean loop frequency: 0Hz
+2023-07-10T14:24:20.885594590+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T14:24:50.431474267+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:24:50.431594518+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:24:50.431669236+02:00 - Finished reading JSON. This took 0.000275808s
+2023-07-10T14:24:50.431746759+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:24:55.431924205+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:24:55.432036862+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:24:55.432098265+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:24:55.432161873+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:25:47.040659067+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:25:47.040790829+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:25:47.040873491+02:00 - Finished reading JSON. This took 0.000321131s
+2023-07-10T14:25:47.040998932+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:25:52.041222421+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:25:52.041345428+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:25:52.041409526+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:25:52.041500423+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:25:52.041585419+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T14:25:52.041659947+02:00 - Note down some stats about this round ...
+2023-07-10T14:25:52.041734624+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T14:25:52.041804062+02:00 - Wall time: 5s
+2023-07-10T14:25:52.041898596+02:00 - Moving average mean loop time(higher means worse): 0.0001377523s
+2023-07-10T14:25:52.041962283+02:00 - Loop time maximum (higher means worse): 0.000420223s
+2023-07-10T14:25:52.042025369+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T14:25:52.042115846+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T14:26:21.354396165+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:26:21.354549718+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:26:21.354657677+02:00 - Finished reading JSON. This took 0.000378266s
+2023-07-10T14:26:21.354794729+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:26:26.354986781+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:26:26.355086184+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:26:26.355137969+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:26:26.355200494+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:26:26.355262839+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T14:26:26.355321878+02:00 - Note down some stats about this round ...
+2023-07-10T14:26:26.355380796+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T14:26:26.355439785+02:00 - Wall time: 5s
+2023-07-10T14:26:26.355527005+02:00 - Moving average mean loop time(higher means worse): 0.000109734756s
+2023-07-10T14:26:26.355586625+02:00 - Loop time maximum (higher means worse): 0.000385443s
+2023-07-10T14:26:26.355646675+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T14:26:26.355705373+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T14:26:48.184477665+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:26:48.184615709+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:26:48.184712467+02:00 - Finished reading JSON. This took 0.00038045s
+2023-07-10T14:26:48.185020469+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:26:53.185218829+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:26:53.185404812+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:26:53.185485179+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:26:53.185548115+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:26:53.185613546+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T14:26:53.185675951+02:00 - Note down some stats about this round ...
+2023-07-10T14:26:53.185737333+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T14:26:53.185779912+02:00 - Wall time: 5s
+2023-07-10T14:26:53.185828902+02:00 - Moving average mean loop time(higher means worse): 0.00013710737s
+2023-07-10T14:26:53.185893080+02:00 - Loop time maximum (higher means worse): 0.002112788s
+2023-07-10T14:26:53.185968419+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T14:26:53.186028890+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T14:27:33.718692519+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:27:33.718811709+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:27:33.718889261+02:00 - Finished reading JSON. This took 0.000288841s
+2023-07-10T14:27:33.718999324+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:27:38.719187745+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:27:38.719317113+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:27:38.719383565+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:27:38.719448695+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:27:38.719511741+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T14:27:38.719573865+02:00 - Note down some stats about this round ...
+2023-07-10T14:27:38.719634828+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T14:27:38.719723982+02:00 - Wall time: 5s
+2023-07-10T14:27:38.719788701+02:00 - Moving average mean loop time(higher means worse): 0.00012225883s
+2023-07-10T14:27:38.719879328+02:00 - Loop time maximum (higher means worse): 0.000821051s
+2023-07-10T14:27:38.719969173+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T14:27:38.720058738+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T14:38:16.938484497+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:38:16.938603285+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:38:16.938696236+02:00 - Finished reading JSON. This took 0.00028839s
+2023-07-10T14:38:16.938792924+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:38:21.938999714+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:38:21.939123221+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:38:21.939197909+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:38:21.939314273+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:38:21.939377149+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T14:38:21.939436698+02:00 - Note down some stats about this round ...
+2023-07-10T14:38:21.939496609+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T14:38:21.939586865+02:00 - Wall time: 5s
+2023-07-10T14:38:21.939647526+02:00 - Moving average mean loop time(higher means worse): 0.00013968378s
+2023-07-10T14:38:21.939738384+02:00 - Loop time maximum (higher means worse): 0.000585307s
+2023-07-10T14:38:21.939800047+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T14:38:21.939890343+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T14:49:27.821639464+02:00 - ================== RUNDE 1 ====================
+2023-07-10T14:49:27.821743335+02:00 - Reading JSON file timer5s.json
+2023-07-10T14:49:27.821818894+02:00 - Finished reading JSON. This took 0.000264537s
+2023-07-10T14:49:27.821920451+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T14:49:32.822085971+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T14:49:32.822194451+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T14:49:32.822290197+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T14:49:32.822384851+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T14:49:32.822423122+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T14:49:32.822448408+02:00 - Note down some stats about this round ...
+2023-07-10T14:49:32.822495715+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T14:49:32.822564332+02:00 - Wall time: 5s
+2023-07-10T14:49:32.822656521+02:00 - Moving average mean loop time(higher means worse): 0.00012865436s
+2023-07-10T14:49:32.822748981+02:00 - Loop time maximum (higher means worse): 0.001168051s
+2023-07-10T14:49:32.822840390+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T14:49:32.822931578+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:17:00.782521750+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:17:00.782595275+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:17:00.782639096+02:00 - Finished reading JSON. This took 0.000136841s
+2023-07-10T15:17:00.782686783+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:17:05.782771013+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:17:05.782856450+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:17:05.782892577+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:17:05.782905902+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:17:05.782913896+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:17:05.782919066+02:00 - Note down some stats about this round ...
+2023-07-10T15:17:05.782944793+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:17:05.782956595+02:00 - Wall time: 5s
+2023-07-10T15:17:05.782983544+02:00 - Moving average mean loop time(higher means worse): 0.000055076885s
+2023-07-10T15:17:05.782996198+02:00 - Loop time maximum (higher means worse): 0.001004959s
+2023-07-10T15:17:05.783004062+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T15:17:05.783038185+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:20:58.529508582+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:20:58.529614507+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:20:58.529660341+02:00 - Finished reading JSON. This took 0.000225776s
+2023-07-10T15:20:58.529702198+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:21:03.529771217+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:21:03.529819756+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:21:03.529851064+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:21:03.529886770+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:21:03.529899593+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:21:03.529931983+02:00 - Note down some stats about this round ...
+2023-07-10T15:21:03.529989298+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:21:03.530001591+02:00 - Wall time: 5s
+2023-07-10T15:21:03.530030714+02:00 - Moving average mean loop time(higher means worse): 0.000054926324s
+2023-07-10T15:21:03.530065679+02:00 - Loop time maximum (higher means worse): 0.006175256s
+2023-07-10T15:21:03.530102436+02:00 - Mean loop frequency: 65535Hz
+2023-07-10T15:21:03.530137621+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:22:02.751827510+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:22:02.751942922+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:22:02.752020765+02:00 - Finished reading JSON. This took 0.000273523s
+2023-07-10T15:22:02.752130998+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:22:07.752310164+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:22:07.752430175+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:22:07.752490596+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:22:07.752551619+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:22:07.752612010+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:22:07.752716041+02:00 - Note down some stats about this round ...
+2023-07-10T15:22:07.752810275+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:22:07.752937038+02:00 - Wall time: 5s
+2023-07-10T15:22:07.753055135+02:00 - Moving average mean loop time(higher means worse): 0.00011387233s
+2023-07-10T15:22:07.753147235+02:00 - Loop time maximum (higher means worse): 0.003076868s
+2023-07-10T15:22:07.753236990+02:00 - Mean loop frequency: 3077774Hz
+2023-07-10T15:22:07.753327056+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:22:11.904788188+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:22:11.904916054+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:22:11.904996211+02:00 - Finished reading JSON. This took 0.000322143s
+2023-07-10T15:22:11.905075096+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:22:16.905277163+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:22:16.905411971+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:22:16.905476440+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:22:16.905539917+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:22:16.905648977+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:22:16.905711212+02:00 - Note down some stats about this round ...
+2023-07-10T15:22:16.905807389+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:22:16.905903396+02:00 - Wall time: 5s
+2023-07-10T15:22:16.905995956+02:00 - Moving average mean loop time(higher means worse): 0.00015134012s
+2023-07-10T15:22:16.906087835+02:00 - Loop time maximum (higher means worse): 0.000570554s
+2023-07-10T15:22:16.906185104+02:00 - Mean loop frequency: 3018841Hz
+2023-07-10T15:22:16.906224106+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:23:09.251801292+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:23:09.251923257+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:23:09.252001180+02:00 - Finished reading JSON. This took 0.000308478s
+2023-07-10T15:23:09.252112866+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:23:14.252312431+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:23:14.252443202+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:23:14.252505597+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:23:14.252566719+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:23:14.252627762+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:23:14.252688684+02:00 - Note down some stats about this round ...
+2023-07-10T15:23:14.252783278+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:23:14.252842968+02:00 - Wall time: 5s
+2023-07-10T15:23:14.252909791+02:00 - Moving average mean loop time(higher means worse): 0.0001230841s
+2023-07-10T15:23:14.252973077+02:00 - Loop time maximum (higher means worse): 0.000692114s
+2023-07-10T15:23:14.253061680+02:00 - Mean loop frequency: 3032008Hz
+2023-07-10T15:23:14.253122192+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:23:48.236342934+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:23:48.236462985+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:23:48.236539636+02:00 - Finished reading JSON. This took 0.000301725s
+2023-07-10T15:23:48.236676058+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:23:53.236870979+02:00 - Timer 1 over!, time passed 5.000016 s
+2023-07-10T15:23:53.237021326+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:23:53.237062622+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:23:53.237098548+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:23:53.237154691+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:23:53.237214792+02:00 - Note down some stats about this round ...
+2023-07-10T15:23:53.237305108+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:23:53.237345292+02:00 - Wall time: 5s
+2023-07-10T15:23:53.237392689+02:00 - Moving average mean loop time(higher means worse): 0.000113377595s
+2023-07-10T15:23:53.237457649+02:00 - Loop time maximum (higher means worse): 0.05736994s
+2023-07-10T15:23:53.237555088+02:00 - Mean loop frequency: 336291Hz
+2023-07-10T15:23:53.237592216+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:24:18.957951599+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:24:18.958065809+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:24:18.958142580+02:00 - Finished reading JSON. This took 0.000277441s
+2023-07-10T15:24:18.958248966+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:24:23.958411263+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:24:23.958540420+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:24:23.958604548+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:24:23.958687792+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:24:23.958791803+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:24:23.958857484+02:00 - Note down some stats about this round ...
+2023-07-10T15:24:23.958916733+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:24:23.958976493+02:00 - Wall time: 5s
+2023-07-10T15:24:23.959065767+02:00 - Moving average mean loop time(higher means worse): 0.00014772132s
+2023-07-10T15:24:23.959165591+02:00 - Loop time maximum (higher means worse): 0.000408562s
+2023-07-10T15:24:23.959253773+02:00 - Mean loop frequency: 3036803Hz
+2023-07-10T15:24:23.959314074+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:26:58.159334643+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:26:58.159505708+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:26:58.159624967+02:00 - Finished reading JSON. This took 0.000425634s
+2023-07-10T15:26:58.159775995+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:27:03.159994146+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:27:03.160134735+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:27:03.160236071+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:27:03.160320647+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:27:03.160441129+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:27:03.160526756+02:00 - Note down some stats about this round ...
+2023-07-10T15:27:03.160591035+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:27:03.160682824+02:00 - Wall time: 5s
+2023-07-10T15:27:03.160744347+02:00 - Moving average mean loop time(higher means worse): 0.00000032171974s
+2023-07-10T15:27:03.160836667+02:00 - Loop time maximum (higher means worse): 0.001740069s
+2023-07-10T15:27:03.160882130+02:00 - Mean loop frequency: 3108295Hz
+2023-07-10T15:27:03.160926863+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:28:21.374490800+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:28:21.374713840+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:28:21.374792345+02:00 - Finished reading JSON. This took 0.000395758s
+2023-07-10T15:28:21.374872061+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:28:26.375082705+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:28:26.375210019+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:28:26.375274458+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:28:26.375337364+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:28:26.375426768+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:28:26.375515752+02:00 - Note down some stats about this round ...
+2023-07-10T15:28:26.375603814+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:28:26.375665658+02:00 - Wall time: 5s
+2023-07-10T15:28:26.375767205+02:00 - Average loop time(higher means worse): 0.00000032556224s
+2023-07-10T15:28:26.375880533+02:00 - Average loop frequency: 3071609Hz
+2023-07-10T15:28:26.375974005+02:00 - Loop time maximum (higher means worse): 0.0005435s
+2023-07-10T15:28:26.376063109+02:00 - Total travelled distance in motor degrees: 0
+2023-07-10T15:53:48.549156841+02:00 - ================== RUNDE 1 ====================
+2023-07-10T15:53:48.549314160+02:00 - Reading JSON file timer5s.json
+2023-07-10T15:53:48.549390471+02:00 - Finished reading JSON. This took 0.00032605s
+2023-07-10T15:53:48.549467753+02:00 - Condition ID 0 spawned process ID 1.
+2023-07-10T15:53:53.549642902+02:00 - Timer 1 over!, time passed 5 s
+2023-07-10T15:53:53.549764636+02:00 - Condition ID 1 terminated process ID 1.
+2023-07-10T15:53:53.549827462+02:00 - Condition ID 2 spawned process ID 2.
+2023-07-10T15:53:53.549888624+02:00 - Events::HaltProcessLoop terminated ProcessLoop!
+2023-07-10T15:53:53.549977979+02:00 - TERMINATED PROCESS LOOP
+2023-07-10T15:53:53.550036657+02:00 - Note down some stats about this round ...
+2023-07-10T15:53:53.550123336+02:00 - =========== ROUND SUMMARY ===========
+2023-07-10T15:53:53.550186583+02:00 - Loop count: 15507447
+2023-07-10T15:53:53.550273372+02:00 - Wall time: 5s
+2023-07-10T15:53:53.550335326+02:00 - Average loop time(higher means worse): 0.00000032245845s
+2023-07-10T15:53:53.550398563+02:00 - Average loop frequency: 3101174Hz
+2023-07-10T15:53:53.550459856+02:00 - Loop time maximum (higher means worse): 0.00081688s
+2023-07-10T15:53:53.550549561+02:00 - Total travelled distance in motor degrees: 0

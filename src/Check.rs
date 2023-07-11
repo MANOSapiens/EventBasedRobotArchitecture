@@ -16,25 +16,32 @@ pub struct RoundSummary {
     pub max_loop_time: f64,
     pub mean_loop_time: f64,
     pub total_travelled_distance: i32,
+    pub loop_count: u64,
+    pub mean_f: u32
 }
 
 pub fn Check(
     sys_time: &Instant,
     last_time: &mut f64,
     round_summary: &mut RoundSummary,
-    CondTable: &mut Vec<bool>,
     sensor_act_values: &SensorActuatorValues,
+    round_timeout: &f32
 ) {
+    round_summary.loop_count += 1;
     let now: f64 = sys_time.elapsed().as_secs_f64();
     let elapsed: f64 = now - *last_time;
     *last_time = now;
+
+    if DEBUG && *round_timeout != -1.0{
+        if (elapsed as f32) > *round_timeout {
+            error!("Round timeout because it already took {}, more than the timeout of {}!", elapsed, round_timeout);
+        }
+    }
 
     // Take down maximum loop time
     if round_summary.max_loop_time < elapsed {
         round_summary.max_loop_time = elapsed;
     }
-
-    round_summary.mean_loop_time = (elapsed + round_summary.mean_loop_time) / 2.0;
     
     // Check sensor values
 }

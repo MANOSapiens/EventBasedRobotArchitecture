@@ -29,10 +29,7 @@ mod SpawnTerminateEvents;
 mod StartExecution;
 pub mod consts;
 
-use crate::consts::{
-    COLOURSENS, DEBUG, GYRO, LDRIVECOR, LDRIVEENC, LDRIVEPOW, LTOOLCOR, LTOOLENC, LTOOLPOW,
-    RDRIVECOR, RDRIVEENC, RDRIVEPOW, RTOOLCOR, RTOOLENC, RTOOLPOW,
-};
+use crate::consts::*;
 use crate::StartExecution::startExecution;
 
 fn main() {
@@ -40,7 +37,7 @@ fn main() {
     let logger_config_file = String::from("log/log4rs.yaml");
     init_logger(logger_config_file);
 
-    let mut port_definitions = PortDefinition {
+    let port_definitions = PortDefinition {
         lDriveMotorPort: MotorPort::OutB,
         rDriveMotorPort: MotorPort::OutC,
         lToolMotorPort: MotorPort::OutD,
@@ -49,5 +46,5 @@ fn main() {
         colourSensPort: SensorPort::In4,
     };
 
-    startExecution("text.json", port_definitions);
+    startExecution("timer5s.json", port_definitions);
 }

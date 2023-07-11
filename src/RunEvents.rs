@@ -104,7 +104,9 @@ pub fn RunEvents(
                                 sensor_value - *sensor_prev <= *sensor_target
                         }
                         _ => {
-                            error!("Invalid character {} at Events::SensorValue", expr);
+                            if DEBUG {
+                                error!("Invalid character {} at Events::SensorValue", expr);
+                            }
                         }
                     }
                 }
@@ -201,7 +203,7 @@ pub fn RunEvents(
                     }
                 }
             }
-
+            
             _ => {}
         }
     }
