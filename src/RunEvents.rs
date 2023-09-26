@@ -3,6 +3,7 @@ extern crate ev3dev_lang_rust;
 
 use ev3dev_lang_rust::{motors, Port};
 use log::{error, info, warn};
+use std::sync::Arc;
 use std::time::{Duration, Instant};
 
 use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
@@ -20,7 +21,7 @@ use crate::ProcessLoop::SensorActuatorValues;
 use crate::ReadSensors::getSensorValue;
 use crate::PID::ComputePID;
 
-fn MathFuncBasedOnTime(time: f32, func: &mut FuncTypes) -> f32 {
+fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
     match func {
         FuncTypes::ConstFunc { c } => return *c,
 
@@ -32,10 +33,10 @@ fn MathFuncBasedOnTime(time: f32, func: &mut FuncTypes) -> f32 {
             hb,
         } => {
             if *step_prev < 0.0 {
-                *step_prev = time;
+                *step_prev = inp;
             }
 
-            let result: f32 = (time - *step_prev) * (*m) + *e;
+            let result: f32 = (inp - *step_prev) * (*m) + *e;
             if result > *hb {
                 return *hb;
             } else if result < *lb {
@@ -54,9 +55,9 @@ fn MathFuncBasedOnTime(time: f32, func: &mut FuncTypes) -> f32 {
             hb,
         } => {
             if *step_prev == -1.0 {
-                *step_prev = time;
+                *step_prev = inp;
             }
-            let x = time - *step_prev;
+            let x = inp - *step_prev;
             let result: f32 = (*a) * x.powf(2.0) + *b * x + *c;
 
             if result > *hb {
@@ -78,6 +79,8 @@ pub fn RunEvents(
     sys_time: &Instant,
     running: &mut bool
 ) {
+    sensor_act_values.currentTime = sys_time.elapsed().as_secs_f32();
+    
     for _event in event_list {
         match _event {
 
@@ -116,13 +119,12 @@ pub fn RunEvents(
             Event::MotorSpeedControl {
                 event,
                 motor_id,
+                sensor_id,
                 func,
             } => {
                 if ActiveTable[event.process_id] {
-                    let time: f32 = sys_time.elapsed().as_secs_f32();
-
                     setMotorPow(
-                        MathFuncBasedOnTime(time, func),
+                        MathFunc(getSensorValue(*sensor_id, sensor_act_values), func),
                         *motor_id,
                         sensor_act_values,
                     );
@@ -134,12 +136,12 @@ pub fn RunEvents(
                 event,
                 heading,
                 pid,
+                motor_correction,
             } => {
                 if ActiveTable[event.process_id] {
-                    let motor_correction: f32 =
-                        ComputePID(getSensorValue(GYRO, sensor_act_values), heading, pid);
-                    setMotorPow(motor_correction, LDRIVECOR, sensor_act_values);
-                    setMotorPow(-motor_correction, RDRIVECOR, sensor_act_values);
+                    *motor_correction = ComputePID(getSensorValue(GYRO, sensor_act_values), heading, pid);
+                    setMotorPow(*motor_correction, LDRIVECOR, sensor_act_values);
+                    setMotorPow(-*motor_correction, RDRIVECOR, sensor_act_values);
                 }
             }
 
@@ -147,26 +149,40 @@ pub fn RunEvents(
                 event,
                 brightness_target,
                 pid,
+                motor_correction,
             } => {
                 if ActiveTable[event.process_id] {
-                    let motor_correction: f32 = ComputePID(
+                    *motor_correction = ComputePID(
                         getSensorValue(COLOURSENS, sensor_act_values),
                         brightness_target,
                         pid,
                     );
-                    setMotorPow(motor_correction, LDRIVECOR, sensor_act_values);
-                    setMotorPow(-motor_correction, RDRIVECOR, sensor_act_values);
+                    setMotorPow(*motor_correction, LDRIVECOR, sensor_act_values);
+                    setMotorPow(-*motor_correction, RDRIVECOR, sensor_act_values);
                 }
             }
 
-            Event::PIDHold { event, pid } => if ActiveTable[event.process_id] {},
+            Event::PIDHold { event, pid, motor_correction} => if ActiveTable[event.process_id] {},
 
             // Compute and Timer
             Event::ComputeMotorStall {
                 event,
-                min_speed,
+                min_mov_avg_speed,
                 buffer,
-            } => if ActiveTable[event.process_id] {},
+                buffer_size,
+                motor_id,
+            } => {
+                if ActiveTable[event.process_id] {
+                    buffer.push_back(getSensorValue(*motor_id, sensor_act_values));
+                    
+                    if buffer.len() == *buffer_size {
+                        let avg: f32 = buffer.iter().sum::<f32>() / *buffer_size as f32;
+                        CondTable[event.term_conditions_id] = avg < *min_mov_avg_speed;
+
+                        buffer.pop_front();
+                    }
+                }
+            },
 
             Event::Timer {
                 event,

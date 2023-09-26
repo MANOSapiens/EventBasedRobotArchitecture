@@ -4,6 +4,7 @@ use super::DEBUG;
 use ev3dev_lang_rust::motors::{LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{Sensor, SensorPort};
 use ev3dev_lang_rust::Ev3Result;
+use std::collections::VecDeque;
 
 pub struct EventID {
     pub process_id: usize,
@@ -77,6 +78,7 @@ pub enum Event {
     MotorSpeedControl {
         event: EventID,
         motor_id: i8,
+        sensor_id: i8,
         func: FuncTypes,
     },
 
@@ -85,17 +87,20 @@ pub enum Event {
         event: EventID,
         heading: f32,
         pid: PID,
+        motor_correction: f32,
     },
 
     PIDLine {
         event: EventID,
         brightness_target: f32,
         pid: PID,
+        motor_correction: f32,
     },
 
     PIDHold {
         event: EventID,
         pid: PID,
+        motor_correction: f32,
     },
 
     // Compute Processes
@@ -107,8 +112,10 @@ pub enum Event {
 
     ComputeMotorStall {
         event: EventID,
-        min_speed: f32,
-        buffer: [f32; 10],
+        min_mov_avg_speed: f32,
+        buffer: VecDeque<f32>,
+        buffer_size: usize,
+        motor_id: i8
     },
 
     // System Events
@@ -162,9 +169,5 @@ pub enum Condition {
 
     SensorValue {
         cond: CondID,
-    },
-
-    Timer {
-        cond: CondID,
-    },
+    }
 }

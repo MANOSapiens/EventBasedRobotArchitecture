@@ -120,12 +120,6 @@ pub fn TerminateEvents(event_list: &mut Vec<Event>, term_list: &Vec<Condition>, 
                 }
             }
 
-            Condition::Timer { cond} => {
-                if  ActiveTable[cond.process_id] {
-                    setVarTerm(CondTable[cond.cond_id], cond, ActiveTable, TerminatedTable, CondTable);
-                }
-            }
-
             // Not relevant here
             _ => {}
         }

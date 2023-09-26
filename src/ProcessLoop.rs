@@ -61,6 +61,9 @@ pub struct SensorActuatorValues {
 
     // One Button id 18
     pub centerButton: f32,
+
+    // MISC
+    pub currentTime: f32,
 }
 
 
@@ -157,6 +160,7 @@ pub fn ProcessLoop(
 
         //Buttons
         centerButton: 0.0,
+        currentTime: 0.0,
     };
 
     loop {

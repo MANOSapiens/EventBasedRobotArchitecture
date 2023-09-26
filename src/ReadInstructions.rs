@@ -3,6 +3,7 @@ use crate::Events::PID;
 use crate::Events::{Condition, Event, EventID, FuncTypes};
 use log::{error, info, warn};
 use serde_json::{error, value::Value};
+use std::collections::VecDeque;
 use std::fs;
 use std::process;
 use std::time::Instant;
@@ -131,24 +132,28 @@ fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
         "MotorSpeedControl" => event_list.push(Event::MotorSpeedControl {
             event: readEvent(event),
             motor_id: parsei8(event.get("motor_id")),
+            sensor_id: parsei8(event.get("sensor_id")),
             func: readFunc(event),
         }),
 
         "PIDGyro" => event_list.push(Event::PIDGyro {
             event: readEvent(event),
-            heading: parsef32(event.get("motor_id")),
+            heading: parsef32(event.get("heading")),
             pid: readPID(event),
+            motor_correction: 0.0,
         }),
 
         "PIDLine" => event_list.push(Event::PIDLine {
             event: readEvent(event),
             brightness_target: parsef32(event.get("brightness_target")),
             pid: readPID(event),
+            motor_correction: 0.0,
         }),
 
         "PIDHold" => event_list.push(Event::PIDHold {
             event: readEvent(event),
             pid: readPID(event),
+            motor_correction: 0.0,
         }),
 
         "Timer" => event_list.push(Event::Timer {
@@ -159,8 +164,10 @@ fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
 
         "ComputeMotorStall" => event_list.push(Event::ComputeMotorStall {
             event: readEvent(event),
-            min_speed: parsef32(event.get("min_speed")),
-            buffer: [0.0; 10],
+            min_mov_avg_speed: parsef32(event.get("min_mov_avg_speed")),
+            buffer: VecDeque::with_capacity(parseusize(event.get("buffer_size"))),
+            buffer_size: parseusize(event.get("buffer_size")),
+            motor_id: parsei8(event.get("motor_id")),
         }),
 
         "HaltProcessLoop" => event_list.push(Event::HaltProcessLoop {
@@ -210,10 +217,6 @@ fn matchCond(condition: &serde_json::Value, list: &mut Vec<Condition>) {
         }),
 
         "SensorValue" => list.push(Condition::SensorValue {
-            cond: readCond(condition),
-        }),
-
-        "Timer" => list.push(Condition::Timer {
             cond: readCond(condition),
         }),
 

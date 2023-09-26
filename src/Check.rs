@@ -32,7 +32,7 @@ pub fn Check(
     let elapsed: f64 = now - *last_time;
     *last_time = now;
 
-    if DEBUG && *round_timeout != -1.0{
+    if DEBUG && *round_timeout != -1.0 {
         if (elapsed as f32) > *round_timeout {
             error!("Round timeout because it already took {}, more than the timeout of {}!", elapsed, round_timeout);
         }

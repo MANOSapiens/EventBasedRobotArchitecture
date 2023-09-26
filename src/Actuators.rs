@@ -1,14 +1,15 @@
 // Import crates
 extern crate ev3dev_lang_rust;
 
-use ev3dev_lang_rust::{motors, Port};
+use ev3dev_lang_rust::{motors, Port, Ev3Error};
 use log::{error, info, warn};
+use serde_json::error;
 use std::time::{Duration, Instant};
 
 use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
 
-use std::process;
+use std::{process, result};
 
 // Local modules
 use super::{
@@ -64,32 +65,65 @@ pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut 
         if DEBUG && !ConstrainActuatorValues(&mut lDriveMotorPow) {
             warn!("The motor power of the left drive motor is out of range!")
         }
-        let _ = motors_sensors.lDriveMotor.set_duty_cycle_sp((lDriveMotorPow * 100.0) as i32);
-        sensor_act_values.lDriveMotorPowPrev = lDriveMotorPow;
+        let result: Result<(), Ev3Error> = motors_sensors.lDriveMotor.set_duty_cycle_sp((lDriveMotorPow * 100.0) as i32);
+        match result {
+            Err(err) => {
+                error!("Encountered error {} while setting duty cycle of lDrive", err);
+            }
+            _ => {
+                sensor_act_values.lDriveMotorPowPrev = lDriveMotorPow;
+            }
+        }
     }
 
     if rDriveMotorPow != sensor_act_values.rDriveMotorPowPrev {
         if DEBUG && !ConstrainActuatorValues(&mut rDriveMotorPow) {
             warn!("The motor power of the right drive motor is out of range!")
         }
-        let _ = motors_sensors.rDriveMotor.set_duty_cycle_sp((rDriveMotorPow * 100.0) as i32);
-        sensor_act_values.rDriveMotorPowPrev = rDriveMotorPow;
+        let result: Result<(), Ev3Error> = motors_sensors.rDriveMotor.set_duty_cycle_sp((rDriveMotorPow * 100.0) as i32);
+        match result {
+            Err(err) => {
+                error!("Encountered error {} while setting duty cycle of rDrive", err);
+            }
+            _ => {
+                sensor_act_values.rDriveMotorPowPrev = rDriveMotorPow;
+            }
+        }
+        
     }
 
     if lToolMotorPow != sensor_act_values.lToolMotorPowPrev {
         if DEBUG && !ConstrainActuatorValues(&mut lToolMotorPow) {
             warn!("The motor power of the left tool motor is out of range!")
         }
-        let _ = motors_sensors.lToolMotor.set_duty_cycle_sp((lToolMotorPow * 100.0) as i32);
-        sensor_act_values.lToolMotorPowPrev = lToolMotorPow;
+        let result: Result<(), Ev3Error> = motors_sensors.lToolMotor.set_duty_cycle_sp((lToolMotorPow * 100.0) as i32);
+        match result {
+            Err(err) => {
+                error!("Encountered error {} while setting duty cycle of lTool", err);
+            }
+            _ => { 
+                sensor_act_values.lToolMotorPowPrev = lToolMotorPow;
+            }
+        }
+        
+       
     }
 
     if rToolMotorPow != sensor_act_values.rToolMotorPowPrev {
         if DEBUG && !ConstrainActuatorValues(&mut rToolMotorPow) {
             warn!("The motor power of the right tool motor is out of range!")
         }
-        let _ = motors_sensors.rToolMotor.set_duty_cycle_sp((rToolMotorPow * 100.0) as i32);
-        sensor_act_values.rToolMotorPowPrev = rToolMotorPow;
+
+        let result = motors_sensors.rToolMotor.set_duty_cycle_sp((rToolMotorPow * 100.0) as i32);
+        match result {
+            Err(err) => {
+                error!("Encountered error {} while setting duty cycle of rTool", err);
+            }
+            _ => { 
+                sensor_act_values.rToolMotorPowPrev = rToolMotorPow;
+            }
+        }
+        
     }
 
     // ===== Reset Actuator Variables =====

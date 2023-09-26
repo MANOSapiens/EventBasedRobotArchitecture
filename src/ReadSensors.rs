@@ -24,6 +24,7 @@ pub fn resetAll(motors_sensors: &MotorsSensors) {
 
 pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValues) -> f32{
     match sensor_id {
+        DRIVEENC => return (sensor_act_values.lDriveMotorEnc + sensor_act_values.rDriveMotorEnc)/2.0,
         LDRIVEENC => return sensor_act_values.lDriveMotorEnc,
         RDRIVEENC => return sensor_act_values.rDriveMotorEnc,
         LTOOLENC => return sensor_act_values.lToolMotorEnc,
@@ -40,10 +41,11 @@ pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValue
         RTOOLCOR => return sensor_act_values.rToolMotorCor,
         LDRIVESPEED => return sensor_act_values.lDriveMotorSpeed,
         RDRIVESPEED => return sensor_act_values.rDriveMotorSpeed,
+        DRIVESPEED => return (sensor_act_values.rDriveMotorSpeed + sensor_act_values.lDriveMotorSpeed)/2.0,
         LTOOLSPEED => return sensor_act_values.lToolMotorSpeed,
         RTOOLSPEED => return sensor_act_values.rToolMotorSpeed,
         CENTERBUTTON => return sensor_act_values.centerButton,
-
+        TIME => return sensor_act_values.currentTime,
         _ => {
             if DEBUG {
                 error!("Sensor ID {} unknown while searching a value through getSensorValue()", sensor_id);
