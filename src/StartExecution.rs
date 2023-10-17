@@ -3,6 +3,7 @@ use log::{error, info, warn};
 // Local modules
 use super::DEBUG;
 use crate::Events::{Condition, Event};
+use crate::Logger::logHeaderCSV;
 use crate::Ports::{MotorsSensors, PortDefinition, prepare_motors_sensor};
 use crate::ProcessLoop::ProcessLoop;
 use crate::ReadInstructions::ReadInstructions;
@@ -19,9 +20,16 @@ pub fn startExecution(
     let mut spawn_list: Vec<Condition> = Vec::new();
     let mut term_list: Vec<Condition> = Vec::new();
 
+    let mut name: String = String::from("");
+
     let mut round_timeout: f32 = -1.0;
 
-    ReadInstructions(round_instructions_path, &mut spawn_list, &mut event_list, &mut term_list, &mut round_timeout);
+    ReadInstructions(round_instructions_path, &mut spawn_list, &mut event_list, &mut term_list, &mut round_timeout, &mut name);
+    let mut wtr = csv::Writer::from_path(format!("records/{name}.csv")).expect("cant initialize csv writer!");
+    
+    if DEBUG {
+        logHeaderCSV(&mut wtr).expect("cant write header to CSV file!");
+    }
 
     // prepare motors sensors struct
     let motors_sensors: MotorsSensors;
@@ -50,6 +58,7 @@ pub fn startExecution(
         ActiveTable,
         TerminatedTable,
         CondTable,
-        round_timeout
+        round_timeout,
+        wtr,
     );
 }

@@ -137,11 +137,17 @@ pub fn RunEvents(
                 heading,
                 pid,
                 motor_correction,
+                sensor_prev,
             } => {
                 if ActiveTable[event.process_id] {
-                    *motor_correction = ComputePID(getSensorValue(GYRO, sensor_act_values), heading, pid);
-                    setMotorPow(*motor_correction, LDRIVECOR, sensor_act_values);
-                    setMotorPow(-*motor_correction, RDRIVECOR, sensor_act_values);
+                    let sensor_value: f32 = getSensorValue(GYRO, sensor_act_values);
+                    if *sensor_prev < 0.0 {
+                        *sensor_prev = sensor_value;
+                    }
+
+                    *motor_correction = ComputePID(sensor_value - *sensor_prev, heading, pid);
+                    setMotorPow(-*motor_correction, LDRIVECOR, sensor_act_values);
+                    setMotorPow(*motor_correction, RDRIVECOR, sensor_act_values);
                 }
             }
 

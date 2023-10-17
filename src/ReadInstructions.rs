@@ -1,14 +1,16 @@
 use crate::Events::CondID;
 use crate::Events::PID;
 use crate::Events::{Condition, Event, EventID, FuncTypes};
-use log::{error, info, warn};
+use log::{debug, error, info, warn};
 use serde_json::{error, value::Value};
 use std::collections::VecDeque;
 use std::fs;
 use std::process;
 use std::time::Instant;
+use rand::Rng;
 
 fn parsei8(value: Option<&Value>) -> i8 {
+    // debug!("{}", value.expect("Trying to read a non-number value into a number"));
     value
         .expect("Trying to read a non-number value into a number")
         .as_i64()
@@ -63,6 +65,7 @@ fn readCond(cond: &serde_json::Value) -> CondID {
 }
 
 fn readFunc(event: &serde_json::Value) -> FuncTypes {
+    // debug!("reading function");
     let func: &serde_json::Value = event
         .get("func")
         .expect("Cannot parse func from MotorSpeedControl!");
@@ -100,6 +103,7 @@ fn readFunc(event: &serde_json::Value) -> FuncTypes {
 }
 
 fn readPID(event: &serde_json::Value) -> PID {
+    // debug!("reading pid");
     let pid: &serde_json::Value = event.get("pid").expect("Event does not contain PID!");
     PID {
         p: parsef32(pid.get("p")),
@@ -112,6 +116,7 @@ fn readPID(event: &serde_json::Value) -> PID {
 }
 
 fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
+    // debug!("starting to parse events");
     let event_type: &str = parseString(event.get("type"));
     match event_type {
         "Placeholder" => event_list.push(Event::Placeholder {
@@ -141,6 +146,7 @@ fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
             heading: parsef32(event.get("heading")),
             pid: readPID(event),
             motor_correction: 0.0,
+            sensor_prev: -1.0,
         }),
 
         "PIDLine" => event_list.push(Event::PIDLine {
@@ -184,7 +190,7 @@ fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
 
 fn matchCond(condition: &serde_json::Value, list: &mut Vec<Condition>) {
     let condition_type: &str = parseString(condition.get("type"));
-
+    // debug!("starting to parse conditions");
     match condition_type {
         "IsTerminated" => list.push(Condition::IsTerminated {
             cond: readCond(condition),
@@ -239,6 +245,7 @@ pub fn ReadInstructions(
     event_list: &mut Vec<Event>,
     term_list: &mut Vec<Condition>,
     round_timeout: &mut f32,
+    name: &mut String,
 ) {
     let file = fs::File::open(file_path).expect("Instructions file is not available!");
     let json: serde_json::Value = serde_json::from_reader(file).unwrap();
@@ -248,7 +255,8 @@ pub fn ReadInstructions(
     let term_list_len: i8 = parsei8(json.get("TermListLen"));
 
     let time_now: Instant = Instant::now();
-    info!("================== {} ====================", parseString(json.get("name")));
+    *name = generateName(parseString(json.get("name")));
+    info!("================== {} ====================", name);
     info!("Reading JSON file {}", file_path);
     *round_timeout = parsef32(json.get("round_timeout"));
 
@@ -276,4 +284,57 @@ pub fn ReadInstructions(
     }
 
     info!("Finished reading JSON. This took {}s", time_now.elapsed().as_secs_f32());
+}
+
+
+pub fn generateName(round_name: &str) -> String {
+    // Common adjectives
+    let adjectives: [&str; 48] = [
+        "Happy", "Sad", "Angry", "Beautiful", "Ugly", "Tall", "Short", "Long", "Thin", "Fat",
+        "Smart", "Dumb", "Brave", "Cowardly", "Fast", "Slow", "Bright", "Dark", "Loud", "Quiet",
+        "Clever", "Clumsy", "Friendly", "Hostile", "Generous", "Stingy", "Kind", "Cruel",
+        "Polite", "Rude", "Honest", "Dishonest", "Strong", "Weak", "Healthy", "Sick", "Clean",
+        "Dirty", "Famous", "Unknown", "Noisy", "Silent", "Pleasant", "Unpleasant", "Modern",
+        "Ancient", "Rich", "Poor",
+    ];
+
+    // Common objects
+    let objects: [&str; 25] = [
+        "Chair",
+        "Table",
+        "Computer",
+        "Phone",
+        "Car",
+        "Book",
+        "Pen",
+        "Pencil",
+        "Coffee mug",
+        "Television",
+        "Refrigerator",
+        "Clock",
+        "Wallet",
+        "Keys",
+        "Sunglasses",
+        "Shoes",
+        "Bicycle",
+        "Watch",
+        "Backpack",
+        "Hat",
+        "Spoon",
+        "Fork",
+        "Knife",
+        "Plate",
+        "Remote control",
+    ];
+
+    let mut rng = rand::thread_rng();
+    let random_obj = rng.gen_range(0..objects.len());
+    let random_adj0 = rng.gen_range(0..adjectives.len());
+    let random_adj1 = rng.gen_range(0..adjectives.len());
+
+    let obj: &str = objects[random_obj];
+    let adj0: &str = adjectives[random_adj0];
+    let adj1: &str = adjectives[random_adj1];
+
+    format!("{round_name}|{adj0}-{adj1}-{obj}")
 }

@@ -3,7 +3,10 @@ extern crate ev3dev_lang_rust;
 
 use ev3dev_lang_rust::{motors, Port};
 use log::{error, info, warn};
+use Logger::logCSV;
 use std::time::{Duration, Instant};
+use std::io::Write;
+use csv;
 
 use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
@@ -83,11 +86,12 @@ async fn readSensorValues(motors_sensors: &MotorsSensors) -> (f32, f32, f32, f32
     join!(lDrive(motors_sensors), rDrive(motors_sensors), lTool(motors_sensors), rTool(motors_sensors), gyro(motors_sensors), colour(motors_sensors))
 } */
 
-pub fn ReadSensors(
+pub fn ReadSensors<W: Write>(
     motors_sensors: &MotorsSensors,
     sensor_act_values: &mut SensorActuatorValues,
     sys_time: &Instant,
     read_sensor_last_time: &mut f32,
+    wtr: &mut csv::Writer<W>
 ) {
     sensor_act_values.lDriveMotorEnc = motors_sensors.lDriveMotor.get_position().expect("lDriveEnc failed") as f32;
     sensor_act_values.rDriveMotorEnc = motors_sensors.rDriveMotor.get_position().expect("rDriveEnc failed") as f32;
@@ -122,4 +126,19 @@ pub fn ReadSensors(
     sensor_act_values.rToolMotorSpeed = (sensor_act_values.rToolMotorEnc-sensor_act_values.rToolMotorEncPrev) / time_elapsed;
     sensor_act_values.rToolMotorEncPrev = sensor_act_values.rToolMotorEnc;
     *read_sensor_last_time = time;
+
+    if DEBUG {
+        logCSV(wtr, sensor_act_values).expect("cant write to CSV file!");
+    }
+
+    // ===== Reset Actuator Variables =====
+    sensor_act_values.lDriveMotorPow = 0.0;
+    sensor_act_values.rDriveMotorPow = 0.0;
+    sensor_act_values.lToolMotorPow = 0.0;
+    sensor_act_values.rToolMotorPow = 0.0;
+
+    sensor_act_values.lDriveMotorCor = 0.0;
+    sensor_act_values.rDriveMotorCor = 0.0;
+    sensor_act_values.lToolMotorCor = 0.0;
+    sensor_act_values.rToolMotorCor = 0.0;
 }

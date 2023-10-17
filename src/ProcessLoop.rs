@@ -4,6 +4,8 @@ extern crate ev3dev_lang_rust;
 use ev3dev_lang_rust::{motors, Port};
 use log::{error, info, warn};
 use std::time::{Duration, Instant};
+use std::io::Write;
+use csv;
 
 use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
@@ -93,7 +95,7 @@ fn TerminateProcessLoop(sys_time: &Instant, round_summary: &mut RoundSummary, mo
     }
 }
 
-pub fn ProcessLoop(
+pub fn ProcessLoop<W: Write>(
     spawn_list: Vec<Condition>,
     mut event_list: Vec<Event>,
     term_list: Vec<Condition>,
@@ -101,7 +103,8 @@ pub fn ProcessLoop(
     mut ActiveTable: Vec<bool>,
     mut TerminatedTable: Vec<bool>,
     mut CondTable: Vec<bool>,
-    round_timeout: f32
+    round_timeout: f32,
+    mut wtr: csv::Writer<W>,
 ) {
     // Variable Definition
     let mut running: bool = true;
@@ -176,7 +179,8 @@ pub fn ProcessLoop(
             &motors_sensors,
             &mut sensor_act_values,
             &sys_time,
-            &mut read_sensor_last_time
+            &mut read_sensor_last_time,
+            &mut wtr,
         );
         
         // ===== Run Events =====

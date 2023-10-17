@@ -88,6 +88,7 @@ pub enum Event {
         heading: f32,
         pid: PID,
         motor_correction: f32,
+        sensor_prev: f32,
     },
 
     PIDLine {
