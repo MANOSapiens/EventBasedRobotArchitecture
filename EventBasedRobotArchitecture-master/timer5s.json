@@ -1,0 +1,250 @@
+{
+    "name": "RUNDE 1",
+    "round_timeout": -1,
+    "EventListLen": 9,
+    "SpawnListLen": 9,
+    "TermListLen": 9,
+    "EventList": [
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 1,
+                "spawn_conditions_id": 0,
+                "term_conditions_id": 1
+            },
+            "time": 5
+        },
+
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 2,
+                "spawn_conditions_id": 2,
+                "term_conditions_id": 3
+            },
+            "time": 6
+        },
+
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 3,
+                "spawn_conditions_id": 4,
+                "term_conditions_id": 5
+            },
+            "time": 7
+        },
+
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 4,
+                "spawn_conditions_id": 6,
+                "term_conditions_id": 7
+            },
+            "time": 8
+        },
+
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 5,
+                "spawn_conditions_id": 8,
+                "term_conditions_id": 9
+            },
+            "time": 9
+        },
+
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 6,
+                "spawn_conditions_id": 10,
+                "term_conditions_id": 11
+            },
+            "time": 10
+        },
+
+        {
+            "type": "Timer",
+            "event": {
+                "process_id": 7,
+                "spawn_conditions_id": 12,
+                "term_conditions_id": 13
+            },
+            "time": 11
+        },
+
+        {
+            "type": "SensorValue",
+            "event": {
+                "process_id": 8,
+                "spawn_conditions_id": 14,
+                "term_conditions_id": 15
+            },
+            "sensor_id": 18,
+            "sensor_target": 1.0,
+            "sensor_prev": 0.0,
+            "expr": ">"
+        },
+
+        {
+            "type": "HaltProcessLoop",
+            "event": {
+                "process_id": 9,
+                "spawn_conditions_id": 16,
+                "term_conditions_id": 17
+            }
+        }
+    ],
+    "SpawnList": [
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 1,
+                "cond_id": 0
+            }
+        },
+
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 2,
+                "cond_id": 2
+            }
+        },
+
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 3,
+                "cond_id": 4
+            }
+        },
+
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 4,
+                "cond_id": 6
+            }
+        },
+
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 5,
+                "cond_id": 8
+            }
+        },
+
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 6,
+                "cond_id": 10
+            }
+        },
+
+        {
+            "type": "StartImmediately",
+            "cond": {
+                "process_id": 7,
+                "cond_id": 12
+            }
+        },
+
+        {
+            "type": "IsTerminated",
+            "cond": {
+                "process_id": 8,
+                "cond_id": 14
+            },
+
+            "watch_process_id": 7
+        },
+
+        {
+            "type": "IsTerminated",
+            "cond": {
+                "process_id": 9,
+                "cond_id": 16
+            },
+
+            "watch_process_id": 8
+        }
+    ],
+    "TermList": [
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 1,
+                "cond_id": 1
+            }
+        },
+
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 2,
+                "cond_id": 3
+            }
+        },
+
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 3,
+                "cond_id": 5
+            }
+        },
+
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 4,
+                "cond_id": 7
+            }
+        },
+
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 5,
+                "cond_id": 9
+            }
+        },
+
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 6,
+                "cond_id": 11
+            }
+        },
+
+        {
+            "type": "Timer",
+            "cond": {
+                "process_id": 7,
+                "cond_id": 13
+            }
+        },
+
+        {
+            "type": "SensorValue",
+            "cond": {
+                "process_id": 8,
+                "cond_id": 15
+            }
+        },
+
+        {
+            "type": "Placeholder",
+            "cond": {
+                "process_id": 9,
+                "cond_id": 17
+            }
+        }
+    ]
+}
