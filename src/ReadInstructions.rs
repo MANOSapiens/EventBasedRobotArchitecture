@@ -8,6 +8,7 @@ use std::fs;
 use std::process;
 use std::time::Instant;
 use rand::Rng;
+use std::ptr;
 
 fn parsei8(value: Option<&Value>) -> i8 {
     // debug!("{}", value.expect("Trying to read a non-number value into a number"));
@@ -146,7 +147,7 @@ fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
             heading: parsef32(event.get("heading")),
             pid: readPID(event),
             motor_correction: 0.0,
-            sensor_prev: -1.0,
+            sensor_prev: parsef32(event.get("sensor_prev")),
         }),
 
         "PIDLine" => event_list.push(Event::PIDLine {

@@ -98,7 +98,7 @@ pub fn ReadSensors<W: Write>(
     sensor_act_values.lToolMotorEnc = motors_sensors.lToolMotor.get_position().expect("lToolEnc failed") as f32;
     sensor_act_values.rToolMotorEnc = motors_sensors.rToolMotor.get_position().expect("rToolEnc failed") as f32; 
     sensor_act_values.gyroAngValue = motors_sensors.gyroSens.get_angle().expect("gyro failed") as f32;
-    sensor_act_values.colourSensValue = motors_sensors.colourSens.get_color().expect("colour sensor failed") as f32;
+    //sensor_act_values.colourSensValue = motors_sensors.colourSens.get_color().expect("colour sensor failed") as f32;
     sensor_act_values.centerButton = (motors_sensors.button.is_enter() as i32) as f32;
 
     /* let sensorResult: (f32, f32, f32, f32, f32, f32) = block_on(readSensorValues(motors_sensors));

@@ -21,6 +21,7 @@ use crate::ProcessLoop::SensorActuatorValues;
 use crate::ReadSensors::getSensorValue;
 use crate::PID::ComputePID;
 
+
 fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
     match func {
         FuncTypes::ConstFunc { c } => return *c,
@@ -141,7 +142,7 @@ pub fn RunEvents(
             } => {
                 if ActiveTable[event.process_id] {
                     let sensor_value: f32 = getSensorValue(GYRO, sensor_act_values);
-                    if *sensor_prev < 0.0 {
+                    if *sensor_prev < -9998.0 {
                         *sensor_prev = sensor_value;
                     }
 

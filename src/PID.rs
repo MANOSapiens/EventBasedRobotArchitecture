@@ -2,9 +2,11 @@
 use super::DEBUG;
 use crate::Events::PID;
 
+use log::{error, info, warn};
+
 pub fn ComputePID(value: f32, target: &mut f32, pid: &mut PID) -> f32{
     let error: f32 = *target - value;
-
+    
     if pid.prev_e < 0.0 {
         pid.prev_e = error;
     }

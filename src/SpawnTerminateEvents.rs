@@ -21,7 +21,7 @@ fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut Vec<bool>, CondTab
         }
 
         if DEBUG {
-            info!("Condition ID {} spawned process ID {}.", cond.cond_id, cond.process_id);
+            //info!("Condition ID {} spawned process ID {}.", cond.cond_id, cond.process_id);
         }
     }
 }
@@ -35,7 +35,7 @@ fn setVarTerm(result: bool, cond: &CondID, ActiveTable: &mut Vec<bool>, Terminat
             TerminatedTable[cond.process_id] = true;
             
             if DEBUG {
-                info!("Condition ID {} terminated process ID {}.", cond.cond_id, cond.process_id);
+                //info!("Condition ID {} terminated process ID {}.", cond.cond_id, cond.process_id);
             }
         }
     }

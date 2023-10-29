@@ -57,31 +57,31 @@ pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut 
     let mut lToolMotorPow: f32 = sensor_act_values.lToolMotorPow + sensor_act_values.lToolMotorCor;
     let mut rToolMotorPow: f32 = sensor_act_values.rToolMotorPow + sensor_act_values.rToolMotorPow;
 
-    //if lDriveMotorPow != sensor_act_values.lDriveMotorPowPrev {
+    if lDriveMotorPow != sensor_act_values.lDriveMotorPowPrev {
         ConstrainActuatorValues(&mut lDriveMotorPow);
         
         let _ = motors_sensors.lDriveMotor.set_duty_cycle_sp((lDriveMotorPow * 100.0) as i32).expect("lDrive motor write failed");
         sensor_act_values.lDriveMotorPowPrev = lDriveMotorPow;
-    //}
+    }
 
-    //if rDriveMotorPow != sensor_act_values.rDriveMotorPowPrev {
+    if rDriveMotorPow != sensor_act_values.rDriveMotorPowPrev {
         ConstrainActuatorValues(&mut rDriveMotorPow);
         
         motors_sensors.rDriveMotor.set_duty_cycle_sp((rDriveMotorPow * 100.0) as i32).expect("rDrive motor write failed");
         sensor_act_values.rDriveMotorPowPrev = rDriveMotorPow;
-    //}
+    }
 
-    //if lToolMotorPow != sensor_act_values.lToolMotorPowPrev {
+    if lToolMotorPow != sensor_act_values.lToolMotorPowPrev {
         ConstrainActuatorValues(&mut lToolMotorPow);
         
         motors_sensors.lToolMotor.set_duty_cycle_sp((lToolMotorPow * 100.0) as i32).expect("lTool motor write failed");
         sensor_act_values.lToolMotorPowPrev = lToolMotorPow;
-    //}
+    }
 
-    //if rToolMotorPow != sensor_act_values.rToolMotorPowPrev {
+    if rToolMotorPow != sensor_act_values.rToolMotorPowPrev {
         ConstrainActuatorValues(&mut rToolMotorPow);
         
         motors_sensors.rToolMotor.set_duty_cycle_sp((rToolMotorPow * 100.0) as i32).expect("rTool motor write failed");
         sensor_act_values.rToolMotorPowPrev = rToolMotorPow;
-    //}
+    }
 }
