@@ -1,4 +1,4 @@
-use log::{error, info, warn};
+
 
 // Local modules
 use super::DEBUG;
@@ -32,24 +32,14 @@ pub fn startExecution(
     }
 
     // prepare motors sensors struct
-    let motors_sensors: MotorsSensors;
-    motors_sensors = prepare_motors_sensor(port_definitions);
+    
+    let motors_sensors: MotorsSensors = prepare_motors_sensor(port_definitions);
 
     // prepare boolean table for listing terminated events
-    let mut ActiveTable: Vec<bool> = Vec::with_capacity(event_list.len()+1);
-    let mut TerminatedTable: Vec<bool> = Vec::with_capacity(event_list.len()+1);
-    let mut CondTable: Vec<bool> = Vec::with_capacity(spawn_list.len() + term_list.len());
-
-
-    for _ in 0..(event_list.len()+1) {
-        ActiveTable.push(false);
-        TerminatedTable.push(false);   
-    }
-
-    for _ in 0..(spawn_list.len() + term_list.len()) {
-        CondTable.push(false);
-    }
-
+    let mut ActiveTable: Vec<bool> = vec![false; event_list.len()+1];
+    let mut TerminatedTable: Vec<bool> = vec![false; event_list.len()+1];
+    let mut CondTable: Vec<bool> = vec![false; spawn_list.len() + term_list.len()];
+    
     ProcessLoop(
         spawn_list,
         event_list,

@@ -1,7 +1,7 @@
 extern crate ev3dev_lang_rust;
 
-use super::DEBUG;
-use ev3dev_lang_rust::Ev3Button;
+
+use ev3dev_lang_rust::Button;
 use ev3dev_lang_rust::motors::{MediumMotor, LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort, ColorSensor, GyroSensor};
 
@@ -21,7 +21,7 @@ pub struct MotorsSensors {
     pub rToolMotor: MediumMotor,
     pub gyroSens: GyroSensor,
     pub colourSens: ColorSensor,
-    pub button: Ev3Button
+    pub button: Button
 }
 
 /* pub struct MotorsSensors {
@@ -41,10 +41,6 @@ fn motorsRunDirect(motors_sensors: &MotorsSensors) {
 }
 
 pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
-    let _ = motors_sensors.lDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO roll to stop
-    let _ = motors_sensors.rDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO roll to stop
-    let _ = motors_sensors.lToolMotor.set_stop_action("coast"); //SET BRAKE MODE TO roll to stop
-    let _ = motors_sensors.rToolMotor.set_stop_action("coast"); //SET BRAKE MODE TO roll to stop
 
     // Stop all actuators
     let _ = motors_sensors.lDriveMotor.stop();
@@ -57,7 +53,7 @@ pub fn prepare_motors_sensor(port_definitions: PortDefinition) -> MotorsSensors 
     // Try to init all motors and sensors
     // Panics (throws error) if not available
 
-    let mut motors_sensors = MotorsSensors {
+    let motors_sensors = MotorsSensors {
         lDriveMotor: LargeMotor::get(port_definitions.lDriveMotorPort)
             .expect("failed to load lDriveMotor"),
         rDriveMotor: LargeMotor::get(port_definitions.rDriveMotorPort)
@@ -70,7 +66,7 @@ pub fn prepare_motors_sensor(port_definitions: PortDefinition) -> MotorsSensors 
             .expect("failed to load Gyro"),
         colourSens: ColorSensor::get(port_definitions.colourSensPort)
             .expect("failed to load colour sensor"),
-        button: Ev3Button::new()
+        button: Button::new()
             .expect("failed to load buttons"),
     };
 

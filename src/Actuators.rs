@@ -1,23 +1,23 @@
 // Import crates
 extern crate ev3dev_lang_rust;
 
-use ev3dev_lang_rust::{motors, Port, Ev3Error};
-use log::{error, info, warn};
-use serde_json::error;
-use std::time::{Duration, Instant};
 
-use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
-use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
+use log::{error};
 
-use std::{process, result};
+
+
+
+
+
+
 
 // Local modules
 use super::{
-    COLOURSENS, DEBUG, GYRO, LDRIVECOR, LDRIVEENC, LDRIVEPOW, LTOOLCOR, LTOOLENC, LTOOLPOW,
-    RDRIVECOR, RDRIVEENC, RDRIVEPOW, RTOOLCOR, RTOOLENC, RTOOLPOW,
+    DEBUG, LDRIVECOR, LDRIVEPOW, LTOOLCOR, LTOOLPOW,
+    RDRIVECOR, RDRIVEPOW, RTOOLCOR, RTOOLPOW,
 };
-use crate::Events::{Condition, Event};
-use crate::Ports::{MotorsSensors, PortDefinition};
+
+use crate::Ports::{MotorsSensors};
 use crate::ProcessLoop::SensorActuatorValues;
 
 // Motor control helper
@@ -59,16 +59,16 @@ pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut 
 
     if lDriveMotorPow != sensor_act_values.lDriveMotorPowPrev {
         ConstrainActuatorValues(&mut lDriveMotorPow);
-        
-        let _ = motors_sensors.lDriveMotor.set_duty_cycle_sp((lDriveMotorPow * 100.0) as i32).expect("lDrive motor write failed");
+        motors_sensors.lDriveMotor.set_duty_cycle_sp((lDriveMotorPow * 100.0) as i32).expect("lDrive motor write failed");
         sensor_act_values.lDriveMotorPowPrev = lDriveMotorPow;
+        //let _ = motors_sensors.lDriveMotor.run_forever(); //SET RUN DIRECT MODE 
     }
 
     if rDriveMotorPow != sensor_act_values.rDriveMotorPowPrev {
         ConstrainActuatorValues(&mut rDriveMotorPow);
-        
         motors_sensors.rDriveMotor.set_duty_cycle_sp((rDriveMotorPow * 100.0) as i32).expect("rDrive motor write failed");
         sensor_act_values.rDriveMotorPowPrev = rDriveMotorPow;
+        //let _ = motors_sensors.rDriveMotor.run_forever(); //SET RUN DIRECT MODE
     }
 
     if lToolMotorPow != sensor_act_values.lToolMotorPowPrev {
@@ -84,4 +84,8 @@ pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut 
         motors_sensors.rToolMotor.set_duty_cycle_sp((rToolMotorPow * 100.0) as i32).expect("rTool motor write failed");
         sensor_act_values.rToolMotorPowPrev = rToolMotorPow;
     }
+    
+    
+    //let _ = motors_sensors.lToolMotor.run_forever(); //SET RUN DIRECT MODE
+    //let _ = motors_sensors.rToolMotor.run_forever(); //SET RUN DIRECT MODE
 }

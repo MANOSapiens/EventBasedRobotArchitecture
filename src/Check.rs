@@ -1,15 +1,15 @@
 // Import crates
 extern crate ev3dev_lang_rust;
 
-use ev3dev_lang_rust::{motors, Port};
-use log::{error, info, warn};
-use std::time::{Duration, Instant};
+
+
+use std::time::{Instant};
 
 use crate::ProcessLoop::SensorActuatorValues;
 
-use super::DEBUG;
-use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
-use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
+
+
+
 
 pub struct RoundSummary {
     pub wall_time: u64,
@@ -24,8 +24,8 @@ pub fn Check(
     sys_time: &Instant,
     last_time: &mut f64,
     round_summary: &mut RoundSummary,
-    sensor_act_values: &SensorActuatorValues,
-    round_timeout: &f32
+    _sensor_act_values: &SensorActuatorValues,
+    _round_timeout: &f32
 ) {
     round_summary.loop_count += 1;
     let now: f64 = sys_time.elapsed().as_secs_f64();

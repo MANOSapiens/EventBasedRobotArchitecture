@@ -1,24 +1,23 @@
-use super::DEBUG;
+
 use std::error::Error;
 use std::io::Write;
-use log::{info, error};
-use log4rs;
+
+
 use crate::ProcessLoop::SensorActuatorValues;
-use csv;
+
 
 pub fn init_logger(log_file: String) {
-    log4rs::init_file(&log_file, Default::default()).unwrap();
+    log4rs::init_file(log_file, Default::default()).unwrap();
 }
 
 pub fn logHeaderCSV<W: Write>(wtr: &mut csv::Writer<W>) -> Result<(), Box<dyn Error>> {
 
-    wtr.write_record(&[
+    wtr.write_record([
         "currentTime",
         "lDriveMotorEnc",
         "rDriveMotorEnc",
         "lToolMotorEnc",
         "rToolMotorEnc",
-        "colourSensValue",
         "gyroAngValue",
         "lDriveMotorPow",
         "rDriveMotorPow",
@@ -28,7 +27,8 @@ pub fn logHeaderCSV<W: Write>(wtr: &mut csv::Writer<W>) -> Result<(), Box<dyn Er
         "rDriveMotorCor",
         "lToolMotorCor",
         "rToolMotorCor",
-        "centerButton",
+        "lDriveMotorSpeed",
+        "rDriveMotorSpeed",
         ])?;
 
     wtr.flush()?;
@@ -45,7 +45,6 @@ pub fn logCSV<W: Write>(wtr: &mut csv::Writer<W>, sensor_act_values: &mut Sensor
             sensor_act_values.rDriveMotorEnc, 
             sensor_act_values.lToolMotorEnc, 
             sensor_act_values.rToolMotorEnc,
-            sensor_act_values.colourSensValue,
             sensor_act_values.gyroAngValue,
             sensor_act_values.lDriveMotorPow,
             sensor_act_values.rDriveMotorPow,
@@ -55,7 +54,8 @@ pub fn logCSV<W: Write>(wtr: &mut csv::Writer<W>, sensor_act_values: &mut Sensor
             sensor_act_values.rDriveMotorCor,
             sensor_act_values.lToolMotorCor,
             sensor_act_values.rToolMotorCor,
-            sensor_act_values.centerButton
+            sensor_act_values.lDriveMotorSpeed,
+            sensor_act_values.rDriveMotorSpeed,
         ))?;
 
     wtr.flush()?;

@@ -1,19 +1,19 @@
 // Import crates
 extern crate ev3dev_lang_rust;
 
-use ev3dev_lang_rust::{motors, Port};
-use log::{error, info, warn};
-use std::time::{Duration, Instant};
-use std::io::Write;
-use csv;
 
-use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
-use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
+use log::{info};
+use std::time::{Instant};
+use std::io::Write;
+
+
+
+
 
 // Local modules
 use super::DEBUG;
 use crate::Events::{Condition, Event};
-use crate::Ports::{MotorsSensors, PortDefinition, motorsStopCoast};
+use crate::Ports::{MotorsSensors, motorsStopCoast};
 use crate::ReadSensors::{resetAll, ReadSensors};
 use crate::RunEvents::RunEvents;
 use crate::SpawnTerminateEvents::{SpawnEvents, TerminateEvents};
@@ -28,10 +28,7 @@ pub struct SensorActuatorValues {
     pub rToolMotorEnc: f32,
 
     // These are system variables, no ids
-    pub lDriveMotorEncPrev: f32,
-    pub rDriveMotorEncPrev: f32,
-    pub lToolMotorEncPrev: f32,
-    pub rToolMotorEncPrev: f32,
+    pub gyroAngValuePrev: f32,
 
     // Gyro, Colour with ids 4-5
     pub colourSensValue: f32,
@@ -74,25 +71,24 @@ fn TerminateProcessLoop(sys_time: &Instant, round_summary: &mut RoundSummary, mo
     round_summary.mean_loop_time = sys_time.elapsed().as_secs_f64() / (round_summary.loop_count as f64);
     round_summary.mean_f =  (1.0 / round_summary.mean_loop_time) as u32;
 
-    if DEBUG {
-        info!("TERMINATED PROCESS LOOP");
-        info!("Note down some stats about this round ...");
-    }
+    
+    info!("TERMINATED PROCESS LOOP");
+    info!("Note down some stats about this round ...");
     
     motorsStopCoast(motors_sensors);
 
     round_summary.total_travelled_distance = ((sensor_act_values.lDriveMotorEnc + sensor_act_values.rDriveMotorEnc)/2.0) as i32;
 
-    if DEBUG {
-        info!("=========== ROUND SUMMARY ===========");
-        info!("Loop count: {}", round_summary.loop_count);
-        info!("Wall time: {}s", round_summary.wall_time);
-        info!("Average loop time(higher means worse): {}s", round_summary.mean_loop_time as f32);
-        info!("Average loop frequency: {}Hz", round_summary.mean_f);
-        info!("Loop time maximum (higher means worse): {}s", round_summary.max_loop_time as f32);
-        
-        info!("Total travelled distance in motor degrees: {}", round_summary.total_travelled_distance);
-    }
+    
+    info!("=========== ROUND SUMMARY ===========");
+    info!("Loop count: {}", round_summary.loop_count);
+    info!("Wall time: {}s", round_summary.wall_time);
+    info!("Average loop time(higher means worse): {}s", round_summary.mean_loop_time as f32);
+    info!("Average loop frequency: {}Hz", round_summary.mean_f);
+    info!("Loop time maximum (higher means worse): {}s", round_summary.max_loop_time as f32);
+    
+    info!("Total travelled distance in motor degrees: {}", round_summary.total_travelled_distance);
+    
 }
 
 pub fn ProcessLoop<W: Write>(
@@ -129,14 +125,10 @@ pub fn ProcessLoop<W: Write>(
         lToolMotorEnc : 0.0,
         rToolMotorEnc: 0.0,
 
-        lDriveMotorEncPrev: 0.0,
-        rDriveMotorEncPrev: 0.0,
-        lToolMotorEncPrev: 0.0,
-        rToolMotorEncPrev: 0.0,
-
         // Gyro, Colour
         colourSensValue: 0.0,
         gyroAngValue: 0.0,
+        gyroAngValuePrev: 0.0,
 
         // Motor power
         lDriveMotorPow: 0.0,
@@ -166,6 +158,16 @@ pub fn ProcessLoop<W: Write>(
         currentTime: 0.0,
     };
 
+    ReadSensors(
+        &motors_sensors,
+        &mut sensor_act_values,
+        &sys_time,
+        &mut read_sensor_last_time,
+        &mut wtr,
+    );
+
+    sensor_act_values.gyroAngValuePrev = sensor_act_values.gyroAngValue;
+
     loop {
         // ============== MAIN LOOP =================
         // ===== Check if loop is still running =====
@@ -187,8 +189,8 @@ pub fn ProcessLoop<W: Write>(
         RunEvents(&mut event_list, &ActiveTable, &mut CondTable, &mut sensor_act_values, &sys_time, &mut running);
 
         // ===== Spawn and Terminate =====
-        TerminateEvents(&mut event_list, &term_list, &mut ActiveTable, &mut TerminatedTable, &mut CondTable, &mut sensor_act_values);
-        SpawnEvents(&mut event_list, &spawn_list, &mut ActiveTable, &mut TerminatedTable, &mut CondTable);
+        TerminateEvents( &term_list, &mut ActiveTable, &mut TerminatedTable, &mut CondTable, &mut sensor_act_values);
+        SpawnEvents(&spawn_list, &mut ActiveTable, &TerminatedTable, &mut CondTable);
 
         // ===== Write computed values to actuators =====
         writeToActuators(&motors_sensors, &mut sensor_act_values);

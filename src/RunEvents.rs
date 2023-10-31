@@ -1,22 +1,22 @@
 // Import crates
 extern crate ev3dev_lang_rust;
 
-use ev3dev_lang_rust::{motors, Port};
-use log::{error, info, warn};
-use std::sync::Arc;
-use std::time::{Duration, Instant};
 
-use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
-use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
+use log::{error, info};
+
+use std::time::{Instant};
+
+
+
 
 // Local modules
 use super::{
-    COLOURSENS, DEBUG, GYRO, LDRIVECOR, LDRIVEENC, LDRIVEPOW, LTOOLCOR, LTOOLENC, LTOOLPOW,
-    RDRIVECOR, RDRIVEENC, RDRIVEPOW, RTOOLCOR, RTOOLENC, RTOOLPOW,
+    COLOURSENS, DEBUG, GYRO, LDRIVECOR,
+    RDRIVECOR,
 };
 use crate::Actuators::setMotorPow;
-use crate::Events::{Condition, Event, FuncTypes};
-use crate::Ports::{MotorsSensors, PortDefinition};
+use crate::Events::{Event, FuncTypes};
+
 use crate::ProcessLoop::SensorActuatorValues;
 use crate::ReadSensors::getSensorValue;
 use crate::PID::ComputePID;
@@ -24,7 +24,7 @@ use crate::PID::ComputePID;
 
 fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
     match func {
-        FuncTypes::ConstFunc { c } => return *c,
+        FuncTypes::ConstFunc { c } => *c,
 
         FuncTypes::LinearFunc {
             m,
@@ -39,7 +39,7 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
 
             let result: f32 = (inp - *step_prev) * (*m) + *e;
             if result > *hb {
-                return *hb;
+                *hb
             } else if result < *lb {
                 return *lb;
             } else {
@@ -62,7 +62,7 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
             let result: f32 = (*a) * x.powf(2.0) + *b * x + *c;
 
             if result > *hb {
-                return *hb;
+                *hb
             } else if result < *lb {
                 return *lb;
             } else {
@@ -74,8 +74,8 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
 
 pub fn RunEvents(
     event_list: &mut Vec<Event>,
-    ActiveTable: &Vec<bool>,
-    CondTable: &mut Vec<bool>,
+    ActiveTable: &[bool],
+    CondTable: &mut [bool],
     sensor_act_values: &mut SensorActuatorValues,
     sys_time: &Instant,
     running: &mut bool
@@ -94,7 +94,7 @@ pub fn RunEvents(
             } => {
                 if ActiveTable[event.process_id] {
                     let sensor_value: f32 = getSensorValue(*sensor_id, sensor_act_values);
-                    if *sensor_prev < 0.0 {
+                    if *sensor_prev < -9998.0 {
                         *sensor_prev = sensor_value;
                     }
 
@@ -169,7 +169,7 @@ pub fn RunEvents(
                 }
             }
 
-            Event::PIDHold { event, pid, motor_correction} => if ActiveTable[event.process_id] {},
+            Event::PIDHold { event, pid: _, motor_correction: _} => if ActiveTable[event.process_id] {},
 
             // Compute and Timer
             Event::ComputeMotorStall {
@@ -204,13 +204,6 @@ pub fn RunEvents(
 
                         if time_passed >= *time {
                             CondTable[event.term_conditions_id] = true;
-
-                            if DEBUG {
-                                info!(
-                                    "Timer {} over!, time passed {} s",
-                                    event.process_id, time_passed
-                                );
-                            }
                         }
                     }
                 }
@@ -221,9 +214,6 @@ pub fn RunEvents(
             } => {
                 if ActiveTable[event.process_id] {
                     *running = false;
-                    if DEBUG {
-                        info!("Events::HaltProcessLoop terminated ProcessLoop!")
-                    }
                 }
             }
             

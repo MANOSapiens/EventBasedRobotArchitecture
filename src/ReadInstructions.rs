@@ -1,14 +1,14 @@
 use crate::Events::CondID;
 use crate::Events::PID;
 use crate::Events::{Condition, Event, EventID, FuncTypes};
-use log::{debug, error, info, warn};
-use serde_json::{error, value::Value};
+use log::{error, info};
+use serde_json::{value::Value};
 use std::collections::VecDeque;
 use std::fs;
 use std::process;
 use std::time::Instant;
 use rand::Rng;
-use std::ptr;
+
 
 fn parsei8(value: Option<&Value>) -> i8 {
     // debug!("{}", value.expect("Trying to read a non-number value into a number"));
@@ -130,8 +130,7 @@ fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
             sensor_prev: parsef32(event.get("sensor_prev")),
             sensor_id: parsei8(event.get("sensor_id")),
             expr: parseString(event.get("expr"))
-                .chars()
-                .nth(0)
+                .chars().next()
                 .expect("Cannot parse char from SensorValue!"),
         }),
 

@@ -1,15 +1,15 @@
 // Import crates
 extern crate ev3dev_lang_rust;
 
-use log::{error, info, warn};
-use std::time::{Duration, Instant};
 
-use ev3dev_lang_rust::motors::{LargeMotor, MediumMotor, MotorPort};
-use ev3dev_lang_rust::sensors::{ColorSensor, GyroSensor, SensorPort};
+
+
+use ev3dev_lang_rust::motors::{MotorPort};
+use ev3dev_lang_rust::sensors::{SensorPort};
 
 // Local modules
 pub mod Events;
-use crate::Events::{Condition, Event};
+
 
 mod Ports;
 use crate::Ports::PortDefinition;

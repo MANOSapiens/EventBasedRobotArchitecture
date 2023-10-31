@@ -1,8 +1,8 @@
 // Local modules
-use super::DEBUG;
+
 use crate::Events::PID;
 
-use log::{error, info, warn};
+
 
 pub fn ComputePID(value: f32, target: &mut f32, pid: &mut PID) -> f32{
     let error: f32 = *target - value;
@@ -19,5 +19,5 @@ pub fn ComputePID(value: f32, target: &mut f32, pid: &mut PID) -> f32{
     let result: f32 = pid.p * error + pid.d * (error - pid.prev_e) + pid.sum_i;
     
     pid.prev_e = error;
-    return result
+    result
 }

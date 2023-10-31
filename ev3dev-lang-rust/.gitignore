@@ -1,0 +1,13 @@
+# Cargo defaults
+target
+**/*.rs.bk
+Cargo.lock
+vendor/
+
+# IntelliJ IDEA
+*.iml
+.idea/*
+
+# VS Code
+.vscode/*
+.DS_Store
