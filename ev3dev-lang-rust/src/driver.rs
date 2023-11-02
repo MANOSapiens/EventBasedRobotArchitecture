@@ -13,7 +13,7 @@ use crate::{Attribute, Ev3Error, Ev3Result, Port};
 
 /// The driver path `/sys/class/`.
 #[cfg(not(feature = "override-driver-path"))]
-pub const DRIVER_PATH: &str = "/mnt/sysfs/class/";
+pub const DRIVER_PATH: &str = "/sys/class/";
 
 /// The driver path that was set with the env variable `EV3DEV_DRIVER_PATH` (default value: `/sys/class/`).
 #[cfg(feature = "override-driver-path")]
