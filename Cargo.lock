@@ -13,6 +13,7 @@ dependencies = [
  "rand",
  "serde",
  "serde_json",
+ "simple_moving_average",
 ]
 
 [[package]]
@@ -476,6 +477,15 @@ dependencies = [
  "ryu",
  "serde",
  "yaml-rust",
+]
+
+[[package]]
+name = "simple_moving_average"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cdd19d3808aad2604c824399fd270260d634678b010328c9d96851bb0fb63121"
+dependencies = [
+ "num-traits",
 ]
 
 [[package]]

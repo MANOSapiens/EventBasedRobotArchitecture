@@ -7,7 +7,7 @@ use log::{error};
 use Logger::logCSV;
 use std::time::{Instant};
 use std::io::Write;
-
+use simple_moving_average::{SingleSumSMA, SumTreeSMA};
 
 
 
@@ -64,8 +64,8 @@ pub fn ReadSensors<W: Write>(
     motors_sensors: &MotorsSensors,
     sensor_act_values: &mut SensorActuatorValues,
     sys_time: &Instant,
-    read_sensor_last_time: &mut f32,
     wtr: &mut csv::Writer<W>
+
 ) {
     sensor_act_values.lDriveMotorEnc = motors_sensors.lDriveMotor.get_position().expect("lDriveEnc failed") as f32;
     sensor_act_values.rDriveMotorEnc = motors_sensors.rDriveMotor.get_position().expect("rDriveEnc failed") as f32;
@@ -75,17 +75,8 @@ pub fn ReadSensors<W: Write>(
     //sensor_act_values.colourSensValue = motors_sensors.colourSens.get_color().expect("colour sensor failed") as f32;
     //sensor_act_values.centerButton = (motors_sensors.button.is_enter() as i32) as f32;
 
-    let time: f32 = sys_time.elapsed().as_secs_f32();
+    sensor_act_values.currentTime = sys_time.elapsed().as_secs_f32();
 
-    //sensor_act_values.lDriveMotorSpeed = motors_sensors.lDriveMotor.get_speed().expect("lDriveSpeed failed") as f32;
-
-    //sensor_act_values.rDriveMotorSpeed = motors_sensors.rDriveMotor.get_speed().expect("rDriveSpeed failed") as f32;
-    
-    //sensor_act_values.lToolMotorSpeed = motors_sensors.lToolMotor.get_speed().expect("lToolSpeed failed") as f32;
-
-    //sensor_act_values.rToolMotorSpeed = motors_sensors.rToolMotor.get_speed().expect("rToolSpeed failed") as f32;
-
-    *read_sensor_last_time = time;
 
     if DEBUG {
         logCSV(wtr, sensor_act_values).expect("cant write to CSV file!");
@@ -101,4 +92,19 @@ pub fn ReadSensors<W: Write>(
     sensor_act_values.rDriveMotorCor = 0.0;
     sensor_act_values.lToolMotorCor = 0.0;
     sensor_act_values.rToolMotorCor = 0.0;
+}
+
+pub fn CalculateSpeed<T>(
+    sensor_act_values: &mut SensorActuatorValues, 
+    sys_time: &Instant,
+    lDriveSMA: SumTreeSMA::<T, f32, 10>,
+    rDriveSMA: SumTreeSMA::<T, f32, 10>
+) {
+    //sensor_act_values.lDriveMotorSpeed = motors_sensors.lDriveMotor.get_speed().expect("lDriveSpeed failed") as f32;
+
+    //sensor_act_values.rDriveMotorSpeed = motors_sensors.rDriveMotor.get_speed().expect("rDriveSpeed failed") as f32;
+    
+    //sensor_act_values.lToolMotorSpeed = motors_sensors.lToolMotor.get_speed().expect("lToolSpeed failed") as f32;
+
+    //sensor_act_values.rToolMotorSpeed = motors_sensors.rToolMotor.get_speed().expect("rToolSpeed failed") as f32;
 }

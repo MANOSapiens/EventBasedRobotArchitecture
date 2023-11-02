@@ -5,7 +5,7 @@ extern crate ev3dev_lang_rust;
 use log::{info};
 use std::time::{Instant};
 use std::io::Write;
-
+use simple_moving_average::{SingleSumSMA, SumTreeSMA};
 
 
 
@@ -19,6 +19,7 @@ use crate::RunEvents::RunEvents;
 use crate::SpawnTerminateEvents::{SpawnEvents, TerminateEvents};
 use crate::Actuators::writeToActuators;
 use crate::Check::{Check, RoundSummary};
+
 
 pub struct SensorActuatorValues {
     // Motor encoders with ids 0-3
@@ -181,7 +182,6 @@ pub fn ProcessLoop<W: Write>(
             &motors_sensors,
             &mut sensor_act_values,
             &sys_time,
-            &mut read_sensor_last_time,
             &mut wtr,
         );
         
