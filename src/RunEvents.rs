@@ -43,7 +43,7 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
             } else if result < *lb {
                 return *lb;
             } else {
-                return result;
+                return (result * 50.0).round() / 50.0;
             }
         }
 
@@ -66,7 +66,7 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
             } else if result < *lb {
                 return *lb;
             } else {
-                return result;
+                return (result * 100.0).round() / 100.0;
             }
         }
     }

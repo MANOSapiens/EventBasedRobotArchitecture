@@ -59,16 +59,16 @@ pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut 
 
     if lDriveMotorPow != sensor_act_values.lDriveMotorPowPrev {
         ConstrainActuatorValues(&mut lDriveMotorPow);
-        motors_sensors.lDriveMotor.set_duty_cycle_sp((lDriveMotorPow * 100.0) as i32).expect("lDrive motor write failed");
+        motors_sensors.lDriveMotor.set_speed_sp((lDriveMotorPow * 1000.0) as i32).expect("lDrive motor write failed");
         sensor_act_values.lDriveMotorPowPrev = lDriveMotorPow;
-        //let _ = motors_sensors.lDriveMotor.run_forever(); //SET RUN DIRECT MODE 
+        let _ = motors_sensors.lDriveMotor.run_forever(); //SET RUN DIRECT MODE 
     }
 
     if rDriveMotorPow != sensor_act_values.rDriveMotorPowPrev {
         ConstrainActuatorValues(&mut rDriveMotorPow);
-        motors_sensors.rDriveMotor.set_duty_cycle_sp((rDriveMotorPow * 100.0) as i32).expect("rDrive motor write failed");
+        motors_sensors.rDriveMotor.set_speed_sp((rDriveMotorPow * 1000.0) as i32).expect("rDrive motor write failed");
         sensor_act_values.rDriveMotorPowPrev = rDriveMotorPow;
-        //let _ = motors_sensors.rDriveMotor.run_forever(); //SET RUN DIRECT MODE
+        let _ = motors_sensors.rDriveMotor.run_forever(); //SET RUN DIRECT MODE
     }
 
     if lToolMotorPow != sensor_act_values.lToolMotorPowPrev {

@@ -52,12 +52,6 @@ pub struct SensorActuatorValues {
     pub lToolMotorCor: f32,
     pub rToolMotorCor: f32,
 
-    // Motor speed with ids 14-17
-    pub lDriveMotorSpeed: f32,
-    pub rDriveMotorSpeed: f32,
-    pub lToolMotorSpeed: f32,
-    pub rToolMotorSpeed: f32,
-
     // One Button id 18
     pub centerButton: f32,
 
@@ -146,12 +140,6 @@ pub fn ProcessLoop<W: Write>(
         rDriveMotorCor: 0.0,
         lToolMotorCor: 0.0,
         rToolMotorCor: 0.0,
-
-        // Motor speed
-        lDriveMotorSpeed: 0.0,
-        rDriveMotorSpeed: 0.0,
-        lToolMotorSpeed: 0.0,
-        rToolMotorSpeed: 0.0,
 
         //Buttons
         centerButton: 0.0,

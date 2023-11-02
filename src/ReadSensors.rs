@@ -44,11 +44,6 @@ pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValue
         RDRIVECOR => sensor_act_values.rDriveMotorCor,
         LTOOLCOR => sensor_act_values.lToolMotorCor,
         RTOOLCOR => sensor_act_values.rToolMotorCor,
-        LDRIVESPEED => sensor_act_values.lDriveMotorSpeed,
-        RDRIVESPEED => sensor_act_values.rDriveMotorSpeed,
-        DRIVESPEED => (sensor_act_values.rDriveMotorSpeed + sensor_act_values.lDriveMotorSpeed)/2.0,
-        LTOOLSPEED => sensor_act_values.lToolMotorSpeed,
-        RTOOLSPEED => sensor_act_values.rToolMotorSpeed,
         CENTERBUTTON => sensor_act_values.centerButton,
         TIME => sensor_act_values.currentTime,
         _ => {
@@ -69,21 +64,14 @@ pub fn ReadSensors<W: Write>(
 ) {
     sensor_act_values.lDriveMotorEnc = motors_sensors.lDriveMotor.get_position().expect("lDriveEnc failed") as f32;
     sensor_act_values.rDriveMotorEnc = motors_sensors.rDriveMotor.get_position().expect("rDriveEnc failed") as f32;
-    sensor_act_values.lToolMotorEnc = motors_sensors.lToolMotor.get_position().expect("lToolEnc failed") as f32;
-    sensor_act_values.rToolMotorEnc = motors_sensors.rToolMotor.get_position().expect("rToolEnc failed") as f32; 
-    sensor_act_values.gyroAngValue = motors_sensors.gyroSens.get_angle().expect("gyro failed") as f32 - sensor_act_values.gyroAngValuePrev;
+    //sensor_act_values.lToolMotorEnc = motors_sensors.lToolMotor.get_position().expect("lToolEnc failed") as f32;
+    //sensor_act_values.rToolMotorEnc = motors_sensors.rToolMotor.get_position().expect("rToolEnc failed") as f32; 
+    //sensor_act_values.gyroAngValue = motors_sensors.gyroSens.get_angle().expect("gyro failed") as f32 - sensor_act_values.gyroAngValuePrev;
+    
     //sensor_act_values.colourSensValue = motors_sensors.colourSens.get_color().expect("colour sensor failed") as f32;
     //sensor_act_values.centerButton = (motors_sensors.button.is_enter() as i32) as f32;
 
     let time: f32 = sys_time.elapsed().as_secs_f32();
-
-    //sensor_act_values.lDriveMotorSpeed = motors_sensors.lDriveMotor.get_speed().expect("lDriveSpeed failed") as f32;
-
-    //sensor_act_values.rDriveMotorSpeed = motors_sensors.rDriveMotor.get_speed().expect("rDriveSpeed failed") as f32;
-    
-    //sensor_act_values.lToolMotorSpeed = motors_sensors.lToolMotor.get_speed().expect("lToolSpeed failed") as f32;
-
-    //sensor_act_values.rToolMotorSpeed = motors_sensors.rToolMotor.get_speed().expect("rToolSpeed failed") as f32;
 
     *read_sensor_last_time = time;
 
