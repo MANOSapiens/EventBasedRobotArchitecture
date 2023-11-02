@@ -71,7 +71,7 @@ pub fn ReadSensors<W: Write>(
     //sensor_act_values.colourSensValue = motors_sensors.colourSens.get_color().expect("colour sensor failed") as f32;
     //sensor_act_values.centerButton = (motors_sensors.button.is_enter() as i32) as f32;
 
-    sensor_act_values.currentTime = sys_time.elapsed().as_secs_f32();
+    let time: f32 = sys_time.elapsed().as_secs_f32();
 
     *read_sensor_last_time = time;
 
