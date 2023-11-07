@@ -55,7 +55,7 @@ pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut 
     let mut lDriveMotorPow: f32 = sensor_act_values.lDriveMotorPow + sensor_act_values.lDriveMotorCor;
     let mut rDriveMotorPow: f32 = sensor_act_values.rDriveMotorPow + sensor_act_values.rDriveMotorCor;
     let mut lToolMotorPow: f32 = sensor_act_values.lToolMotorPow + sensor_act_values.lToolMotorCor;
-    let mut rToolMotorPow: f32 = sensor_act_values.rToolMotorPow + sensor_act_values.rToolMotorPow;
+    let mut rToolMotorPow: f32 = sensor_act_values.rToolMotorPow + sensor_act_values.rToolMotorCor;
 
     if lDriveMotorPow != sensor_act_values.lDriveMotorPowPrev {
         ConstrainActuatorValues(&mut lDriveMotorPow);

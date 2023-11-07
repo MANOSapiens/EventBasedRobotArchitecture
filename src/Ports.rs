@@ -74,7 +74,7 @@ pub fn prepare_motors_sensor(port_definitions: PortDefinition) -> MotorsSensors 
     }; */
 
     motorsRunDirect(&motors_sensors);
-
+    let _ = motors_sensors.gyroSens.set_mode_gyro_cal();
     let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
     let _ = motors_sensors.colourSens.set_mode_col_reflect();
 

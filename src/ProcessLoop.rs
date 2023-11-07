@@ -27,6 +27,10 @@ pub struct SensorActuatorValues {
     pub rDriveMotorEnc: f32,
     pub lToolMotorEnc: f32,
     pub rToolMotorEnc: f32,
+    pub lDriveMotorEncRead: bool,
+    pub rDriveMotorEncRead: bool,
+    pub lToolMotorEncRead: bool,
+    pub rToolMotorEncRead: bool,
 
     // These are system variables, no ids
     pub gyroAngValuePrev: f32,
@@ -34,6 +38,7 @@ pub struct SensorActuatorValues {
     // Gyro, Colour with ids 4-5
     pub colourSensValue: f32,
     pub gyroAngValue: f32,
+    pub gyroRead: bool,
 
     // Motor power with ids 6-9
     pub lDriveMotorPow: f32,
@@ -55,7 +60,7 @@ pub struct SensorActuatorValues {
 
     // One Button id 18
     pub centerButton: f32,
-
+    pub centerButtonRead: bool,
     // MISC
     pub currentTime: f32,
 }
@@ -119,11 +124,16 @@ pub fn ProcessLoop<W: Write>(
         rDriveMotorEnc: 0.0,
         lToolMotorEnc : 0.0,
         rToolMotorEnc: 0.0,
+        lDriveMotorEncRead: true,
+        rDriveMotorEncRead: true,
+        lToolMotorEncRead: true,
+        rToolMotorEncRead: true,
 
         // Gyro, Colour
         colourSensValue: 0.0,
         gyroAngValue: 0.0,
         gyroAngValuePrev: 0.0,
+        gyroRead: true,
 
         // Motor power
         lDriveMotorPow: 0.0,
@@ -144,6 +154,7 @@ pub fn ProcessLoop<W: Write>(
 
         //Buttons
         centerButton: 0.0,
+        centerButtonRead: true,
         currentTime: 0.0,
     };
 
@@ -151,11 +162,11 @@ pub fn ProcessLoop<W: Write>(
         &motors_sensors,
         &mut sensor_act_values,
         &sys_time,
-        &mut read_sensor_last_time,
         &mut wtr,
     );
 
     sensor_act_values.gyroAngValuePrev = sensor_act_values.gyroAngValue;
+    sensor_act_values.gyroRead = true;
 
     loop {
         // ============== MAIN LOOP =================
@@ -172,13 +183,14 @@ pub fn ProcessLoop<W: Write>(
             &sys_time,
             &mut wtr,
         );
+
+        
+        // ===== Spawn and Terminate =====
+        TerminateEvents( &term_list, &mut ActiveTable, &mut TerminatedTable, &mut CondTable, &mut sensor_act_values);
+        SpawnEvents(&spawn_list, &mut ActiveTable, &TerminatedTable, &mut CondTable, &mut sensor_act_values);
         
         // ===== Run Events =====
         RunEvents(&mut event_list, &ActiveTable, &mut CondTable, &mut sensor_act_values, &sys_time, &mut running);
-
-        // ===== Spawn and Terminate =====
-        TerminateEvents( &term_list, &mut ActiveTable, &mut TerminatedTable, &mut CondTable, &mut sensor_act_values);
-        SpawnEvents(&spawn_list, &mut ActiveTable, &TerminatedTable, &mut CondTable);
 
         // ===== Write computed values to actuators =====
         writeToActuators(&motors_sensors, &mut sensor_act_values);

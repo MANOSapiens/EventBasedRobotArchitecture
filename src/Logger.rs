@@ -16,15 +16,15 @@ pub fn logHeaderCSV<W: Write>(wtr: &mut csv::Writer<W>) -> Result<(), Box<dyn Er
         "currentTime",
         "lDriveMotorEnc",
         "rDriveMotorEnc",
-//        "lToolMotorEnc",
-//        "rToolMotorEnc",
-//        "gyroAngValue",
-//        "lDriveMotorPow",
-//        "rDriveMotorPow",
-//        "lToolMotorPow",
-//        "rToolMotorPow",
-//        "lDriveMotorCor",
-//        "rDriveMotorCor"
+        "lToolMotorEnc",
+        "rToolMotorEnc",
+        "gyroAngValue",
+        "lDriveMotorPow",
+        "rDriveMotorPow",
+        "lToolMotorPow",
+        "rToolMotorPow",
+        "lDriveMotorCor",
+        "rDriveMotorCor"
         ])?;
 
     wtr.flush()?;
@@ -39,15 +39,15 @@ pub fn logCSV<W: Write>(wtr: &mut csv::Writer<W>, sensor_act_values: &mut Sensor
             sensor_act_values.currentTime, 
             sensor_act_values.lDriveMotorEnc, 
             sensor_act_values.rDriveMotorEnc, 
-//            sensor_act_values.lToolMotorEnc, 
-//            sensor_act_values.rToolMotorEnc,
-//            sensor_act_values.gyroAngValue,
-//           sensor_act_values.lDriveMotorPow,
-//            sensor_act_values.rDriveMotorPow,
-//            sensor_act_values.lToolMotorPow,
-//            sensor_act_values.rToolMotorPow,
-//            sensor_act_values.lDriveMotorCor,
-//            sensor_act_values.rDriveMotorCor
+            sensor_act_values.lToolMotorEnc, 
+            sensor_act_values.rToolMotorEnc,
+            sensor_act_values.gyroAngValue,
+            sensor_act_values.lDriveMotorPow,
+            sensor_act_values.rDriveMotorPow,
+            sensor_act_values.lToolMotorPow,
+            sensor_act_values.rToolMotorPow,
+            sensor_act_values.lDriveMotorCor,
+            sensor_act_values.rDriveMotorCor
         ))?;
 
     wtr.flush()?;

@@ -1,14 +1,10 @@
 // Import crates
 extern crate ev3dev_lang_rust;
 
-
-
-
-
 // Local modules
 use super::DEBUG;
 use crate::Events::{Condition, Event, CondID};
-
+use crate::RunEvents::setReadSensor;
 use crate::ProcessLoop::SensorActuatorValues;
 
 
@@ -18,10 +14,6 @@ fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut [bool], CondTable:
     if result {
         if cond.process_id != 0 {
             ActiveTable[cond.process_id] = true;
-        }
-
-        if DEBUG {
-            //info!("Condition ID {} spawned process ID {}.", cond.cond_id, cond.process_id);
         }
     }
 }
@@ -33,43 +25,45 @@ fn setVarTerm(result: bool, cond: &CondID, ActiveTable: &mut [bool], TerminatedT
         ActiveTable[cond.process_id] = false;
         TerminatedTable[cond.process_id] = true;
         
-        if DEBUG {
-            //info!("Condition ID {} terminated process ID {}.", cond.cond_id, cond.process_id);
-        }
     }
 }
 
 
-pub fn SpawnEvents(spawn_list: &Vec<Condition>, ActiveTable: &mut [bool], TerminatedTable: & [bool], CondTable: &mut [bool]) {
+pub fn SpawnEvents(spawn_list: &Vec<Condition>, ActiveTable: &mut [bool], TerminatedTable: & [bool], CondTable: &mut [bool], sensor_act_values: &mut SensorActuatorValues) {
     for _condition in spawn_list {
         match _condition {
             Condition::IsTerminated { cond, watch_process_id } => {
                 if !CondTable[cond.cond_id] {
                     setVarSpawn(TerminatedTable[*watch_process_id], cond, ActiveTable, CondTable);
+                    setReadSensor(cond.sensor_needed, sensor_act_values);
                 } 
             }
 
             Condition::And { cond, watch_cond_id0, watch_cond_id1 } => {
                 if !CondTable[cond.cond_id]{
                     setVarSpawn(CondTable[*watch_cond_id0] && CondTable[*watch_cond_id1], cond, ActiveTable, CondTable);
+                    setReadSensor(cond.sensor_needed, sensor_act_values);
                 }
             }
 
             Condition::Or { cond, watch_cond_id0, watch_cond_id1 } => {
                 if !CondTable[cond.cond_id]{
                     setVarSpawn(CondTable[*watch_cond_id0] || CondTable[*watch_cond_id1], cond, ActiveTable, CondTable);
+                    setReadSensor(cond.sensor_needed, sensor_act_values);
                 }
             }
 
             Condition::Not { cond, watch_cond_id } => {
                 if !CondTable[cond.cond_id]{
                     setVarSpawn(!CondTable[*watch_cond_id], cond, ActiveTable, CondTable);
+                    setReadSensor(cond.sensor_needed, sensor_act_values);
                 }
             }
 
             Condition::StartImmediately { cond } => {
                 if !CondTable[cond.cond_id]{
                     setVarSpawn(true, cond, ActiveTable, CondTable);
+                    setReadSensor(cond.sensor_needed, sensor_act_values);
                 }
             }
 

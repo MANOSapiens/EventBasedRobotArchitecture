@@ -131,6 +131,7 @@ pub enum Event {
 pub struct CondID {
     pub process_id: usize,
     pub cond_id: usize,
+    pub sensor_needed: i8,
 }
 
 pub enum Condition {

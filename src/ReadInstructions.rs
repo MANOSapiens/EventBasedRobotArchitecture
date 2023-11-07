@@ -62,6 +62,7 @@ fn readCond(cond: &serde_json::Value) -> CondID {
     CondID {
         process_id: parseusize(cond_struct.get("process_id")),
         cond_id: parseusize(cond_struct.get("cond_id")),
+        sensor_needed: parsei8(cond_struct.get("sensor_needed"))
     }
 }
 

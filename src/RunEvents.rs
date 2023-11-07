@@ -3,7 +3,7 @@ extern crate ev3dev_lang_rust;
 
 
 use log::{error, info};
-
+use crate::consts::{LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, CENTERBUTTON, DRIVEENC};
 use std::time::{Instant};
 
 
@@ -43,7 +43,7 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
             } else if result < *lb {
                 return *lb;
             } else {
-                return (result * 50.0).round() / 50.0;
+                return (result * 100.0).round() / 100.0;
             }
         }
 
@@ -69,6 +69,42 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
                 return (result * 100.0).round() / 100.0;
             }
         }
+    }
+}
+
+pub fn setReadSensor(sensor_id: i8, sensor_act_values: &mut SensorActuatorValues) 
+{
+    match sensor_id {
+        LDRIVEENC => {
+            sensor_act_values.lDriveMotorEncRead = true;
+        }
+
+        RDRIVEENC => {
+            sensor_act_values.rDriveMotorEncRead = true;
+        }
+
+        LTOOLENC => {
+            sensor_act_values.lToolMotorEncRead = true;
+        }
+
+        RTOOLENC => {
+            sensor_act_values.rToolMotorEncRead = true;
+        }
+
+        GYRO => {
+            sensor_act_values.gyroRead = true;
+        }
+
+        CENTERBUTTON => {
+            sensor_act_values.centerButtonRead = true;
+        }
+
+        DRIVEENC => {
+            sensor_act_values.lDriveMotorEncRead = true;
+            sensor_act_values.rDriveMotorEncRead = true;
+        }
+
+        _ => {}
     }
 }
 
@@ -113,6 +149,8 @@ pub fn RunEvents(
                             }
                         }
                     }
+
+                    setReadSensor(*sensor_id, sensor_act_values);
                 }
             }
 
@@ -149,6 +187,8 @@ pub fn RunEvents(
                     *motor_correction = ComputePID(sensor_value - *sensor_prev, heading, pid);
                     setMotorPow(-*motor_correction, LDRIVECOR, sensor_act_values);
                     setMotorPow(*motor_correction, RDRIVECOR, sensor_act_values);
+
+                    sensor_act_values.gyroRead = true;
                 }
             }
 
@@ -188,6 +228,7 @@ pub fn RunEvents(
 
                         buffer.pop_front();
                     }
+                    setReadSensor(*motor_id, sensor_act_values);
                 }
             },
 

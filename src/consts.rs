@@ -1,4 +1,6 @@
+// ADJUST THESE PARAMETERS TO INCREASE PERFORMANCE
 pub const DEBUG: bool = true;
+pub const SPARSE_SENSOR_READING: bool = true;
 
 pub const LDRIVEENC: i8 = 0;
 pub const RDRIVEENC: i8 = 1;
