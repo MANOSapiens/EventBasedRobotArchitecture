@@ -37,9 +37,11 @@ pub fn startExecution(
 
     // prepare boolean table for listing terminated events
     let mut ActiveTable: Vec<bool> = vec![false; event_list.len()+1];
+    ActiveTable[0] = true;
     let mut TerminatedTable: Vec<bool> = vec![false; event_list.len()+1];
     let mut CondTable: Vec<bool> = vec![false; spawn_list.len() + term_list.len()];
     
+
     ProcessLoop(
         spawn_list,
         event_list,

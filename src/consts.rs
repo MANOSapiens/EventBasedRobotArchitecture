@@ -19,7 +19,10 @@ pub const RTOOLCOR: i8 = 13;
 pub const CENTERBUTTON: i8 = 18;
 pub const DRIVEENC: i8 = 19;
 pub const DRIVESPEED: i8 = 20;
-pub const TIME: i8 = 21;
+pub const LDRIVESPEED: i8 = 21;
+pub const RDRIVESPEED: i8 = 22;
+pub const LTOOLSPEED: i8 = 23;
+pub const RTOOLSPEED: i8 = 24;
 
 
 

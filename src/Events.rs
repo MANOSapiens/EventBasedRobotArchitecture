@@ -67,6 +67,7 @@ pub enum Event {
         sensor_prev: f32,
         sensor_id: i8,
         expr: char,
+        sensvalcondid: usize,
     },
 
     // Motor Processses

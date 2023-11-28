@@ -3,7 +3,7 @@ extern crate ev3dev_lang_rust;
 
 
 use log::{error, info};
-use crate::consts::{LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, CENTERBUTTON, DRIVEENC};
+use crate::consts::{LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, CENTERBUTTON, DRIVEENC, LDRIVESPEED, RDRIVESPEED, LTOOLSPEED, RTOOLSPEED};
 use std::time::{Instant};
 
 
@@ -43,7 +43,7 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
             } else if result < *lb {
                 return *lb;
             } else {
-                return (result * 100.0).round() / 100.0;
+                return (result * 50.0).round() / 50.0;
             }
         }
 
@@ -66,7 +66,7 @@ fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
             } else if result < *lb {
                 return *lb;
             } else {
-                return (result * 100.0).round() / 100.0;
+                return (result * 50.0).round() / 50.0;
             }
         }
     }
@@ -89,6 +89,22 @@ pub fn setReadSensor(sensor_id: i8, sensor_act_values: &mut SensorActuatorValues
 
         RTOOLENC => {
             sensor_act_values.rToolMotorEncRead = true;
+        }
+
+        LDRIVESPEED => {
+            sensor_act_values.lDriveMotorSpeedRead = true;
+        }
+
+        RDRIVESPEED => {
+            sensor_act_values.rDriveMotorSpeedRead = true;
+        }
+
+        LTOOLSPEED => {
+            sensor_act_values.lToolMotorSpeedRead = true;
+        }
+
+        RTOOLSPEED => {
+            sensor_act_values.rToolMotorSpeedRead = true;
         }
 
         GYRO => {
@@ -127,6 +143,7 @@ pub fn RunEvents(
                 sensor_prev,
                 sensor_id,
                 expr,
+                sensvalcondid,
             } => {
                 if ActiveTable[event.process_id] {
                     let sensor_value: f32 = getSensorValue(*sensor_id, sensor_act_values);
@@ -136,11 +153,11 @@ pub fn RunEvents(
 
                     match expr {
                         '>' => {
-                            CondTable[event.term_conditions_id] =
+                            CondTable[*sensvalcondid] =
                                 sensor_value - *sensor_prev >= *sensor_target
                         }
                         '<' => {
-                            CondTable[event.term_conditions_id] =
+                            CondTable[*sensvalcondid] =
                                 sensor_value - *sensor_prev <= *sensor_target
                         }
                         _ => {

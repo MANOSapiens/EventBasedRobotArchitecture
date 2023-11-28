@@ -32,12 +32,23 @@ pub struct SensorActuatorValues {
     pub lToolMotorEncRead: bool,
     pub rToolMotorEncRead: bool,
 
+    // Speed ids 20-24
+    pub lDriveMotorSpeed: f32,
+    pub rDriveMotorSpeed: f32,
+    pub lToolMotorSpeed: f32,
+    pub rToolMotorSpeed: f32,
+    pub lDriveMotorSpeedRead: bool,
+    pub rDriveMotorSpeedRead: bool,
+    pub lToolMotorSpeedRead: bool,
+    pub rToolMotorSpeedRead: bool,
+
     // These are system variables, no ids
     pub gyroAngValuePrev: f32,
 
     // Gyro, Colour with ids 4-5
     pub colourSensValue: f32,
     pub gyroAngValue: f32,
+    pub gyroRate: f32,
     pub gyroRead: bool,
 
     // Motor power with ids 6-9
@@ -63,6 +74,7 @@ pub struct SensorActuatorValues {
     pub centerButtonRead: bool,
     // MISC
     pub currentTime: f32,
+    pub prevTime: f32
 }
 
 
@@ -128,10 +140,21 @@ pub fn ProcessLoop<W: Write>(
         rDriveMotorEncRead: true,
         lToolMotorEncRead: true,
         rToolMotorEncRead: true,
+        
+        // SPEEDs
+        lDriveMotorSpeed: 0.0,
+        rDriveMotorSpeed: 0.0,
+        lToolMotorSpeed: 0.0,
+        rToolMotorSpeed: 0.0,
+        lDriveMotorSpeedRead: false,
+        rDriveMotorSpeedRead: false,
+        lToolMotorSpeedRead: false,
+        rToolMotorSpeedRead: false,
 
         // Gyro, Colour
         colourSensValue: 0.0,
         gyroAngValue: 0.0,
+        gyroRate: 0.0,
         gyroAngValuePrev: 0.0,
         gyroRead: true,
 
@@ -156,6 +179,7 @@ pub fn ProcessLoop<W: Write>(
         centerButton: 0.0,
         centerButtonRead: true,
         currentTime: 0.0,
+        prevTime: 0.0
     };
 
     ReadSensors(

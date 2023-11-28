@@ -23,7 +23,7 @@ pub fn resetAll(motors_sensors: &MotorsSensors) {
     let _ = motors_sensors.rDriveMotor.set_position(0);
     let _ = motors_sensors.lToolMotor.set_position(0);
     let _ = motors_sensors.rToolMotor.set_position(0);
-    let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
+    //let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
 }
 
 pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValues) -> f32{
@@ -33,6 +33,11 @@ pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValue
         RDRIVEENC => sensor_act_values.rDriveMotorEnc,
         LTOOLENC => sensor_act_values.lToolMotorEnc,
         RTOOLENC => sensor_act_values.rToolMotorEnc,
+        DRIVESPEED => (sensor_act_values.lDriveMotorSpeed + sensor_act_values.rDriveMotorSpeed)/2.0,
+        LDRIVESPEED => sensor_act_values.lDriveMotorSpeed,
+        RDRIVESPEED => sensor_act_values.rDriveMotorSpeed,
+        LTOOLSPEED => sensor_act_values.lToolMotorSpeed,
+        RTOOLSPEED => sensor_act_values.rToolMotorSpeed,
         COLOURSENS => sensor_act_values.colourSensValue,
         GYRO => sensor_act_values.gyroAngValue,
         LDRIVEPOW => sensor_act_values.lDriveMotorPow,
@@ -44,7 +49,7 @@ pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValue
         LTOOLCOR => sensor_act_values.lToolMotorCor,
         RTOOLCOR => sensor_act_values.rToolMotorCor,
         CENTERBUTTON => sensor_act_values.centerButton,
-        TIME => sensor_act_values.currentTime,
+        
         _ => {
             if DEBUG {
                 error!("Sensor ID {} unknown while searching a value through getSensorValue()", sensor_id);
@@ -61,6 +66,7 @@ pub fn ReadSensors<W: Write>(
     wtr: &mut csv::Writer<W>
 
 ) {
+    sensor_act_values.gyroRate = 0.0;
     if sensor_act_values.lDriveMotorEncRead {
         sensor_act_values.lDriveMotorEnc = motors_sensors.lDriveMotor.get_position().expect("lDriveEnc failed") as f32;
     }
@@ -77,20 +83,36 @@ pub fn ReadSensors<W: Write>(
         sensor_act_values.rToolMotorEnc = motors_sensors.rToolMotor.get_position().expect("rToolEnc failed") as f32; 
     }
 
-    if sensor_act_values.gyroRead {
-        sensor_act_values.gyroAngValue = motors_sensors.gyroSens.get_angle().expect("gyro failed") as f32 - sensor_act_values.gyroAngValuePrev;
+    if sensor_act_values.lDriveMotorSpeedRead {
+        sensor_act_values.lDriveMotorSpeed = motors_sensors.lDriveMotor.get_speed().expect("lDriveSpeed failed") as f32;
     }
 
+    if sensor_act_values.rDriveMotorSpeedRead {
+        sensor_act_values.rDriveMotorSpeed = motors_sensors.rDriveMotor.get_speed().expect("rDriveSpeed failed") as f32;
+    }
+
+    if sensor_act_values.lToolMotorSpeedRead {
+        sensor_act_values.lToolMotorSpeed = motors_sensors.lToolMotor.get_speed().expect("lToolSpeed failed") as f32;
+    }
+
+    if sensor_act_values.rToolMotorSpeedRead {
+        sensor_act_values.rToolMotorSpeed = motors_sensors.rToolMotor.get_speed().expect("rToolSpeed failed") as f32; 
+    }
+    
+    if sensor_act_values.gyroRead {
+        sensor_act_values.gyroAngValue = motors_sensors.gyroSens.get_angle().expect("gyro ang failed") as f32 - sensor_act_values.gyroAngValuePrev;
+        //sensor_act_values.gyroRate = motors_sensors.gyroSens.get_rotational_speed().expect("gyro rate failed") as f32;
+        
+    }
+    
     if sensor_act_values.centerButtonRead {
         sensor_act_values.centerButton = (motors_sensors.button.is_enter() as i32) as f32;
     }
 
-    let time: f32 = sys_time.elapsed().as_secs_f32();
-
     if DEBUG {
         logCSV(wtr, sensor_act_values).expect("cant write to CSV file!");
     }
-
+    
     // ===== Reset Actuator Variables =====
     sensor_act_values.lDriveMotorPow = 0.0;
     sensor_act_values.rDriveMotorPow = 0.0;
@@ -109,18 +131,3 @@ pub fn ReadSensors<W: Write>(
     sensor_act_values.gyroRead = !SPARSE_SENSOR_READING;
     sensor_act_values.centerButtonRead = !SPARSE_SENSOR_READING;
 }
-
-/* pub fn CalculateSpeed<T>(
-    sensor_act_values: &mut SensorActuatorValues, 
-    sys_time: &Instant,
-    lDriveSMA: SumTreeSMA::<T, f32, 10>,
-    rDriveSMA: SumTreeSMA::<T, f32, 10>
-) {
-    //sensor_act_values.lDriveMotorSpeed = motors_sensors.lDriveMotor.get_speed().expect("lDriveSpeed failed") as f32;
-
-    //sensor_act_values.rDriveMotorSpeed = motors_sensors.rDriveMotor.get_speed().expect("rDriveSpeed failed") as f32;
-    
-    //sensor_act_values.lToolMotorSpeed = motors_sensors.lToolMotor.get_speed().expect("lToolSpeed failed") as f32;
-
-    //sensor_act_values.rToolMotorSpeed = motors_sensors.rToolMotor.get_speed().expect("rToolSpeed failed") as f32;
-} */

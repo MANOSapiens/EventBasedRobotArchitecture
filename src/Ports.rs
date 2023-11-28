@@ -43,6 +43,11 @@ fn motorsRunDirect(motors_sensors: &MotorsSensors) {
 pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
 
     // Stop all actuators
+    motors_sensors.lDriveMotor.set_speed_sp(0).expect("lDrive motor write failed");
+    motors_sensors.rDriveMotor.set_speed_sp(0).expect("lDrive motor write failed");
+    motors_sensors.lToolMotor.set_duty_cycle_sp(0).expect("lDrive motor write failed");
+    motors_sensors.rToolMotor.set_duty_cycle_sp(0).expect("lDrive motor write failed");
+
     let _ = motors_sensors.lDriveMotor.stop();
     let _ = motors_sensors.rDriveMotor.stop();
     let _ = motors_sensors.lToolMotor.stop();
@@ -74,7 +79,6 @@ pub fn prepare_motors_sensor(port_definitions: PortDefinition) -> MotorsSensors 
     }; */
 
     motorsRunDirect(&motors_sensors);
-    let _ = motors_sensors.gyroSens.set_mode_gyro_cal();
     let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
     let _ = motors_sensors.colourSens.set_mode_col_reflect();
 

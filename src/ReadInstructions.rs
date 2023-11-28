@@ -6,7 +6,7 @@ use serde_json::{value::Value};
 use std::collections::VecDeque;
 use std::fs;
 use std::process;
-use std::time::Instant;
+use std::time::{SystemTime, UNIX_EPOCH, Instant};
 use rand::Rng;
 
 
@@ -24,7 +24,7 @@ fn parseusize(value: Option<&Value>) -> usize {
     value
         .expect("Trying to read a non-number value into a number")
         .as_i64()
-        .expect("parsei8: Cannot convert value into i64")
+        .expect("parseusize: Cannot convert value into i64")
         .try_into()
         .expect("Not able to do type casting to usize")
 }
@@ -133,6 +133,7 @@ fn matchEvent(event: &serde_json::Value, event_list: &mut Vec<Event>) {
             expr: parseString(event.get("expr"))
                 .chars().next()
                 .expect("Cannot parse char from SensorValue!"),
+            sensvalcondid: parseusize(event.get("sensvalcondid")),
         }),
 
         "MotorSpeedControl" => event_list.push(Event::MotorSpeedControl {
@@ -251,9 +252,9 @@ pub fn ReadInstructions(
     let file = fs::File::open(file_path).expect("Instructions file is not available!");
     let json: serde_json::Value = serde_json::from_reader(file).unwrap();
 
-    let event_list_len: i8 = parsei8(json.get("EventListLen"));
-    let spawn_list_len: i8 = parsei8(json.get("SpawnListLen"));
-    let term_list_len: i8 = parsei8(json.get("TermListLen"));
+    let event_list_len: usize = parseusize(json.get("EventListLen"));
+    let spawn_list_len: usize = parseusize(json.get("SpawnListLen"));
+    let term_list_len: usize = parseusize(json.get("TermListLen"));
 
     let time_now: Instant = Instant::now();
     *name = generateName(parseString(json.get("name")));
@@ -331,11 +332,14 @@ pub fn generateName(round_name: &str) -> String {
     let mut rng = rand::thread_rng();
     let random_obj = rng.gen_range(0..objects.len());
     let random_adj0 = rng.gen_range(0..adjectives.len());
-    let random_adj1 = rng.gen_range(0..adjectives.len());
 
     let obj: &str = objects[random_obj];
     let adj0: &str = adjectives[random_adj0];
-    let adj1: &str = adjectives[random_adj1];
 
-    format!("{round_name}|{adj0}-{adj1}-{obj}")
+    let start = SystemTime::now();
+    let since_the_epoch = start
+        .duration_since(UNIX_EPOCH)
+        .expect("Time went backwards");
+
+    format!("{round_name}|{adj0}-{obj}|{:?}", since_the_epoch.as_secs())
 }
