@@ -67,6 +67,11 @@ pub fn ReadSensors<W: Write>(
 
 ) {
     sensor_act_values.gyroRate = 0.0;
+
+    if sensor_act_values.rDriveMotorEncRead && sensor_act_values.lDriveMotorEncRead{
+        sensor_act_values.driveMotorEncPrev = getSensorValue(DRIVEENC, sensor_act_values)
+    }
+
     if sensor_act_values.lDriveMotorEncRead {
         sensor_act_values.lDriveMotorEnc = motors_sensors.lDriveMotor.get_position().expect("lDriveEnc failed") as f32;
     }

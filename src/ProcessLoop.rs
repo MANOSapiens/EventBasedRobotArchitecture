@@ -27,6 +27,7 @@ pub struct SensorActuatorValues {
     pub rDriveMotorEnc: f32,
     pub lToolMotorEnc: f32,
     pub rToolMotorEnc: f32,
+    
     pub lDriveMotorEncRead: bool,
     pub rDriveMotorEncRead: bool,
     pub lToolMotorEncRead: bool,
@@ -62,6 +63,7 @@ pub struct SensorActuatorValues {
     pub rDriveMotorPowPrev: f32,
     pub lToolMotorPowPrev: f32,
     pub rToolMotorPowPrev: f32,
+    pub driveMotorEncPrev: f32,
 
     // Motor power corrections by PIDs with ids 10-13
     pub lDriveMotorCor: f32,
@@ -72,6 +74,7 @@ pub struct SensorActuatorValues {
     // One Button id 18
     pub centerButton: f32,
     pub centerButtonRead: bool,
+    
     // MISC
     pub currentTime: f32,
     pub prevTime: f32
@@ -168,6 +171,7 @@ pub fn ProcessLoop<W: Write>(
         rDriveMotorPowPrev: 0.0,
         lToolMotorPowPrev: 0.0,
         rToolMotorPowPrev: 0.0,
+        driveMotorEncPrev: 0.0,
 
         // Motor correction
         lDriveMotorCor: 0.0,
