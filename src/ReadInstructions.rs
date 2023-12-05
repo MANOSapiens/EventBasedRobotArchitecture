@@ -5,6 +5,7 @@ use log::{error, info};
 use serde_json::{value::Value};
 use std::collections::VecDeque;
 use std::fs;
+use std::path::PathBuf;
 use std::process;
 use std::time::{SystemTime, UNIX_EPOCH, Instant};
 use rand::Rng;
@@ -242,7 +243,7 @@ fn matchCond(condition: &serde_json::Value, list: &mut Vec<Condition>) {
 }
 
 pub fn ReadInstructions(
-    file_path: &str,
+    file_path: &PathBuf,
     spawn_list: &mut Vec<Condition>,
     event_list: &mut Vec<Event>,
     term_list: &mut Vec<Condition>,
@@ -259,7 +260,7 @@ pub fn ReadInstructions(
     let time_now: Instant = Instant::now();
     *name = generateName(parseString(json.get("name")));
     info!("================== {} ====================", name);
-    info!("Reading JSON file {}", file_path);
+    info!("Reading JSON file {}", file_path.display());
     *round_timeout = parsef32(json.get("round_timeout"));
 
 

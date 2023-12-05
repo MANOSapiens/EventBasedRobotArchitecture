@@ -1,5 +1,7 @@
 
 
+use std::path::PathBuf;
+
 // Local modules
 use super::DEBUG;
 use crate::Events::{Condition, Event};
@@ -13,7 +15,7 @@ use crate::ReadInstructions::ReadInstructions;
 // the process_id 0 is allocated for usage as a none pointer!
 
 pub fn startExecution(
-    round_instructions_path: &str,
+    round_instructions_path: &PathBuf,
     port_definitions: PortDefinition
 ) {
     let mut event_list: Vec<Event> = Vec::new();

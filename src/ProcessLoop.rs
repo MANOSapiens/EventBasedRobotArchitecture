@@ -77,13 +77,13 @@ pub struct SensorActuatorValues {
     
     // MISC
     pub currentTime: f32,
-    pub prevTime: f32
+    pub timePrev: f32,
 }
 
 
 fn TerminateProcessLoop(sys_time: &Instant, round_summary: &mut RoundSummary, motors_sensors: &MotorsSensors, sensor_act_values: &SensorActuatorValues) {
     round_summary.wall_time = sys_time.elapsed().as_secs();
-    round_summary.mean_loop_time = sys_time.elapsed().as_secs_f64() / (round_summary.loop_count as f64);
+    round_summary.mean_loop_time = sys_time.elapsed().as_secs_f32() / (round_summary.loop_count as f32);
     round_summary.mean_f =  (1.0 / round_summary.mean_loop_time) as u32;
 
     
@@ -120,8 +120,6 @@ pub fn ProcessLoop<W: Write>(
     // Variable Definition
     let mut running: bool = true;
     let sys_time: Instant = Instant::now();
-    let mut check_last_time: f64 = 0.0;
-    let mut read_sensor_last_time: f32 = 0.0;
     let mut round_summary: RoundSummary = RoundSummary {
         wall_time: 0,
         max_loop_time: 0.0,
@@ -183,7 +181,7 @@ pub fn ProcessLoop<W: Write>(
         centerButton: 0.0,
         centerButtonRead: true,
         currentTime: 0.0,
-        prevTime: 0.0
+        timePrev: 0.0
     };
 
     ReadSensors(
@@ -224,6 +222,6 @@ pub fn ProcessLoop<W: Write>(
         writeToActuators(&motors_sensors, &mut sensor_act_values);
         
         // ===== Perform Check ======
-        Check(&sys_time, &mut check_last_time, &mut round_summary, &sensor_act_values, &round_timeout);
+        Check(&mut round_summary, &sensor_act_values, &round_timeout);
     }
 }

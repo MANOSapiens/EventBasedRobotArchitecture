@@ -19,7 +19,7 @@ use crate::Events::{Event, FuncTypes};
 
 use crate::ProcessLoop::SensorActuatorValues;
 use crate::ReadSensors::getSensorValue;
-use crate::PID::ComputePID;
+use crate::PID::{ComputePID, ComputePIDGyro};
 
 
 fn MathFunc(inp: f32, func: &mut FuncTypes) -> f32 {
@@ -201,7 +201,7 @@ pub fn RunEvents(
                         *sensor_prev = sensor_value;
                     }
 
-                    *motor_correction = ComputePID(sensor_value - *sensor_prev, heading, pid);
+                    *motor_correction = ComputePIDGyro(sensor_value - *sensor_prev, heading, getSensorValue(DRIVEENC, sensor_act_values)-sensor_act_values.driveMotorEncPrev,pid);
                     setMotorPow(-*motor_correction, LDRIVECOR, sensor_act_values);
                     setMotorPow(*motor_correction, RDRIVECOR, sensor_act_values);
 

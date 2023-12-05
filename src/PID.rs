@@ -29,7 +29,7 @@ pub fn ComputePIDGyro(value: f32, target: &mut f32, delta_s: f32, pid: &mut PID)
         pid.prev_e = error;
     }
 
-    pid.sum_i += pid.i * error;
+    pid.sum_i += pid.i * error.sin() * delta_s;
     if pid.sum_i > pid.max_i {
         pid.sum_i = pid.max_i;
     }

@@ -13,24 +13,20 @@ use crate::ProcessLoop::SensorActuatorValues;
 
 pub struct RoundSummary {
     pub wall_time: u64,
-    pub max_loop_time: f64,
-    pub mean_loop_time: f64,
+    pub max_loop_time: f32,
+    pub mean_loop_time: f32,
     pub total_travelled_distance: i32,
     pub loop_count: u64,
     pub mean_f: u32
 }
 
 pub fn Check(
-    sys_time: &Instant,
-    last_time: &mut f64,
     round_summary: &mut RoundSummary,
     _sensor_act_values: &SensorActuatorValues,
     _round_timeout: &f32
 ) {
     round_summary.loop_count += 1;
-    let now: f64 = sys_time.elapsed().as_secs_f64();
-    let elapsed: f64 = now - *last_time;
-    *last_time = now;
+    let elapsed: f32 = _sensor_act_values.currentTime - _sensor_act_values.timePrev;
 
     /* if DEBUG && *round_timeout != -1.0 {
         if (elapsed as f32) > *round_timeout {

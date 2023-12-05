@@ -117,6 +117,9 @@ pub fn ReadSensors<W: Write>(
     if DEBUG {
         logCSV(wtr, sensor_act_values).expect("cant write to CSV file!");
     }
+
+    sensor_act_values.timePrev = sensor_act_values.currentTime;
+    sensor_act_values.currentTime = sys_time.elapsed().as_secs_f32();
     
     // ===== Reset Actuator Variables =====
     sensor_act_values.lDriveMotorPow = 0.0;
