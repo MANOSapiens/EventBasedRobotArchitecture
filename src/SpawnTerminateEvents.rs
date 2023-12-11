@@ -9,11 +9,12 @@ use crate::ProcessLoop::SensorActuatorValues;
 
 
 
-fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut [bool], CondTable: &mut [bool]){
+fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut [bool], CondTable: &mut [bool], sensor_act_values: &mut SensorActuatorValues){
     CondTable[cond.cond_id] = result;
     if result {
         if cond.process_id != 0 {
             ActiveTable[cond.process_id] = true;
+            setReadSensor(cond.sensor_needed, sensor_act_values);
         }
     }
 }
@@ -34,36 +35,31 @@ pub fn SpawnEvents(spawn_list: &Vec<Condition>, ActiveTable: &mut [bool], Termin
         match _condition {
             Condition::IsTerminated { cond, watch_process_id } => {
                 if !CondTable[cond.cond_id] {
-                    setVarSpawn(TerminatedTable[*watch_process_id], cond, ActiveTable, CondTable);
-                    setReadSensor(cond.sensor_needed, sensor_act_values);
+                    setVarSpawn(TerminatedTable[*watch_process_id], cond, ActiveTable, CondTable, sensor_act_values);
                 } 
             }
 
             Condition::And { cond, watch_cond_id0, watch_cond_id1 } => {
                 if !CondTable[cond.cond_id]{
-                    setVarSpawn(CondTable[*watch_cond_id0] && CondTable[*watch_cond_id1], cond, ActiveTable, CondTable);
-                    setReadSensor(cond.sensor_needed, sensor_act_values);
+                    setVarSpawn(CondTable[*watch_cond_id0] && CondTable[*watch_cond_id1], cond, ActiveTable, CondTable, sensor_act_values);
                 }
             }
 
             Condition::Or { cond, watch_cond_id0, watch_cond_id1 } => {
                 if !CondTable[cond.cond_id]{
-                    setVarSpawn(CondTable[*watch_cond_id0] || CondTable[*watch_cond_id1], cond, ActiveTable, CondTable);
-                    setReadSensor(cond.sensor_needed, sensor_act_values);
+                    setVarSpawn(CondTable[*watch_cond_id0] || CondTable[*watch_cond_id1], cond, ActiveTable, CondTable, sensor_act_values);
                 }
             }
 
             Condition::Not { cond, watch_cond_id } => {
                 if !CondTable[cond.cond_id]{
-                    setVarSpawn(!CondTable[*watch_cond_id], cond, ActiveTable, CondTable);
-                    setReadSensor(cond.sensor_needed, sensor_act_values);
+                    setVarSpawn(!CondTable[*watch_cond_id], cond, ActiveTable, CondTable, sensor_act_values);
                 }
             }
 
             Condition::StartImmediately { cond } => {
                 if !CondTable[cond.cond_id]{
-                    setVarSpawn(true, cond, ActiveTable, CondTable);
-                    setReadSensor(cond.sensor_needed, sensor_act_values);
+                    setVarSpawn(true, cond, ActiveTable, CondTable, sensor_act_values);
                 }
             }
 

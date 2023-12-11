@@ -24,7 +24,9 @@ pub fn logHeaderCSV<W: Write>(wtr: &mut csv::Writer<W>) -> Result<(), Box<dyn Er
         "lToolMotorPow",
         "rToolMotorPow",
         "lDriveMotorCor",
-        "rDriveMotorCor"
+        "rDriveMotorCor",
+        "lDriveSpeed",
+        "rDriveSpeed",
         ])?;
 
     wtr.flush()?;
@@ -47,7 +49,9 @@ pub fn logCSV<W: Write>(wtr: &mut csv::Writer<W>, sensor_act_values: &mut Sensor
             sensor_act_values.lToolMotorPow,
             sensor_act_values.rToolMotorPow,
             sensor_act_values.lDriveMotorCor,
-            sensor_act_values.rDriveMotorCor
+            sensor_act_values.rDriveMotorCor,
+            sensor_act_values.lDriveMotorSpeed,
+            sensor_act_values.rDriveMotorSpeed,
         ))?;
 
     wtr.flush()?;

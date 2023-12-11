@@ -3,7 +3,6 @@ extern crate ev3dev_lang_rust;
 
 
 use log::{error, info};
-use crate::consts::{LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, CENTERBUTTON, DRIVEENC, LDRIVESPEED, RDRIVESPEED, LTOOLSPEED, RTOOLSPEED};
 use std::time::{Instant};
 
 
@@ -12,7 +11,7 @@ use std::time::{Instant};
 // Local modules
 use super::{
     COLOURSENS, DEBUG, GYRO, LDRIVECOR,
-    RDRIVECOR,
+    RDRIVECOR, LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, RIGHTBUTTON, DRIVEENC, LDRIVESPEED, RDRIVESPEED, LTOOLSPEED, RTOOLSPEED, DRIVESPEED, TIME, PREVTIME
 };
 use crate::Actuators::setMotorPow;
 use crate::Events::{Event, FuncTypes};
@@ -107,19 +106,24 @@ pub fn setReadSensor(sensor_id: i8, sensor_act_values: &mut SensorActuatorValues
             sensor_act_values.rToolMotorSpeedRead = true;
         }
 
+        DRIVESPEED => {
+            sensor_act_values.lDriveMotorSpeedRead = true;
+            sensor_act_values.rDriveMotorSpeedRead = true;
+        }
+
         GYRO => {
             sensor_act_values.gyroRead = true;
         }
 
-        CENTERBUTTON => {
-            sensor_act_values.centerButtonRead = true;
+        RIGHTBUTTON => {
+            sensor_act_values.rightButtonRead = true;
         }
 
         DRIVEENC => {
             sensor_act_values.lDriveMotorEncRead = true;
             sensor_act_values.rDriveMotorEncRead = true;
         }
-
+        
         _ => {}
     }
 }
@@ -166,8 +170,8 @@ pub fn RunEvents(
                             }
                         }
                     }
-
                     setReadSensor(*sensor_id, sensor_act_values);
+                    
                 }
             }
 
@@ -184,6 +188,8 @@ pub fn RunEvents(
                         *motor_id,
                         sensor_act_values,
                     );
+
+                    setReadSensor(*sensor_id, sensor_act_values);
                 }
             }
 
@@ -201,11 +207,19 @@ pub fn RunEvents(
                         *sensor_prev = sensor_value;
                     }
 
-                    *motor_correction = ComputePIDGyro(sensor_value - *sensor_prev, heading, getSensorValue(DRIVEENC, sensor_act_values)-sensor_act_values.driveMotorEncPrev,pid);
+                    //*motor_correction = ComputePIDGyro(sensor_value - *sensor_prev, heading, getSensorValue(DRIVEENC, sensor_act_values)-sensor_act_values.driveMotorEncPrev,pid);
+                    *motor_correction = ComputePID(
+                        sensor_value - *sensor_prev, 
+                        heading, 
+                        getSensorValue(TIME, sensor_act_values) - getSensorValue(PREVTIME, sensor_act_values), 
+                        pid
+                    );
+
                     setMotorPow(-*motor_correction, LDRIVECOR, sensor_act_values);
                     setMotorPow(*motor_correction, RDRIVECOR, sensor_act_values);
 
                     sensor_act_values.gyroRead = true;
+                    setReadSensor(DRIVEENC, sensor_act_values);
                 }
             }
 
@@ -219,6 +233,7 @@ pub fn RunEvents(
                     *motor_correction = ComputePID(
                         getSensorValue(COLOURSENS, sensor_act_values),
                         brightness_target,
+                        getSensorValue(TIME, sensor_act_values) - getSensorValue(PREVTIME, sensor_act_values),
                         pid,
                     );
                     setMotorPow(*motor_correction, LDRIVECOR, sensor_act_values);

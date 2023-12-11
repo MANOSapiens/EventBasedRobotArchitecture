@@ -1,6 +1,4 @@
-
-
-use std::path::PathBuf;
+use ev3dev_lang_rust::Led;
 
 // Local modules
 use super::DEBUG;
@@ -15,12 +13,13 @@ use crate::ReadInstructions::ReadInstructions;
 // the process_id 0 is allocated for usage as a none pointer!
 
 pub fn startExecution(
-    round_instructions_path: &PathBuf,
-    port_definitions: PortDefinition
+    round_instructions_path: &str,
+    port_definitions: &PortDefinition
 ) {
     let mut event_list: Vec<Event> = Vec::new();
     let mut spawn_list: Vec<Condition> = Vec::new();
     let mut term_list: Vec<Condition> = Vec::new();
+    let led: Led = Led::new().expect("cant initialize led!");
 
     let mut name: String = String::from("");
 
@@ -35,7 +34,7 @@ pub fn startExecution(
 
     // prepare motors sensors struct
     
-    let motors_sensors: MotorsSensors = prepare_motors_sensor(port_definitions);
+    let motors_sensors: MotorsSensors = prepare_motors_sensor(&port_definitions);
 
     // prepare boolean table for listing terminated events
     let mut ActiveTable: Vec<bool> = vec![false; event_list.len()+1];
@@ -43,6 +42,8 @@ pub fn startExecution(
     let mut TerminatedTable: Vec<bool> = vec![false; event_list.len()+1];
     let mut CondTable: Vec<bool> = vec![false; spawn_list.len() + term_list.len()];
     
+
+    led.set_color(Led::COLOR_RED).expect("cant set led color!");
 
     ProcessLoop(
         spawn_list,
@@ -55,4 +56,6 @@ pub fn startExecution(
         round_timeout,
         wtr,
     );
+
+    led.set_color(Led::COLOR_GREEN).expect("cant set led color!");
 }

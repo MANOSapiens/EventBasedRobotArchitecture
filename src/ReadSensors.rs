@@ -3,7 +3,7 @@ extern crate ev3dev_lang_rust;
 
 
 use ev3dev_lang_rust::motors;
-use log::{error};
+use log::{info, error};
 use Logger::logCSV;
 use std::time::{Instant};
 use std::io::Write;
@@ -48,7 +48,9 @@ pub fn getSensorValue(sensor_id: i8, sensor_act_values: &mut SensorActuatorValue
         RDRIVECOR => sensor_act_values.rDriveMotorCor,
         LTOOLCOR => sensor_act_values.lToolMotorCor,
         RTOOLCOR => sensor_act_values.rToolMotorCor,
-        CENTERBUTTON => sensor_act_values.centerButton,
+        RIGHTBUTTON => sensor_act_values.rightButton,
+        TIME => sensor_act_values.currentTime,
+        PREVTIME => sensor_act_values.timePrev,
         
         _ => {
             if DEBUG {
@@ -110,8 +112,9 @@ pub fn ReadSensors<W: Write>(
         
     }
     
-    if sensor_act_values.centerButtonRead {
-        sensor_act_values.centerButton = (motors_sensors.button.is_enter() as i32) as f32;
+    if sensor_act_values.rightButtonRead {
+        motors_sensors.button.process();
+        sensor_act_values.rightButton = (motors_sensors.button.is_right() as i32) as f32;
     }
 
     if DEBUG {
@@ -136,6 +139,12 @@ pub fn ReadSensors<W: Write>(
     sensor_act_values.rDriveMotorEncRead = !SPARSE_SENSOR_READING;
     sensor_act_values.lToolMotorEncRead = !SPARSE_SENSOR_READING;
     sensor_act_values.rToolMotorEncRead = !SPARSE_SENSOR_READING;
+
+    sensor_act_values.lDriveMotorSpeedRead = !SPARSE_SENSOR_READING;
+    sensor_act_values.rDriveMotorSpeedRead = !SPARSE_SENSOR_READING;
+    sensor_act_values.lToolMotorSpeedRead = !SPARSE_SENSOR_READING;
+    sensor_act_values.rToolMotorSpeedRead = !SPARSE_SENSOR_READING;
+    
     sensor_act_values.gyroRead = !SPARSE_SENSOR_READING;
-    sensor_act_values.centerButtonRead = !SPARSE_SENSOR_READING;
+    sensor_act_values.rightButtonRead = !SPARSE_SENSOR_READING;
 }

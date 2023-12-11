@@ -72,8 +72,8 @@ pub struct SensorActuatorValues {
     pub rToolMotorCor: f32,
 
     // One Button id 18
-    pub centerButton: f32,
-    pub centerButtonRead: bool,
+    pub rightButton: f32,
+    pub rightButtonRead: bool,
     
     // MISC
     pub currentTime: f32,
@@ -178,8 +178,8 @@ pub fn ProcessLoop<W: Write>(
         rToolMotorCor: 0.0,
 
         //Buttons
-        centerButton: 0.0,
-        centerButtonRead: true,
+        rightButton: 0.0,
+        rightButtonRead: true,
         currentTime: 0.0,
         timePrev: 0.0
     };
@@ -209,14 +209,13 @@ pub fn ProcessLoop<W: Write>(
             &sys_time,
             &mut wtr,
         );
-
+        
+        // ===== Run Events =====
+        RunEvents(&mut event_list, &ActiveTable, &mut CondTable, &mut sensor_act_values, &sys_time, &mut running);
         
         // ===== Spawn and Terminate =====
         TerminateEvents( &term_list, &mut ActiveTable, &mut TerminatedTable, &mut CondTable, &mut sensor_act_values);
         SpawnEvents(&spawn_list, &mut ActiveTable, &TerminatedTable, &mut CondTable, &mut sensor_act_values);
-        
-        // ===== Run Events =====
-        RunEvents(&mut event_list, &ActiveTable, &mut CondTable, &mut sensor_act_values, &sys_time, &mut running);
 
         // ===== Write computed values to actuators =====
         writeToActuators(&motors_sensors, &mut sensor_act_values);

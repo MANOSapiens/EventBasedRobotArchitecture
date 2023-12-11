@@ -1,0 +1,7 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./ev3dev-lang-rust/Cargo.toml",
+        "./ev3dev-lang-rust/Cargo.toml",
+        "./ev3dev-lang-rust/Cargo.toml"
+    ]
+}

@@ -243,7 +243,7 @@ fn matchCond(condition: &serde_json::Value, list: &mut Vec<Condition>) {
 }
 
 pub fn ReadInstructions(
-    file_path: &PathBuf,
+    file_path: &str,
     spawn_list: &mut Vec<Condition>,
     event_list: &mut Vec<Event>,
     term_list: &mut Vec<Condition>,
@@ -260,7 +260,7 @@ pub fn ReadInstructions(
     let time_now: Instant = Instant::now();
     *name = generateName(parseString(json.get("name")));
     info!("================== {} ====================", name);
-    info!("Reading JSON file {}", file_path.display());
+    info!("Reading JSON file {}", file_path);
     *round_timeout = parsef32(json.get("round_timeout"));
 
 

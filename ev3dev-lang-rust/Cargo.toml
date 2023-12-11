@@ -35,7 +35,7 @@ members = [
 [profile.release]
 lto = true
 strip = "debuginfo"
-opt-level = "z"
+opt-level = 3
 
 [[example]]
 name = "screen"

@@ -40,6 +40,7 @@ fn motorsRunDirect(motors_sensors: &MotorsSensors) {
     let _ = motors_sensors.rToolMotor.set_stop_action("brake"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
 }
 
+
 pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
 
     // Stop all actuators
@@ -52,9 +53,19 @@ pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
     let _ = motors_sensors.rDriveMotor.stop();
     let _ = motors_sensors.lToolMotor.stop();
     let _ = motors_sensors.rToolMotor.stop();
+
+    let _ = motors_sensors.lDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
+    let _ = motors_sensors.rDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
+    let _ = motors_sensors.lToolMotor.set_stop_action("coast"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
+    let _ = motors_sensors.rToolMotor.set_stop_action("coast"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
+
+    let _ = motors_sensors.lDriveMotor.stop();
+    let _ = motors_sensors.rDriveMotor.stop();
+    let _ = motors_sensors.lToolMotor.stop();
+    let _ = motors_sensors.rToolMotor.stop();
 }
 
-pub fn prepare_motors_sensor(port_definitions: PortDefinition) -> MotorsSensors {
+pub fn prepare_motors_sensor(port_definitions: &PortDefinition) -> MotorsSensors {
     // Try to init all motors and sensors
     // Panics (throws error) if not available
 
