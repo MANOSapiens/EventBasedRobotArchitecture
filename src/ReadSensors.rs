@@ -83,11 +83,11 @@ pub fn ReadSensors<W: Write>(
     }
 
     if sensor_act_values.lToolMotorEncRead {
-        sensor_act_values.lToolMotorEnc = motors_sensors.lToolMotor.get_position().expect("lToolEnc failed") as f32;
+        sensor_act_values.lToolMotorEnc = motors_sensors.lToolMotor.get_position().unwrap_or(0) as f32;
     }
 
     if sensor_act_values.rToolMotorEncRead {
-        sensor_act_values.rToolMotorEnc = motors_sensors.rToolMotor.get_position().expect("rToolEnc failed") as f32; 
+        sensor_act_values.rToolMotorEnc = motors_sensors.rToolMotor.get_position().unwrap_or(0) as f32; 
     }
 
     if sensor_act_values.lDriveMotorSpeedRead {
@@ -99,11 +99,11 @@ pub fn ReadSensors<W: Write>(
     }
 
     if sensor_act_values.lToolMotorSpeedRead {
-        sensor_act_values.lToolMotorSpeed = motors_sensors.lToolMotor.get_speed().expect("lToolSpeed failed") as f32;
+        sensor_act_values.lToolMotorSpeed = motors_sensors.lToolMotor.get_speed().unwrap_or(0) as f32;
     }
 
     if sensor_act_values.rToolMotorSpeedRead {
-        sensor_act_values.rToolMotorSpeed = motors_sensors.rToolMotor.get_speed().expect("rToolSpeed failed") as f32; 
+        sensor_act_values.rToolMotorSpeed = motors_sensors.rToolMotor.get_speed().unwrap_or(0) as f32; 
     }
     
     if sensor_act_values.gyroRead {

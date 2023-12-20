@@ -4,6 +4,10 @@ extern crate ev3dev_lang_rust;
 use ev3dev_lang_rust::Button;
 use ev3dev_lang_rust::motors::{MediumMotor, LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort, ColorSensor, GyroSensor};
+use super::{
+    COLOURSENS, DEBUG, GYRO, LDRIVECOR,
+    RDRIVECOR, LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, RIGHTBUTTON, DRIVEENC, LDRIVESPEED, RDRIVESPEED, LTOOLSPEED, RTOOLSPEED, DRIVESPEED, TIME, PREVTIME
+};
 
 pub struct PortDefinition {
     pub lDriveMotorPort: MotorPort,
@@ -65,23 +69,46 @@ pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
     let _ = motors_sensors.rToolMotor.stop();
 }
 
-pub fn prepare_motors_sensor(port_definitions: &PortDefinition) -> MotorsSensors {
+pub fn prepare_motors_sensor(port_definitions: &PortDefinition) -> Result<MotorsSensors, &str> {
     // Try to init all motors and sensors
     // Panics (throws error) if not available
 
+    let lDriveMotor = match LargeMotor::get(port_definitions.lDriveMotorPort){
+        Ok(m)  => m,
+        Err(e) => return Err("MISSING B"),
+    };
+
+    let rDriveMotor = match LargeMotor::get(port_definitions.rDriveMotorPort){
+        Ok(m)  => m,
+        Err(e) => return Err("MISSING C"),
+    };
+
+    let lToolMotor = match MediumMotor::get(port_definitions.lToolMotorPort){
+        Ok(m)  => m,
+        Err(e) => return Err("MISSING D"),
+    };
+    let rToolMotor = match MediumMotor::get(port_definitions.rToolMotorPort){
+        Ok(m)  => m,
+        Err(e) => return Err("MISSING A"),
+    };
+
+    let gyroSens = match GyroSensor::get(port_definitions.gyroSensPort){
+        Ok(m)  => m,
+        Err(e) => return Err("MISSING 1"),
+    };
+
+    let colourSens = match ColorSensor::get(port_definitions.colourSensPort){
+        Ok(m)  => m,
+        Err(e) => return Err("MISSING 4"),
+    };
+
     let motors_sensors = MotorsSensors {
-        lDriveMotor: LargeMotor::get(port_definitions.lDriveMotorPort)
-            .expect("failed to load lDriveMotor"),
-        rDriveMotor: LargeMotor::get(port_definitions.rDriveMotorPort)
-            .expect("failed to load rDriveMotor"),
-        lToolMotor: MediumMotor::get(port_definitions.lToolMotorPort)
-            .expect("failed to load lToolMotor"),
-        rToolMotor: MediumMotor::get(port_definitions.rToolMotorPort)
-            .expect("failed to load rToolMotor"),
-        gyroSens: GyroSensor::get(port_definitions.gyroSensPort)
-            .expect("failed to load Gyro"),
-        colourSens: ColorSensor::get(port_definitions.colourSensPort)
-            .expect("failed to load colour sensor"),
+        lDriveMotor: lDriveMotor,
+        rDriveMotor: rDriveMotor,
+        lToolMotor: lToolMotor,
+        rToolMotor: rToolMotor,
+        gyroSens: gyroSens,
+        colourSens: colourSens,
         button: Button::new()
             .expect("failed to load buttons"),
     };
@@ -93,5 +120,5 @@ pub fn prepare_motors_sensor(port_definitions: &PortDefinition) -> MotorsSensors
     let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
     let _ = motors_sensors.colourSens.set_mode_col_reflect();
 
-    motors_sensors
+    Ok(motors_sensors)
 }

@@ -83,7 +83,17 @@ fn main() {
         }
 
         if button.is_enter() {
-            startExecution(&*paths.get(index).expect("index out of bounds"), &port_definitions);
+            let result:Result<i8, &str> = startExecution(&*paths.get(index).expect("index out of bounds"), &port_definitions);
+            match result {
+                Ok(n) => {},
+                Err(n) => {
+
+                    screen.clear();
+                    imageproc::drawing::draw_text_mut(&mut screen.image, Rgb([0, 0, 0]), 0, 20, Scale::uniform(35.0), &font, n);
+                    screen.update();
+                    std::thread::sleep(std::time::Duration::from_millis(2000));
+                }
+            }
         }
 
         if button.is_right() && index < paths.len()-1{
@@ -98,7 +108,7 @@ fn main() {
 
 
         screen.clear();
-        imageproc::drawing::draw_text_mut(&mut screen.image, Rgb([0, 0, 0]), 0, 20, Scale::uniform(25.0), &font, filenames.get(index).expect("index out of bounds"));
+        imageproc::drawing::draw_text_mut(&mut screen.image, Rgb([0, 0, 0]), 0, 20, Scale::uniform(35.0), &font, filenames.get(index).expect("index out of bounds"));
         screen.update();
         
     }

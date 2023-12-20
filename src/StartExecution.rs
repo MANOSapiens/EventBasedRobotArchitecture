@@ -12,10 +12,10 @@ use crate::ReadInstructions::ReadInstructions;
 // EVERY variable with *_prev must be initialized with -1!
 // the process_id 0 is allocated for usage as a none pointer!
 
-pub fn startExecution(
-    round_instructions_path: &str,
-    port_definitions: &PortDefinition
-) {
+pub fn startExecution<'a>(
+    round_instructions_path: &'a str,
+    port_definitions: &'a PortDefinition
+) -> Result<i8, &'a str>{
     let mut event_list: Vec<Event> = Vec::new();
     let mut spawn_list: Vec<Condition> = Vec::new();
     let mut term_list: Vec<Condition> = Vec::new();
@@ -34,7 +34,10 @@ pub fn startExecution(
 
     // prepare motors sensors struct
     
-    let motors_sensors: MotorsSensors = prepare_motors_sensor(&port_definitions);
+    let motors_sensors: MotorsSensors = match prepare_motors_sensor(&port_definitions){
+        Ok(motors_sensors)  => motors_sensors,
+        Err(e) => return Err(e),
+    };
 
     // prepare boolean table for listing terminated events
     let mut ActiveTable: Vec<bool> = vec![false; event_list.len()+1];
@@ -58,4 +61,5 @@ pub fn startExecution(
     );
 
     led.set_color(Led::COLOR_GREEN).expect("cant set led color!");
+    Ok(127)
 }
