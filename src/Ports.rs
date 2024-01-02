@@ -4,6 +4,7 @@ extern crate ev3dev_lang_rust;
 use ev3dev_lang_rust::Button;
 use ev3dev_lang_rust::motors::{MediumMotor, LargeMotor, MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort, ColorSensor, GyroSensor};
+use log::{info, error};
 use super::{
     COLOURSENS, DEBUG, GYRO, LDRIVECOR,
     RDRIVECOR, LDRIVEENC, RDRIVEENC, LTOOLENC, RTOOLENC, RIGHTBUTTON, DRIVEENC, LDRIVESPEED, RDRIVESPEED, LTOOLSPEED, RTOOLSPEED, DRIVESPEED, TIME, PREVTIME
@@ -69,7 +70,7 @@ pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
     let _ = motors_sensors.rToolMotor.stop();
 }
 
-pub fn prepare_motors_sensor(port_definitions: &PortDefinition) -> Result<MotorsSensors, &str> {
+pub fn prepare_motors_sensor(port_definitions: &PortDefinition, speed_p: f32, speed_i: f32, speed_d: f32) -> Result<MotorsSensors, &str> {
     // Try to init all motors and sensors
     // Panics (throws error) if not available
 
@@ -116,9 +117,24 @@ pub fn prepare_motors_sensor(port_definitions: &PortDefinition) -> Result<Motors
     /* let mut motors_sensors = MotorsSensors {
     }; */
 
+    info!("Current PID values: P: {}, I: {}, D: {}", motors_sensors.lDriveMotor.get_speed_pid_kp().expect(""), motors_sensors.lDriveMotor.get_speed_pid_ki().expect(""), motors_sensors.lDriveMotor.get_speed_pid_kd().expect(""));
+    let _ = motors_sensors.lDriveMotor.set_speed_pid_kp(speed_p);
+    let _ = motors_sensors.lDriveMotor.set_speed_pid_ki(speed_i);
+    let _ = motors_sensors.lDriveMotor.set_speed_pid_kd(speed_d);
+    let _ = motors_sensors.rDriveMotor.set_speed_pid_kp(speed_p);
+    let _ = motors_sensors.rDriveMotor.set_speed_pid_ki(speed_i);
+    let _ = motors_sensors.rDriveMotor.set_speed_pid_kd(speed_d);
+    info!("Current PID values: P: {}, I: {}, D: {}", motors_sensors.lDriveMotor.get_speed_pid_kp().expect(""), motors_sensors.lDriveMotor.get_speed_pid_ki().expect(""), motors_sensors.lDriveMotor.get_speed_pid_kd().expect(""));
+
     motorsRunDirect(&motors_sensors);
     let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
     let _ = motors_sensors.colourSens.set_mode_col_reflect();
 
     Ok(motors_sensors)
+}
+
+//set speed pid values for drive motors
+pub fn setSpeedPID(motors_sensors: &MotorsSensors, speed_p: f32, speed_i: f32, speed_d: f32) {
+    // show current pid values
+    
 }

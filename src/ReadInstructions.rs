@@ -248,6 +248,9 @@ pub fn ReadInstructions(
     event_list: &mut Vec<Event>,
     term_list: &mut Vec<Condition>,
     round_timeout: &mut f32,
+    speed_p: &mut f32,
+    speed_i: &mut f32,
+    speed_d: &mut f32,
     name: &mut String,
 ) {
     let file = fs::File::open(file_path).expect("Instructions file is not available!");
@@ -262,6 +265,9 @@ pub fn ReadInstructions(
     info!("================== {} ====================", name);
     info!("Reading JSON file {}", file_path);
     *round_timeout = parsef32(json.get("round_timeout"));
+    *speed_p = parsef32(json.get("speed_p"));
+    *speed_i = parsef32(json.get("speed_i"));
+    *speed_d = parsef32(json.get("speed_d"));
 
 
     for i in 0..event_list_len {

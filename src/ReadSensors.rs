@@ -140,8 +140,8 @@ pub fn ReadSensors<W: Write>(
     sensor_act_values.lToolMotorEncRead = !SPARSE_SENSOR_READING;
     sensor_act_values.rToolMotorEncRead = !SPARSE_SENSOR_READING;
 
-    sensor_act_values.lDriveMotorSpeedRead = !SPARSE_SENSOR_READING;
-    sensor_act_values.rDriveMotorSpeedRead = !SPARSE_SENSOR_READING;
+    sensor_act_values.lDriveMotorSpeedRead = true;
+    sensor_act_values.rDriveMotorSpeedRead = true;
     sensor_act_values.lToolMotorSpeedRead = !SPARSE_SENSOR_READING;
     sensor_act_values.rToolMotorSpeedRead = !SPARSE_SENSOR_READING;
     
