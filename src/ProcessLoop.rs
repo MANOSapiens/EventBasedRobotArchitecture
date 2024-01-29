@@ -111,9 +111,9 @@ pub fn ProcessLoop<W: Write>(
     mut event_list: Vec<Event>,
     term_list: Vec<Condition>,
     motors_sensors: MotorsSensors,
-    mut ActiveTable: Vec<bool>,
-    mut TerminatedTable: Vec<bool>,
-    mut CondTable: Vec<bool>,
+    ActiveTable: &mut Vec<bool>,
+    TerminatedTable: &mut Vec<bool>,
+    CondTable: &mut Vec<bool>,
     round_timeout: f32,
     mut wtr: csv::Writer<W>,
 ) {
@@ -211,16 +211,28 @@ pub fn ProcessLoop<W: Write>(
         );
         
         // ===== Run Events =====
-        RunEvents(&mut event_list, &ActiveTable, &mut CondTable, &mut sensor_act_values, &sys_time, &mut running);
+        RunEvents(&mut event_list, &ActiveTable, CondTable, &mut sensor_act_values, &sys_time, &mut running);
         
         // ===== Spawn and Terminate =====
-        TerminateEvents( &term_list, &mut ActiveTable, &mut TerminatedTable, &mut CondTable, &mut sensor_act_values);
-        SpawnEvents(&spawn_list, &mut ActiveTable, &TerminatedTable, &mut CondTable, &mut sensor_act_values);
+        TerminateEvents( &term_list, ActiveTable, TerminatedTable, CondTable, &mut sensor_act_values);
+        SpawnEvents(&spawn_list, ActiveTable, TerminatedTable, CondTable, &mut sensor_act_values);
 
         // ===== Write computed values to actuators =====
         writeToActuators(&motors_sensors, &mut sensor_act_values);
         
         // ===== Perform Check ======
         Check(&mut round_summary, &sensor_act_values, &round_timeout);
+    }
+
+    // reset ActiveTable CondTable and TerminatedTable to false
+    for i in 0..ActiveTable.len() {
+        ActiveTable[i] = false;
+    }
+    ActiveTable[0] = true;
+    for i in 0..TerminatedTable.len() {
+        TerminatedTable[i] = false;
+    }
+    for i in 0..CondTable.len() {
+        CondTable[i] = false;
     }
 }

@@ -38,3 +38,5 @@ pub const EVENT_PIDLINE: i8 = 5;
 pub const EVENT_PIDHOLD: i8 = 6;
 pub const EVENT_TIMER: i8 = 7;
 pub const EVENT_COMPUTEMOTORSTALL: i8 = 8;
+
+pub const TABLELENGTHSFILE: &str = "instructions/tableLengths";

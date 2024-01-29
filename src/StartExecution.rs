@@ -14,7 +14,10 @@ use crate::ReadInstructions::ReadInstructions;
 
 pub fn startExecution<'a>(
     round_instructions_path: &'a str,
-    port_definitions: &'a PortDefinition
+    port_definitions: &'a PortDefinition,
+    ActiveTable: &'a mut Vec<bool>,
+    TerminatedTable: &'a mut Vec<bool>,
+    CondTable: &'a mut Vec<bool>,
 ) -> Result<i8, &'a str>{
     let mut event_list: Vec<Event> = Vec::new();
     let mut spawn_list: Vec<Condition> = Vec::new();
@@ -43,12 +46,15 @@ pub fn startExecution<'a>(
     };
 
     setSpeedPID(&motors_sensors, speed_p, speed_i, speed_d);
-
-    // prepare boolean table for listing terminated events
-    let mut ActiveTable: Vec<bool> = vec![false; event_list.len()+1];
-    ActiveTable[0] = true;
-    let mut TerminatedTable: Vec<bool> = vec![false; event_list.len()+1];
-    let mut CondTable: Vec<bool> = vec![false; spawn_list.len() + term_list.len()];
+    
+    // check lenghts of tables
+    // compare to event_list, spawn_list, term_list lengths
+    if ActiveTable.len() < event_list.len() ||  TerminatedTable.len() < event_list.len() || CondTable.len() < spawn_list.len() + term_list.len(){
+        let mut ActiveTable: Vec<bool> = vec![false; event_list.len()+1];
+        ActiveTable[0] = true;
+        let mut TerminatedTable: Vec<bool> = vec![false; event_list.len()+1];
+        let mut CondTable: Vec<bool> = vec![false; spawn_list.len() + term_list.len()];
+    }
     
 
     led.set_color(Led::COLOR_RED).expect("cant set led color!");

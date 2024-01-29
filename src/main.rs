@@ -6,6 +6,7 @@ use glob::glob;
 use image::Rgb;
 use std::path::{Path};
 use rusttype::{Font, Scale};
+use std::fs;
 
 use ev3dev_lang_rust::motors::{MotorPort};
 use ev3dev_lang_rust::sensors::{SensorPort};
@@ -75,6 +76,24 @@ fn main() {
             Err(e) => println!("{:?}", e),
         }
     }
+
+   // read boolean table lengths
+
+    let contents = fs::read_to_string(TABLELENGTHSFILE).expect("Cant read tableLengths file!");
+
+    let booleanTableLenghts = contents.split(";").collect::<Vec<&str>>();
+
+    // prepare boolean table for listing terminated events
+    // THIS IS SLOW!!!!!!!!
+    /* let mut ActiveTable: Vec<bool> = vec![false; event_list.len()+1];
+    ActiveTable[0] = true;
+    let mut TerminatedTable: Vec<bool> = vec![false; event_list.len()+1];
+    let mut CondTable: Vec<bool> = vec![false; spawn_list.len() + term_list.len()]; */
+
+    let mut ActiveTable: Vec<bool> = vec![false; booleanTableLenghts[0].parse::<usize>().unwrap()+1];
+    ActiveTable[0] = true;
+    let mut TerminatedTable: Vec<bool> = vec![false; booleanTableLenghts[1].parse::<usize>().unwrap()+1];
+    let mut CondTable: Vec<bool> = vec![false; booleanTableLenghts[1].parse::<usize>().unwrap() + booleanTableLenghts[2].parse::<usize>().unwrap()];
     
     loop {
         button.process();
@@ -83,7 +102,7 @@ fn main() {
         }
 
         if button.is_enter() {
-            let result:Result<i8, &str> = startExecution(&*paths.get(index).expect("index out of bounds"), &port_definitions);
+            let result:Result<i8, &str> = startExecution(&*paths.get(index).expect("index out of bounds"), &port_definitions, &mut ActiveTable, &mut TerminatedTable, &mut CondTable);
             match result {
                 Ok(n) => {},
                 Err(n) => {
