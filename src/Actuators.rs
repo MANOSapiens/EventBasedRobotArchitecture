@@ -75,12 +75,14 @@ pub fn writeToActuators(motors_sensors: &MotorsSensors, sensor_act_values: &mut 
         ConstrainActuatorValues(&mut lToolMotorPow);
         
         motors_sensors.lToolMotor.set_duty_cycle_sp((lToolMotorPow * 100.0) as i32).unwrap_or(());
+        motors_sensors.lToolMotor.set_duty_cycle_sp((lToolMotorPow * 100.0) as i32).unwrap_or(());
         sensor_act_values.lToolMotorPowPrev = lToolMotorPow;
     }
 
     if rToolMotorPow != sensor_act_values.rToolMotorPowPrev {
         ConstrainActuatorValues(&mut rToolMotorPow);
         
+        motors_sensors.rToolMotor.set_duty_cycle_sp((rToolMotorPow * 100.0) as i32).unwrap_or(());
         motors_sensors.rToolMotor.set_duty_cycle_sp((rToolMotorPow * 100.0) as i32).unwrap_or(());
         sensor_act_values.rToolMotorPowPrev = rToolMotorPow;
     }

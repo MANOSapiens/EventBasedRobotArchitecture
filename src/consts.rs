@@ -1,5 +1,5 @@
 // ADJUST THESE PARAMETERS TO INCREASE PERFORMANCE
-pub const DEBUG: bool = true;
+pub const DEBUG: bool = false;
 pub const SPARSE_SENSOR_READING: bool = true;
 
 // BUT DONT TOUCH THESE

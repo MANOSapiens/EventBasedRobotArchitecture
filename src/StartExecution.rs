@@ -30,8 +30,9 @@ pub fn startExecution<'a>(
     let mut speed_p: f32 = 0.0;
     let mut speed_i: f32 = 0.0;
     let mut speed_d: f32 = 0.0;
+    let mut file_forward: i8 = 1;
 
-    ReadInstructions(round_instructions_path, &mut spawn_list, &mut event_list, &mut term_list, &mut round_timeout, &mut speed_p, &mut speed_i, &mut speed_d, &mut name);
+    ReadInstructions(round_instructions_path, &mut spawn_list, &mut event_list, &mut term_list, &mut round_timeout, &mut speed_p, &mut speed_i, &mut speed_d, &mut name, &mut file_forward);
     let mut wtr = csv::Writer::from_path(format!("records/{name}.csv")).expect("cant initialize csv writer!");
     
     if DEBUG {
@@ -72,5 +73,5 @@ pub fn startExecution<'a>(
     );
 
     led.set_color(Led::COLOR_GREEN).expect("cant set led color!");
-    Ok(127)
+    Ok(file_forward)
 }

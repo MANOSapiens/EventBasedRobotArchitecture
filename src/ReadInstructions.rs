@@ -252,6 +252,7 @@ pub fn ReadInstructions(
     speed_i: &mut f32,
     speed_d: &mut f32,
     name: &mut String,
+    file_forward: &mut i8,
 ) {
     let file = fs::File::open(file_path).expect("Instructions file is not available!");
     let json: serde_json::Value = serde_json::from_reader(file).unwrap();
@@ -268,6 +269,7 @@ pub fn ReadInstructions(
     *speed_p = parsef32(json.get("speed_p"));
     *speed_i = parsef32(json.get("speed_i"));
     *speed_d = parsef32(json.get("speed_d"));
+    *file_forward = parsei8(json.get("file_forward"));
 
 
     for i in 0..event_list_len {

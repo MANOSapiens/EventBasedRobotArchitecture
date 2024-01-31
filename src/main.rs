@@ -104,7 +104,11 @@ fn main() {
         if button.is_enter() {
             let result:Result<i8, &str> = startExecution(&*paths.get(index).expect("index out of bounds"), &port_definitions, &mut ActiveTable, &mut TerminatedTable, &mut CondTable);
             match result {
-                Ok(n) => {},
+                Ok(n) => {
+                    if index < paths.len()-1 {
+                        index += n as usize;
+                    }
+                },
                 Err(n) => {
 
                     screen.clear();
