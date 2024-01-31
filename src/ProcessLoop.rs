@@ -131,7 +131,7 @@ pub fn ProcessLoop<W: Write>(
 
     // Sensor Values
     resetAll(&motors_sensors);
-
+    
     let mut sensor_act_values = SensorActuatorValues{
         lDriveMotorEnc: 0.0,
         rDriveMotorEnc: 0.0,
@@ -211,7 +211,7 @@ pub fn ProcessLoop<W: Write>(
         );
         
         // ===== Run Events =====
-        RunEvents(&mut event_list, &ActiveTable, CondTable, &mut sensor_act_values, &sys_time, &mut running);
+        RunEvents(&mut event_list, ActiveTable, CondTable, &mut sensor_act_values, &sys_time, &mut running);
         
         // ===== Spawn and Terminate =====
         TerminateEvents( &term_list, ActiveTable, TerminatedTable, CondTable, &mut sensor_act_values);

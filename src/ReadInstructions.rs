@@ -1,12 +1,15 @@
 use crate::Events::CondID;
 use crate::Events::PID;
 use crate::Events::{Condition, Event, EventID, FuncTypes};
+extern crate memmap;
 use log::{error, info};
 use serde_json::{value::Value};
 use std::collections::VecDeque;
 use std::fs;
 use std::path::PathBuf;
 use std::process;
+use std::str;
+
 use std::time::{SystemTime, UNIX_EPOCH, Instant};
 use rand::Rng;
 
@@ -254,14 +257,17 @@ pub fn ReadInstructions(
     name: &mut String,
     file_forward: &mut i8,
 ) {
+    let time_now: Instant = Instant::now();
     let file = fs::File::open(file_path).expect("Instructions file is not available!");
-    let json: serde_json::Value = serde_json::from_reader(file).unwrap();
+    let mmap = unsafe { memmap::Mmap::map(&file) }.unwrap();
+    let content = str::from_utf8(&mmap).unwrap();
+    let json: serde_json::Value = serde_json::from_str(content).unwrap();
 
     let event_list_len: usize = parseusize(json.get("EventListLen"));
     let spawn_list_len: usize = parseusize(json.get("SpawnListLen"));
     let term_list_len: usize = parseusize(json.get("TermListLen"));
 
-    let time_now: Instant = Instant::now();
+    
     *name = generateName(parseString(json.get("name")));
     info!("================== {} ====================", name);
     info!("Reading JSON file {}", file_path);

@@ -9,7 +9,7 @@ use crate::ProcessLoop::SensorActuatorValues;
 
 
 
-fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut [bool], CondTable: &mut [bool], sensor_act_values: &mut SensorActuatorValues){
+fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut Vec<bool>, CondTable: &mut Vec<bool>, sensor_act_values: &mut SensorActuatorValues){
     CondTable[cond.cond_id] = result;
     if result {
         if cond.process_id != 0 {
@@ -20,7 +20,7 @@ fn setVarSpawn(result: bool, cond: &CondID, ActiveTable: &mut [bool], CondTable:
 }
 
 
-fn setVarTerm(result: bool, cond: &CondID, ActiveTable: &mut [bool], TerminatedTable: &mut [bool], CondTable: &mut [bool]){
+fn setVarTerm(result: bool, cond: &CondID, ActiveTable: &mut Vec<bool>, TerminatedTable: &mut Vec<bool>, CondTable: &mut Vec<bool>){
     CondTable[cond.cond_id] = result;
     if result && cond.process_id != 0 {
         ActiveTable[cond.process_id] = false;
@@ -30,7 +30,7 @@ fn setVarTerm(result: bool, cond: &CondID, ActiveTable: &mut [bool], TerminatedT
 }
 
 
-pub fn SpawnEvents(spawn_list: &Vec<Condition>, ActiveTable: &mut [bool], TerminatedTable: & [bool], CondTable: &mut [bool], sensor_act_values: &mut SensorActuatorValues) {
+pub fn SpawnEvents(spawn_list: &Vec<Condition>, ActiveTable: &mut Vec<bool>, TerminatedTable: & Vec<bool>, CondTable: &mut Vec<bool>, sensor_act_values: &mut SensorActuatorValues) {
     for _condition in spawn_list {
         match _condition {
             Condition::IsTerminated { cond, watch_process_id } => {
@@ -69,7 +69,7 @@ pub fn SpawnEvents(spawn_list: &Vec<Condition>, ActiveTable: &mut [bool], Termin
 }
 
 
-pub fn TerminateEvents(term_list: &Vec<Condition>, ActiveTable: &mut [bool], TerminatedTable: &mut [bool], CondTable: &mut[bool], _sensor_act_values: &mut SensorActuatorValues) {
+pub fn TerminateEvents(term_list: &Vec<Condition>, ActiveTable: &mut Vec<bool>, TerminatedTable: &mut Vec<bool>, CondTable: &mut Vec<bool>, _sensor_act_values: &mut SensorActuatorValues) {
     for _condition in term_list {
         match _condition {
             Condition::IsTerminated { cond, watch_process_id } => {
