@@ -23,6 +23,7 @@ pub fn startExecution<'a>(
     let mut spawn_list: Vec<Condition> = Vec::new();
     let mut term_list: Vec<Condition> = Vec::new();
     let led: Led = Led::new().expect("cant initialize led!");
+    led.set_color(Led::COLOR_RED).expect("cant set led color!");
 
     let mut name: String = String::from("");
 
@@ -57,9 +58,7 @@ pub fn startExecution<'a>(
         let mut CondTable: Vec<bool> = vec![false; spawn_list.len() + term_list.len()];
     }
     
-
-    led.set_color(Led::COLOR_RED).expect("cant set led color!");
-
+    
     ProcessLoop(
         spawn_list,
         event_list,
