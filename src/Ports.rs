@@ -54,11 +54,6 @@ pub fn motorsStopCoast(motors_sensors: &MotorsSensors) {
     motors_sensors.lToolMotor.set_duty_cycle_sp(0).expect("lDrive motor write failed");
     motors_sensors.rToolMotor.set_duty_cycle_sp(0).expect("lDrive motor write failed");
 
-    let _ = motors_sensors.lDriveMotor.stop();
-    let _ = motors_sensors.rDriveMotor.stop();
-    let _ = motors_sensors.lToolMotor.stop();
-    let _ = motors_sensors.rToolMotor.stop();
-
     let _ = motors_sensors.lDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
     let _ = motors_sensors.rDriveMotor.set_stop_action("coast"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
     let _ = motors_sensors.lToolMotor.set_stop_action("coast"); //SET BRAKE MODE TO PASSIVE ELECTRICAL BRAKE
@@ -127,7 +122,7 @@ pub fn prepare_motors_sensor(port_definitions: &PortDefinition, speed_p: f32, sp
     info!("Current PID values: P: {}, I: {}, D: {}", motors_sensors.lDriveMotor.get_speed_pid_kp().expect(""), motors_sensors.lDriveMotor.get_speed_pid_ki().expect(""), motors_sensors.lDriveMotor.get_speed_pid_kd().expect(""));
 
     motorsRunDirect(&motors_sensors);
-    let _ = motors_sensors.gyroSens.set_mode_gyro_ang();
+    let _ = motors_sensors.gyroSens.set_mode_gyro_ang(); // ============================== MAYBE this is causing reset of gyro??? =========================================
     let _ = motors_sensors.colourSens.set_mode_col_reflect();
 
     Ok(motors_sensors)

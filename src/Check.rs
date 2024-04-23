@@ -15,7 +15,6 @@ pub struct RoundSummary {
     pub wall_time: u64,
     pub max_loop_time: f32,
     pub mean_loop_time: f32,
-    pub total_travelled_distance: i32,
     pub loop_count: u64,
     pub mean_f: u32
 }

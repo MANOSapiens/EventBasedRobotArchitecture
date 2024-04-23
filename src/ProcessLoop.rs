@@ -92,8 +92,6 @@ fn TerminateProcessLoop(sys_time: &Instant, round_summary: &mut RoundSummary, mo
     
     motorsStopCoast(motors_sensors);
 
-    round_summary.total_travelled_distance = ((sensor_act_values.lDriveMotorEnc + sensor_act_values.rDriveMotorEnc)/2.0) as i32;
-
     
     info!("=========== ROUND SUMMARY ===========");
     info!("Loop count: {}", round_summary.loop_count);
@@ -101,8 +99,6 @@ fn TerminateProcessLoop(sys_time: &Instant, round_summary: &mut RoundSummary, mo
     info!("Average loop time(higher means worse): {}s", round_summary.mean_loop_time as f32);
     info!("Average loop frequency: {}Hz", round_summary.mean_f);
     info!("Loop time maximum (higher means worse): {}s", round_summary.max_loop_time as f32);
-    
-    info!("Total travelled distance in motor degrees: {}", round_summary.total_travelled_distance);
     
 }
 
@@ -124,7 +120,6 @@ pub fn ProcessLoop<W: Write>(
         wall_time: 0,
         max_loop_time: 0.0,
         mean_loop_time: 0.0,
-        total_travelled_distance: 0,
         loop_count: 0,
         mean_f: 0
     };
