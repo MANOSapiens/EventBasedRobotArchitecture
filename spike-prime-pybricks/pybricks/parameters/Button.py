@@ -1,0 +1,3 @@
+RIGHT = 0
+LEFT = 1
+CENTER = 2
