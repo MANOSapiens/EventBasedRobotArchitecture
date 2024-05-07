@@ -102,26 +102,34 @@ def process_loop(spawn_list, event_list, term_list, motors_sensors, active_table
 
     sensor_act_values.gyroRead = True
 
+    TerminateProcessLoop = terminate_process_loop
+    ReadSensors = read_sensors
+    RunEvents = run_events
+    SpawnEvents = spawn_events
+    TerminateEvents = terminate_events
+    WriteToActuators = write_to_actuators
+    Check = check
+
     while True:
         # Check if loop should continue running
         if not running:
-            terminate_process_loop(start_time, round_summary, motors_sensors, sensor_act_values, notetaker)
+            TerminateProcessLoop(start_time, round_summary, motors_sensors, sensor_act_values, notetaker)
             break
 
         # Read sensor values
-        read_sensors(motors_sensors, sensor_act_values, start_time, writer)
+        ReadSensors(motors_sensors, sensor_act_values, start_time, writer)
         
         # Run events
-        running = run_events(event_list, active_table, cond_table, sensor_act_values)
+        running = RunEvents(event_list, active_table, cond_table, sensor_act_values)
         
         # Spawn and terminate processes
-        terminate_events(term_list, active_table, terminated_table, cond_table, sensor_act_values)
-        spawn_events(spawn_list, active_table, terminated_table, cond_table, sensor_act_values)
+        TerminateEvents(term_list, active_table, terminated_table, cond_table, sensor_act_values)
+        SpawnEvents(spawn_list, active_table, terminated_table, cond_table, sensor_act_values)
 
         # Write computed values to actuators
-        write_to_actuators(motors_sensors, sensor_act_values)
+        WriteToActuators(motors_sensors, sensor_act_values)
         
         # Perform check
-        check(round_summary, sensor_act_values)
+        Check(round_summary, sensor_act_values)
 
 

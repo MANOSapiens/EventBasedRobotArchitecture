@@ -47,3 +47,75 @@
 [INFO] Average loop frequency: 3577Hz
 [INFO] Loop time maximum (higher means worse): 1714135378.15s
 [INFO] Total travelled distance in motor degrees: 0
+[INFO] ================== 1714830996-RUNDE2ORANGE-Dishonest-Table ====================
+[INFO] Reading JSON file instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0.020496368408203125s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 100983
+[INFO] Wall time: 71s
+[INFO] Average loop time (higher means worse): 0.00s
+[INFO] Average loop frequency: 1414Hz
+[INFO] Loop time maximum (higher means worse): 1714830996.84s
+[INFO] Total travelled distance in motor degrees: 0
+[INFO] ================== 1714831589-RUNDE2ORANGE-Quiet-Watch ====================
+[INFO] Reading JSON file instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0.015528440475463867s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 118512
+[INFO] Wall time: 71s
+[INFO] Average loop time (higher means worse): 0.00s
+[INFO] Average loop frequency: 1657Hz
+[INFO] Loop time maximum (higher means worse): 1714831589.46s
+[INFO] Total travelled distance in motor degrees: 0
+[INFO] ================== 1714831943-RUNDE2ORANGE-Beautiful-Remote control ====================
+[INFO] Reading JSON file instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0.012000799179077148s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 113007
+[INFO] Wall time: 71s
+[INFO] Average loop time (higher means worse): 0.00s
+[INFO] Average loop frequency: 1581Hz
+[INFO] Loop time maximum (higher means worse): 1714831943.72s
+[INFO] Total travelled distance in motor degrees: 0
+[INFO] ================== 1714832277-RUNDE2ORANGE-Generous-Pen ====================
+[INFO] Reading JSON file instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0.014809846878051758s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 113786
+[INFO] Wall time: 71s
+[INFO] Average loop time (higher means worse): 0.00s
+[INFO] Average loop frequency: 1591Hz
+[INFO] Loop time maximum (higher means worse): 1714832277.73s
+[INFO] Total travelled distance in motor degrees: 0
+[INFO] ================== 1714832510-RUNDE2ORANGE-Rich-Book ====================
+[INFO] Reading JSON file instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0.011394500732421875s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 111493
+[INFO] Wall time: 71s
+[INFO] Average loop time (higher means worse): 0.00s
+[INFO] Average loop frequency: 1559Hz
+[INFO] Loop time maximum (higher means worse): 1714832510.95s
+[INFO] Total travelled distance in motor degrees: 0
+[INFO] ================== 1714833182-RUNDE2ORANGE-Cowardly-Table ====================
+[INFO] Reading JSON file instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0.013986825942993164s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 114187
+[INFO] Wall time: 71s
+[INFO] Average loop time (higher means worse): 0.00s
+[INFO] Average loop frequency: 1599Hz
+[INFO] Loop time maximum (higher means worse): 1714833182.04s
+[INFO] Total travelled distance in motor degrees: 0

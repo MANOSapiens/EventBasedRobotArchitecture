@@ -40,16 +40,17 @@ def spawn_events(spawn_list, active_table, terminated_table, cond_table, sensor_
 
 def terminate_events(term_list, active_table, terminated_table, cond_table, sensor_act_values):
     for condition in term_list:
-        cond_type = condition.t
-        if cond_type == CONDITION_ISTERMINATED and active_table[condition.cond.process_id]:
-            set_var_term(terminated_table[condition.watch_process_id], condition.cond, active_table, terminated_table, cond_table)
-        elif cond_type == CONDITION_AND and active_table[condition.cond.process_id]:
-            set_var_term(cond_table[condition.watch_cond_id0] and cond_table[condition.watch_cond_id1], condition.cond, active_table, terminated_table, cond_table)
-        elif cond_type == CONDITION_OR and active_table[condition.cond.process_id]:
-            set_var_term(cond_table[condition.watch_cond_id0] or cond_table[condition.watch_cond_id1], condition.cond, active_table, terminated_table, cond_table)
-        elif cond_type == CONDITION_NOT and active_table[condition.cond.process_id]:
-            set_var_term(not cond_table[condition.watch_cond_id], condition.cond, active_table, terminated_table, cond_table)
-        elif cond_type == CONDITION_STOPIMMEDIATELY and active_table[condition.cond.process_id]:
-            set_var_term(True, condition.cond, active_table, terminated_table, cond_table)
-        elif cond_type == CONDITION_SENSORVALUE and active_table[condition.cond.process_id]:
-            set_var_term(cond_table[condition.cond.cond_id], condition.cond, active_table, terminated_table, cond_table)
+        if active_table[condition.cond.process_id]:
+            cond_type = condition.t
+            if cond_type == CONDITION_ISTERMINATED:
+                set_var_term(terminated_table[condition.watch_process_id], condition.cond, active_table, terminated_table, cond_table)
+            elif cond_type == CONDITION_AND:
+                set_var_term(cond_table[condition.watch_cond_id0] and cond_table[condition.watch_cond_id1], condition.cond, active_table, terminated_table, cond_table)
+            elif cond_type == CONDITION_OR:
+                set_var_term(cond_table[condition.watch_cond_id0] or cond_table[condition.watch_cond_id1], condition.cond, active_table, terminated_table, cond_table)
+            elif cond_type == CONDITION_NOT:
+                set_var_term(not cond_table[condition.watch_cond_id], condition.cond, active_table, terminated_table, cond_table)
+            elif cond_type == CONDITION_STOPIMMEDIATELY:
+                set_var_term(True, condition.cond, active_table, terminated_table, cond_table)
+            elif cond_type == CONDITION_SENSORVALUE:
+                set_var_term(cond_table[condition.cond.cond_id], condition.cond, active_table, terminated_table, cond_table)

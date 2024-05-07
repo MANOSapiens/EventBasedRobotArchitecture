@@ -122,11 +122,17 @@ class PlaceholderCond:
         self.cond = cond
         self.t = CONDITION_PLACEHOLDER
 
+    def __call__(self, cond_table, terminated_table):
+        return False
+
 class IsTerminated:
     def __init__(self, cond: CondID, watch_process_id: int):
         self.cond = cond
         self.watch_process_id = watch_process_id
         self.t = CONDITION_ISTERMINATED
+
+    def __call__(self, cond_table, terminated_table):
+        return terminated_table[self.watch_process_id]
 
 class And:
     def __init__(self, cond: CondID, watch_cond_id0: int, watch_cond_id1: int):
@@ -135,6 +141,9 @@ class And:
         self.watch_cond_id1 = watch_cond_id1
         self.t = CONDITION_AND
 
+    def __call__(self, cond_table, terminated_table):
+        return cond_table[self.watch_cond_id0] and cond_table[self.watch_cond_id1]
+
 class Or:
     def __init__(self, cond: CondID, watch_cond_id0: int, watch_cond_id1: int):
         self.cond = cond
@@ -142,23 +151,38 @@ class Or:
         self.watch_cond_id1 = watch_cond_id1
         self.t = CONDITION_OR
 
+    def __call__(self, cond_table, terminated_table):
+        return cond_table[self.watch_cond_id0] or cond_table[self.watch_cond_id1]
+
 class Not:
     def __init__(self, cond: CondID, watch_cond_id: int):
         self.cond = cond
         self.watch_cond_id = watch_cond_id
         self.t = CONDITION_NOT
 
+    def __call__(self, cond_table, terminated_table):
+        return not cond_table[self.watch_cond_id]
+
 class StartImmediately:
     def __init__(self, cond: CondID):
         self.cond = cond
         self.t = CONDITIONS_STARTIMMEDIATELY
+
+    def __call__(self, cond_table, terminated_table):
+        return True
 
 class StopImmediately:
     def __init__(self, cond: CondID):
         self.cond = cond
         self.t = CONDITION_STOPIMMEDIATELY
 
+    def __call__(self, cond_table, terminated_table):
+        return True
+
 class SensorValueCond:
     def __init__(self, cond: CondID):
         self.cond = cond
         self.t = CONDITION_SENSORVALUE
+
+    def __call__(self, cond_table, terminated_table):
+        return cond_table[self.cond.cond_id]
