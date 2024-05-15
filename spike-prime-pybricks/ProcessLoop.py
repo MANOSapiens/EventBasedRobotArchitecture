@@ -9,7 +9,6 @@ from Check import check
 import time
 
 
-
 class SensorActuatorValues:
     def __init__(self):
         # Motor encoders

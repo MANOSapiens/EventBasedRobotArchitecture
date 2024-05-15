@@ -4,8 +4,10 @@ from ReadSensors import get_sensor_value
 from Actuators import set_motor_pow
 
 
+#import micropython
 import time
 
+#@micropython.native
 def math_func(x, func):
     if func.t == FUNC_CONST:
         return func.c
@@ -25,6 +27,7 @@ def math_func(x, func):
     elif func.t == FUNC_QUADRATIC:
         return func.a * x * x + func.b * x + func.c
 
+#@micropython.native
 def set_read_sensor(sensor_id, sensor_act_values):
     # Logic to set sensor read flags
     if sensor_id == LDRIVEENC:
@@ -54,7 +57,7 @@ def set_read_sensor(sensor_id, sensor_act_values):
         sensor_act_values.lDriveMotorEncRead = True
         sensor_act_values.rDriveMotorEncRead = True
 
-
+#@micropython.native
 def run_events(event_list, active_table, cond_table, sensor_act_values):
     sensor_act_values.currentTime = time.time()
     running = True

@@ -122,7 +122,7 @@ pub fn prepare_motors_sensor(port_definitions: &PortDefinition, speed_p: f32, sp
     info!("Current PID values: P: {}, I: {}, D: {}", motors_sensors.lDriveMotor.get_speed_pid_kp().expect(""), motors_sensors.lDriveMotor.get_speed_pid_ki().expect(""), motors_sensors.lDriveMotor.get_speed_pid_kd().expect(""));
 
     motorsRunDirect(&motors_sensors);
-    let _ = motors_sensors.gyroSens.set_mode_gyro_ang(); // ============================== MAYBE this is causing reset of gyro??? =========================================
+    //let _ = motors_sensors.gyroSens.set_mode_gyro_ang(); // ============================== MAYBE this is causing reset of gyro??? =========================================
     let _ = motors_sensors.colourSens.set_mode_col_reflect();
 
     Ok(motors_sensors)
