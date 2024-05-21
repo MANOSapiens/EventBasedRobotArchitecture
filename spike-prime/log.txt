@@ -119,3 +119,9 @@
 [INFO] Average loop frequency: 1599Hz
 [INFO] Loop time maximum (higher means worse): 1714833182.04s
 [INFO] Total travelled distance in motor degrees: 0
+[INFO] ================== 1716302676-RUNDE 5-Noisy-Sunglasses ====================
+[INFO] Reading JSON file Runde3.json
+[INFO] Finished reading JSON. This took 0.011532306671142578s
+[INFO] ================== 1716302719-RUNDE 5-Clean-Coffee mug ====================
+[INFO] Reading JSON file Runde3.json
+[INFO] Finished reading JSON. This took 0.0009987354278564453s

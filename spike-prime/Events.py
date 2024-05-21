@@ -1,5 +1,4 @@
-import array
-from consts import *
+import array; from consts import *
 
 
 class EventID:
@@ -114,7 +113,6 @@ class HaltProcessLoop:
     def __init__(self, event: EventID):
         self.event = event
         self.t = EVENT_HALT
-
 
 
 class PlaceholderCond:

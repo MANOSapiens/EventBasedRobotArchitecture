@@ -1,6 +1,3 @@
-from pybricks.pupdevices import Motor
-from pybricks.parameters import Port
-
 
 class PortDefinition:
     def __init__(self, l_drive_port, r_drive_port, l_tool_port, r_tool_port, colour_port):
@@ -11,67 +8,66 @@ class PortDefinition:
         self.colourSensPort = colour_port
 
 class MotorsSensors:
-    def __init__(self, hub, lDriveMotor, rDriveMotor, lToolMotor, rToolMotor):
-        self.hub = hub
+    def __init__(self, lDriveMotor, rDriveMotor, lToolMotor, rToolMotor):
         self.lDriveMotor = lDriveMotor
         self.rDriveMotor = rDriveMotor
         self.lToolMotor = lToolMotor
         self.rToolMotor = rToolMotor
-        self.imu = self.hub.imu
+        self.imu = motion_sensor
         #self.colourSens = ColorSensor(port_def.colourSensPort)
-        self.buttons = self.hub.buttons
+        self.buttons = button
 
-    
+
 def motorsStopCoast(motors_sensors):
-    motors_sensors.lDriveMotor.stop()
-    motors_sensors.rDriveMotor.stop()
-    motors_sensors.lToolMotor.stop()
-    motors_sensors.rToolMotor.stop()
+    motor.stop(motors_sensors.lDriveMotor)
+    motor.stop(motors_sensors.rDriveMotor)
+    motor.stop(motors_sensors.lToolMotor)
+    motor.stop(motors_sensors.rToolMotor)
 
 def port_to_string(port):
-    if port == Port.A:
+    if port == port.A:
         return 'A'
-    elif port == Port.B:
+    elif port == port.B:
         return 'B'
-    elif port == Port.C:
+    elif port == port.C:
         return 'C'
-    elif port == Port.D:
+    elif port == port.D:
         return 'D'
-    elif port == Port.E:
+    elif port == port.E:
         return 'E'
-    elif port == Port.F:
+    elif port == port.F:
         return 'F'
-    
 
 
-def prepare_motors_sensor(hub, port_definitions):
-    
+
+def prepare_motors_sensor(port_definitions):
+
     try:
-        l_drive_motor = Motor(port_definitions.lDriveMotorPort, reset_angle=False, profile=3)#
+        l_drive_motor = port_definitions.lDriveMotorPort
     except:
         return port_to_string(port_definitions.lDriveMotorPort)
-    
+
     try:
-        r_drive_motor = Motor(port_definitions.rDriveMotorPort, reset_angle=False, profile=3)
+        r_drive_motor = port_definitions.rDriveMotorPort
 
     except:
         return port_to_string(port_definitions.rDriveMotorPort)
-    
+
     try:
-        l_tool_motor = Motor(port_definitions.lToolMotorPort, reset_angle=False, profile=3)
+        l_tool_motor = port_definitions.lToolMotorPort
 
     except:
         return port_to_string(port_definitions.lToolMotorPort)
-    
+
     try:
-        r_tool_motor = Motor(port_definitions.rToolMotorPort, reset_angle=False, profile=3)
+        r_tool_motor = port_definitions.rToolMotorPort
 
     except:
         return port_to_string(port_definitions.rToolMotorPort)
 
 
     # Create MotorsSensors instance
-    motors_sensors = MotorsSensors(hub, l_drive_motor, r_drive_motor, l_tool_motor, r_tool_motor)
+    motors_sensors = MotorsSensors(l_drive_motor, r_drive_motor, l_tool_motor, r_tool_motor)
 
     return motors_sensors
 
@@ -86,3 +82,6 @@ def set_speed_pid(motors_sensors, speed_p, speed_i, speed_d):
     #motors_sensors.r_drive_motor.set_speed_pid_kp(speed_p)
     #motors_sensors.r_drive_motor.set_speed_pid_ki(speed_i)
     #motors_sensors.r_drive_motor.set_speed_pid_kd(speed_d)
+
+
+

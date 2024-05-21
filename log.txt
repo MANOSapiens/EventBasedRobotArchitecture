@@ -1,0 +1,721 @@
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Dark-Clock ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Smart-Plate ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Smart-Pen ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Brave-Pencil ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Modern-Car ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Clever-Watch ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Fast-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Stingy-Sunglasses ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Long-Knife ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Rich-Hat ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Cruel-Sunglasses ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Fast-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Loud-Hat ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Unknown-Computer ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Strong-Coffee mug ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Kind-Refrigerator ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Cruel-Pencil ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Fast-Book ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Rich-Fork ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE2ORANGE-Silent-Remote control ====================
+[INFO] Reading JSON file /flash/instructions/Runde2ORANGE.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Clever-Car ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Healthy-Hat ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Sick-Remote control ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Kind-Computer ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Silent-Spoon ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Honest-Knife ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Quiet-Watch ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Beautiful-Hat ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Fast-Hat ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Ancient-Pencil ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Unknown-Phone ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Slow-Book ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 2112066000-RUNDE 5-Hostile-Coffee mug ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0s
+[INFO] Starting execution!
+[INFO] ================== 21-RUNDE 5-Brave-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2740002s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 762
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 21.26s
+[INFO] Total travelled distance in motor degrees: 199
+[INFO] Starting execution!
+[INFO] ================== 39-RUNDE 5-Dumb-Plate ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2869987s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 763
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 40.13s
+[INFO] Total travelled distance in motor degrees: 146
+[INFO] Starting execution!
+[INFO] ================== 46-RUNDE 5-Famous-Backpack ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.3339996s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 755
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 46.64s
+[INFO] Total travelled distance in motor degrees: 276
+[INFO] Starting execution!
+[INFO] ================== 53-RUNDE 5-Kind-Spoon ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2560005s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 757
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 53.27s
+[INFO] Total travelled distance in motor degrees: 397
+[INFO] Starting execution!
+[INFO] ================== 71-RUNDE 5-Angry-Phone ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2710037s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 822
+[INFO] Wall time: 4s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 71.58s
+[INFO] Total travelled distance in motor degrees: 522
+[INFO] Starting execution!
+[INFO] ================== 82-RUNDE 5-Cruel-Computer ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.9720001s
+[INFO] Starting execution!
+[INFO] ================== 110-RUNDE 5-Thin-Clock ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.9720001s
+[INFO] Starting execution!
+[INFO] ================== 145-RUNDE 5-Clean-Bicycle ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 1.470001s
+[INFO] Starting execution!
+[INFO] ================== 584-RUNDE 5-Fat-Table ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2660522s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 992
+[INFO] Wall time: 5s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 584.92s
+[INFO] Total travelled distance in motor degrees: 451
+[INFO] Starting execution!
+[INFO] ================== 620-RUNDE 5-Strong-Knife ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2730103s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 814
+[INFO] Wall time: 4s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 620.33s
+[INFO] Total travelled distance in motor degrees: 419
+[INFO] Starting execution!
+[INFO] ================== 630-RUNDE 5-Poor-Spoon ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2890015s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 849
+[INFO] Wall time: 4s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 630.81s
+[INFO] Total travelled distance in motor degrees: 84
+[INFO] Starting execution!
+[INFO] ================== 639-RUNDE 5-Cruel-Book ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2949829s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 750
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 639.54s
+[INFO] Total travelled distance in motor degrees: 205
+[INFO] Starting execution!
+[INFO] ================== 645-RUNDE 5-Noisy-Wallet ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2470093s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 760
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 645.4s
+[INFO] Total travelled distance in motor degrees: 333
+[INFO] Starting execution!
+[INFO] ================== 793-RUNDE 5-Kind-Backpack ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2540283s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 756
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 793.36s
+[INFO] Total travelled distance in motor degrees: 104
+[INFO] Starting execution!
+[INFO] ================== 806-RUNDE 5-Cowardly-Computer ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2639771s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 756
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 807.11s
+[INFO] Total travelled distance in motor degrees: 226
+[INFO] Starting execution!
+[INFO] ================== 815-RUNDE 5-Ugly-Clock ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2730103s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 765
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 815.77s
+[INFO] Total travelled distance in motor degrees: 356
+[INFO] Starting execution!
+[INFO] ================== 842-RUNDE 5-Short-Clock ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.28302s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 758
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 842.58s
+[INFO] Total travelled distance in motor degrees: 480
+[INFO] Starting execution!
+[INFO] ================== 850-RUNDE 5-Dark-Refrigerator ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2769775s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 754
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 850.39s
+[INFO] Total travelled distance in motor degrees: 605
+[INFO] Starting execution!
+[INFO] ================== 860-RUNDE 5-Loud-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2869873s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 763
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 860.27s
+[INFO] Total travelled distance in motor degrees: 734
+[INFO] Starting execution!
+[INFO] ================== 872-RUNDE 5-Sick-Shoes ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2410278s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 756
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 872.24s
+[INFO] Total travelled distance in motor degrees: 856
+[INFO] Starting execution!
+[INFO] ================== 881-RUNDE 5-Modern-Backpack ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.3530273s
+[INFO] Starting execution!
+[INFO] ================== 913-RUNDE 5-Long-Hat ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.9530029s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 682
+[INFO] Wall time: 12s
+[INFO] Average loop time (higher means worse): 0.02s
+[INFO] Average loop frequency: 54Hz
+[INFO] Loop time maximum (higher means worse): 915.01s
+[INFO] Total travelled distance in motor degrees: 1527
+[INFO] Starting execution!
+[INFO] ================== 929-RUNDE 5-Rich-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2659912s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 759
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 929.22s
+[INFO] Total travelled distance in motor degrees: 1632
+[INFO] Starting execution!
+[INFO] ================== 938-RUNDE 5-Brave-Plate ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2730103s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 764
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 938.22s
+[INFO] Total travelled distance in motor degrees: 132
+[INFO] Starting execution!
+[INFO] ================== 952-RUNDE 5-Rich-Book ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.28302s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 734
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 953.18s
+[INFO] Total travelled distance in motor degrees: 261
+[INFO] Starting execution!
+[INFO] ================== 959-RUNDE 5-Cowardly-Knife ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2929688s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 755
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 960.14s
+[INFO] Total travelled distance in motor degrees: 388
+[INFO] Starting execution!
+[INFO] ================== 970-RUNDE 5-Slow-Refrigerator ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.309021s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 760
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 970.65s
+[INFO] Total travelled distance in motor degrees: 509
+[INFO] Starting execution!
+[INFO] ================== 978-RUNDE 5-Hostile-Coffee mug ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2369995s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 762
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 978.3s
+[INFO] Total travelled distance in motor degrees: 637
+[INFO] Starting execution!
+[INFO] ================== 1022-RUNDE 5-Silent-Clock ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.25s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 507
+[INFO] Wall time: 27s
+[INFO] Average loop time (higher means worse): 0.05s
+[INFO] Average loop frequency: 18Hz
+[INFO] Loop time maximum (higher means worse): 1022.57s
+[INFO] Total travelled distance in motor degrees: 3782
+[INFO] Starting execution!
+[INFO] ================== 1066-RUNDE 5-Weak-Sunglasses ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.9659424s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 434
+[INFO] Wall time: 27s
+[INFO] Average loop time (higher means worse): 0.06s
+[INFO] Average loop frequency: 15Hz
+[INFO] Loop time maximum (higher means worse): 1068.14s
+[INFO] Total travelled distance in motor degrees: -6583
+[INFO] Starting execution!
+[INFO] ================== 1116-RUNDE 5-Clumsy-Keys ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.9680176s
+[INFO] Starting execution!
+[INFO] ================== 1188-RUNDE 5-Honest-Plate ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.9749756s
+[INFO] Starting execution!
+[INFO] ================== 1255-RUNDE 5-Modern-Hat ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2810059s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 747
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 194Hz
+[INFO] Loop time maximum (higher means worse): 1255.99s
+[INFO] Total travelled distance in motor degrees: 174
+[INFO] Starting execution!
+[INFO] ================== 1275-RUNDE 5-Long-Phone ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.9880371s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 487
+[INFO] Wall time: 27s
+[INFO] Average loop time (higher means worse): 0.06s
+[INFO] Average loop frequency: 17Hz
+[INFO] Loop time maximum (higher means worse): 1277.26s
+[INFO] Total travelled distance in motor degrees: 1983
+[INFO] Starting execution!
+[INFO] ================== 1320-RUNDE 5-Modern-Car ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2990723s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 932
+[INFO] Wall time: 4s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 1321.06s
+[INFO] Total travelled distance in motor degrees: 265
+[INFO] Starting execution!
+[INFO] ================== 22-RUNDE 5-Clumsy-Spoon ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2479992s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 674
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 22.54s
+[INFO] Total travelled distance in motor degrees: 129
+[INFO] Starting execution!
+[INFO] ================== 29-RUNDE 5-Cowardly-Plate ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2590008s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 688
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 30.01s
+[INFO] Total travelled distance in motor degrees: 243
+[INFO] Starting execution!
+[INFO] ================== 270-RUNDE 5-Famous-Pencil ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2539978s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 705
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 270.23s
+[INFO] Total travelled distance in motor degrees: 363
+[INFO] Starting execution!
+[INFO] ================== 276-RUNDE 5-Fat-Chair ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2620239s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 689
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 276.89s
+[INFO] Total travelled distance in motor degrees: 495
+[INFO] Starting execution!
+[INFO] ================== 293-RUNDE 5-Happy-Book ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.276001s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 683
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 293.43s
+[INFO] Total travelled distance in motor degrees: 613
+[INFO] Starting execution!
+[INFO] ================== 299-RUNDE 5-Cruel-Table ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2850037s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 768
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 193Hz
+[INFO] Loop time maximum (higher means worse): 299.82s
+[INFO] Total travelled distance in motor degrees: 735
+[INFO] Starting execution!
+[INFO] ================== 73-RUNDE 5-Honest-Pen ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2949982s
+[INFO] Starting execution!
+[INFO] ================== 119-RUNDE 5-Rich-Car ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.302002s
+[INFO] Starting execution!
+[INFO] Starting execution!
+[INFO] ================== 251-RUNDE 5-Angry-Sunglasses ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2460022s
+[INFO] Starting execution!
+[INFO] ================== 267-RUNDE 5-Clumsy-Shoes ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2519836s
+[INFO] Starting execution!
+[INFO] ================== 527-RUNDE 5-Quiet-Car ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2509766s
+[INFO] Starting execution!
+[INFO] ================== 559-RUNDE 5-Dishonest-Sunglasses ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2520142s
+[INFO] Starting execution!
+[INFO] ================== 225-RUNDE 5-Weak-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2570038s
+[INFO] Starting execution!
+[INFO] ================== 271-RUNDE 5-Rich-Keys ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2619934s
+[INFO] Starting execution!
+[INFO] ================== 323-RUNDE 5-Strong-Watch ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2640076s
+[INFO] Starting execution!
+[INFO] ================== 378-RUNDE 5-Loud-Refrigerator ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2720032s
+[INFO] Starting execution!
+[INFO] ================== 9-RUNDE 5-Ancient-Coffee mug ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2750006s
+[INFO] Starting execution!
+[INFO] ================== 60-RUNDE 5-Famous-Plate ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2759972s
+[INFO] Starting execution!
+[INFO] ================== 71-RUNDE 5-Sad-Keys ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2810059s
+[INFO] Starting execution!
+[INFO] ================== 127-RUNDE 5-Dishonest-Car ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2850037s
+[INFO] Starting execution!
+[INFO] ================== 648-RUNDE 5-Unpleasant-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.7810059s
+[INFO] Starting execution!
+[INFO] ================== 693-RUNDE 5-Kind-Wallet ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2750244s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 778
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 198Hz
+[INFO] Loop time maximum (higher means worse): 696.28s
+[INFO] Total travelled distance in motor degrees: 246
+[INFO] Starting execution!
+[INFO] ================== 703-RUNDE 5-Bright-Clock ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2870483s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 773
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.01s
+[INFO] Average loop frequency: 198Hz
+[INFO] Loop time maximum (higher means worse): 706.76s
+[INFO] Total travelled distance in motor degrees: 365
+[INFO] Starting execution!
+[INFO] ================== 735-RUNDE 5-Sick-Keys ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.2959595s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 804
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.0s
+[INFO] Average loop frequency: 206Hz
+[INFO] Loop time maximum (higher means worse): 738.44s
+[INFO] Total travelled distance in motor degrees: 309
+[INFO] Starting execution!
+[INFO] ================== 748-RUNDE 5-Quiet-Television ====================
+[INFO] Reading JSON file /flash/instructions/Runde3.json
+[INFO] Finished reading JSON. This took 0.25s
+[INFO] TERMINATED PROCESS LOOP
+[INFO] Note down some stats about this round ...
+[INFO] =========== ROUND SUMMARY ===========
+[INFO] Loop count: 803
+[INFO] Wall time: 3s
+[INFO] Average loop time (higher means worse): 0.0s
+[INFO] Average loop frequency: 205Hz
+[INFO] Loop time maximum (higher means worse): 751.65s
+[INFO] Total travelled distance in motor degrees: 435

@@ -1,5 +1,4 @@
-from Events import PID
-from math import sin, radians
+from Events import PID; from math import sin, radians
 
 def compute_pid(value, target, delta_t, pid):
     error = target - value
@@ -26,7 +25,7 @@ def compute_pid_gyro(value, target, delta_s, pid):
     if pid.prev_e < 0.0:
         pid.prev_e = error
 
-    
+
     pid.sum_i += pid.i * error * sin(radians(error)) * delta_s
     if pid.sum_i > pid.max_i:
         pid.sum_i = pid.max_i
