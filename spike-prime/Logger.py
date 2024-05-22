@@ -1,23 +1,22 @@
 import csv
 
-
 class Notetaker:
     def __init__(self, log_file):
         self.log_file = log_file
         self.file = open(log_file, 'a+')
 
     def log(self, message):
-        self.file.write(f'[INFO] {message}\n')
+        print('[INFO] {}\n'.format(message))
+        self.file.write('[INFO] {}\n'.format(message))
         self.file.flush()
 
     def warn(self, message):
-        self.file.write(f'[WARNING] {message}\n')
+        self.file.write('[WARNING] {}\n'.format(message))
         self.file.flush()
 
     def error(self, message):
-        self.file.write(f'[ERROR] {message}\n')
+        self.file.write('[ERROR] {}\n'.format(message))
         self.file.flush()
-
 
 
 def init_logger(log_file):
@@ -49,22 +48,21 @@ def log_header_csv(writer):
 
 def log_csv(writer, sensor_act_values):
     row = [
-        sensor_act_values.currentTime,
-        sensor_act_values.lDriveMotorEnc,
-        sensor_act_values.rDriveMotorEnc,
-        sensor_act_values.lToolMotorEnc,
-        sensor_act_values.rToolMotorEnc,
-        sensor_act_values.gyroAngValue,
-        sensor_act_values.lDriveMotorPow,
-        sensor_act_values.rDriveMotorPow,
-        sensor_act_values.lToolMotorPow,
-        sensor_act_values.rToolMotorPow,
-        sensor_act_values.lDriveMotorCor,
-        sensor_act_values.rDriveMotorCor,
-        sensor_act_values.lDriveMotorSpeed,
-        sensor_act_values.rDriveMotorSpeed,
+        sensor_act_values[TIME],
+        sensor_act_values[LDRIVEENC],
+        sensor_act_values[RDRIVEENC],
+        sensor_act_values[LTOOLENC],
+        sensor_act_values[RTOOLENC],
+        sensor_act_values[GYRO],
+        sensor_act_values[LDRIVEPOW],
+        sensor_act_values[RDRIVEPOW],
+        sensor_act_values[LTOOLPOW],
+        sensor_act_values[RTOOLPOW],
+        sensor_act_values[LDRIVECOR],
+        sensor_act_values[RDRIVECOR],
+        sensor_act_values[LDRIVESPEED],
+        sensor_act_values[RDRIVESPEED],
     ]
-    writer.write(','.join([str(i) for i in  row])+'\n')
+    writer.write(','.join([str(i) for i in row])+'\n')
     # Ensure the writer is flushed to save the data immediately
     writer.flush()
-

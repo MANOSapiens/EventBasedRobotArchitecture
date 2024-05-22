@@ -1,10 +1,9 @@
-from consts import *
-from RunEvents import set_read_sensor
+from consts import *; from RunEvents import set_read_sensor
+
 
 def set_var_spawn(result, cond, active_table, cond_table, sensor_act_values):
     cond_table[cond.cond_id] = result
     if result:
-        print('Spawned', cond.process_id)
         if cond.process_id != 0:
             active_table[cond.process_id] = True
             set_read_sensor(cond.sensor_needed, sensor_act_values)
@@ -13,7 +12,7 @@ def set_var_spawn(result, cond, active_table, cond_table, sensor_act_values):
 def set_var_term(result, cond, active_table, terminated_table, cond_table):
     cond_table[cond.cond_id] = result
     if result and cond.process_id != 0:
-        print('Terminated', cond.process_id)
+        
         active_table[cond.process_id] = False
         terminated_table[cond.process_id] = True
 

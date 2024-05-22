@@ -1,5 +1,4 @@
-import array
-from consts import *
+import array; from consts import *
 
 
 class EventID:
@@ -38,16 +37,6 @@ class LinearFunc:
         self.step_prev = step_prev
         self.t = FUNC_LINEAR
 
-class QuadFunc:
-    def __init__(self, a: float, b: float, c: float, lb: float, hb: float, step_prev: float):
-        self.a = a
-        self.b = b
-        self.c = c
-        self.lb = lb
-        self.hb = hb
-        self.step_prev = step_prev
-        self.t = FUNC_QUADRATIC
-
 class Placeholder:
     def __init__(self, event: EventID):
         self.event = event
@@ -71,28 +60,12 @@ class MotorSpeedControl:
         self.t = EVENT_MOTORSPEEDCONTROL
 
 class PIDGyro:
-    def __init__(self, event: EventID, heading: float, pid: PID, motor_correction: float, sensor_prev: float):
+    def __init__(self, event: EventID, heading: float, pid: PID, sensor_prev: float):
         self.event = event
         self.heading = heading
         self.pid = pid
-        self.motor_correction = motor_correction
         self.sensor_prev = sensor_prev
         self.t = EVENT_PIDGYRO
-
-class PIDLine:
-    def __init__(self, event: EventID, brightness_target: float, pid: PID, motor_correction: float):
-        self.event = event
-        self.brightness_target = brightness_target
-        self.pid = pid
-        self.motor_correction = motor_correction
-        self.t = EVENT_PIDLINE
-
-class PIDHold:
-    def __init__(self, event: EventID, pid: PID, motor_correction: float):
-        self.event = event
-        self.pid = pid
-        self.motor_correction = motor_correction
-        self.t = EVENT_PIDHOLD
 
 class Timer:
     def __init__(self, event: EventID, time: float, time_prev: float):
@@ -102,11 +75,8 @@ class Timer:
         self.t = EVENT_TIMER
 
 class ComputeMotorStall:
-    def __init__(self, event: EventID, min_mov_avg_speed: float, buffer_size: int, motor_id: int):
+    def __init__(self, event: EventID, motor_id: int):
         self.event = event
-        self.min_mov_avg_speed = min_mov_avg_speed
-        self.buffer = array.array('f', [0.0] * buffer_size)
-        self.buffer_size = buffer_size
         self.motor_id = motor_id
         self.t = EVENT_COMPUTEMOTORSTALL
 
@@ -116,14 +86,11 @@ class HaltProcessLoop:
         self.t = EVENT_HALT
 
 
-
 class PlaceholderCond:
     def __init__(self, cond: CondID):
         self.cond = cond
         self.t = CONDITION_PLACEHOLDER
 
-    def __call__(self, cond_table, terminated_table):
-        return False
 
 class IsTerminated:
     def __init__(self, cond: CondID, watch_process_id: int):
@@ -131,8 +98,6 @@ class IsTerminated:
         self.watch_process_id = watch_process_id
         self.t = CONDITION_ISTERMINATED
 
-    def __call__(self, cond_table, terminated_table):
-        return terminated_table[self.watch_process_id]
 
 class And:
     def __init__(self, cond: CondID, watch_cond_id0: int, watch_cond_id1: int):
@@ -141,8 +106,6 @@ class And:
         self.watch_cond_id1 = watch_cond_id1
         self.t = CONDITION_AND
 
-    def __call__(self, cond_table, terminated_table):
-        return cond_table[self.watch_cond_id0] and cond_table[self.watch_cond_id1]
 
 class Or:
     def __init__(self, cond: CondID, watch_cond_id0: int, watch_cond_id1: int):
@@ -151,8 +114,6 @@ class Or:
         self.watch_cond_id1 = watch_cond_id1
         self.t = CONDITION_OR
 
-    def __call__(self, cond_table, terminated_table):
-        return cond_table[self.watch_cond_id0] or cond_table[self.watch_cond_id1]
 
 class Not:
     def __init__(self, cond: CondID, watch_cond_id: int):
@@ -160,29 +121,21 @@ class Not:
         self.watch_cond_id = watch_cond_id
         self.t = CONDITION_NOT
 
-    def __call__(self, cond_table, terminated_table):
-        return not cond_table[self.watch_cond_id]
 
 class StartImmediately:
     def __init__(self, cond: CondID):
         self.cond = cond
         self.t = CONDITIONS_STARTIMMEDIATELY
 
-    def __call__(self, cond_table, terminated_table):
-        return True
 
 class StopImmediately:
     def __init__(self, cond: CondID):
         self.cond = cond
         self.t = CONDITION_STOPIMMEDIATELY
 
-    def __call__(self, cond_table, terminated_table):
-        return True
+
 
 class SensorValueCond:
     def __init__(self, cond: CondID):
         self.cond = cond
         self.t = CONDITION_SENSORVALUE
-
-    def __call__(self, cond_table, terminated_table):
-        return cond_table[self.cond.cond_id]

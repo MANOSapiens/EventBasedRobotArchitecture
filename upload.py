@@ -1,25 +1,53 @@
-import pysftp, paramiko
-from base64 import decodebytes
+import serial
+import base64
+import os
+import sys
+import argparse
+from tqdm import tqdm
+import time
 
-def updateFiles():
-    keydata = b"""AAAAB3NzaC1yc2EAAAADAQABAAABAQDs5IdQMNpJh6Mkzd+AiAFJ7PpyVQA5UDWWbAj39QwgvQJyoB3b0oQvyoX8hl3hQ9vrXlHbr7jhde+p/qPrEcMshidaFSzt+A5OMFPlfOB55drc4geGRm5q1jHqzdqCCoDT5rVhnTnF881BUfVyRovNLiZBMSGRKAUurYL91H3AQsZQhJNZ7Mp4oFFddcOpDacPRnobEulbXuGhpBr8UOGlWE+sSfJhybWDkFf9cSEh3ZLwVfvC770KFZHw6jPjy/gvHwXvwSTU0zTWiAgP+zEyQkpDDU2jrykOk6kQFnR9zy5BmD5GC8QCvAKbq3tAYTicf5GMKakAgBiY7yMcGraF"""
-    key = paramiko.RSAKey(data=decodebytes(keydata))
-    cnopts = pysftp.CnOpts()
-    cnopts.hostkeys.add('ev3dev.local', 'ssh-rsa', key)
-    
-    with pysftp.Connection('ev3dev.local', username='robot', password='maker', cnopts=cnopts) as sftp:
-        # Upload the file target/armv5te-unknown-linux-musleabi/release/EventBasedRobotArchitecture to /home/robot
-        print('STARTING UPLOAD')
-        sftp.put('target/armv5te-unknown-linux-musleabi/release/EventBasedRobotArchitecture', '/home/robot')
-        print('COMPLETED UPLOAD')
+parser = argparse.ArgumentParser(description='Sends files to Spike Hub file system')
+parser.add_argument('file', help='file name')
+parser.add_argument('dir', nargs='?', help='destination directory', default = '')
+parser.add_argument('-t', '--tty', help='Spike Hub device path')
+args = parser.parse_args()
 
-        print('\n\n')
-        print('========================================')
-        #colorful print
-        print('\033[1;32;40m' + 'The backend was updated!' + '\033[0m')
-        print('========================================')            
+path, file = os.path.split(args.file)
+size = os.path.getsize(args.file)
 
-    
+ser = serial.Serial(args.tty, 115200, timeout = 0.1)
 
-if __name__ == '__main__':
-    updateFiles()
+def wait_for_prompt():
+  buf = b''
+  start_time = time.time()
+  elapsed = 0
+  while elapsed < 1:
+    c = ser.in_waiting
+    ser.timeout = 1 - elapsed
+    x = ser.read(c if c else 1)
+    buf = (buf + x)[-5:]
+    if buf == b'\n>>> ':
+      return
+    elapsed = time.time() - start_time
+  raise ConnectionError('failed to get to the command prompt (last characters: %s)' % buf)
+
+def write_command(cmd):
+  ser.write(cmd + b'\r\n')
+  wait_for_prompt()
+
+ser.write(b'\x03')
+wait_for_prompt()
+write_command(b'')
+write_command(b"import ubinascii")
+write_command(b"f = open('/%s/%s', 'wb')" % (args.dir.encode('utf8'), file.encode('utf8')))
+print('Copying "%s" to "%s/%s"' % (args.file, args.dir, file))
+with tqdm(total=size, unit='B', unit_scale=True) as pbar:
+  with open(args.file, "rb") as f:
+    byte = f.read(192)
+    while len(byte) > 0:
+      write_command(b"f.write(ubinascii.a2b_base64('%s'))" % base64.b64encode(byte))
+      pbar.update(len(byte))
+      byte = f.read(192)
+write_command(b"f.close()")
+ser.write(b'\x04')
+ser.flush()

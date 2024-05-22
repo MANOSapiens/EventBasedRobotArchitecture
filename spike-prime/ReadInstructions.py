@@ -1,8 +1,4 @@
-from Events import *
-
-import random
-import time
-import json
+from Events import *; import random; import time; import json
 
 
 def parse_int(value):
@@ -59,10 +55,10 @@ def read_func(func):
             step_prev=-1.0,
         )
     else:
-        raise ValueError(f"Function type {func_type} unknown!")
+        raise ValueError("Function type {} unknown!".format(func_type))
 
 def read_pid(pid_data):
-    
+
     return PID(
         p=parse_f32(pid_data["p"]),
         i=parse_f32(pid_data["i"]),
@@ -83,10 +79,10 @@ def match_event(event, notetaker):
                 sensor_target=parse_f32(event["sensor_target"]),
                 sensor_prev=parse_f32(event["sensor_prev"]),
                 sensor_id=parse_int(event["sensor_id"]),
-                expr=parse_string(event["expr"]),
+                expr=SMALLERTHAN_ if parse_string(event["expr"]) == '<' else LAGERTHAN_,
                 sensvalcondid=parse_int(event["sensvalcondid"]),
             )
-        
+
     elif event_type == "MotorSpeedControl":
         return MotorSpeedControl(
                 event=read_event(event),
@@ -94,34 +90,16 @@ def match_event(event, notetaker):
                 sensor_id=parse_int(event["sensor_id"]),
                 func=read_func(event['func']),
             )
-        
+
 
     elif event_type == "PIDGyro":
         return PIDGyro(
                 event=read_event(event),
                 heading=parse_f32(event["heading"]),
                 pid=read_pid(event['pid']),
-                motor_correction=0.0,
                 sensor_prev=parse_f32(event["sensor_prev"]),
             )
-        
 
-    elif event_type == "PIDLine":
-        return PIDLine(
-                event=read_event(event),
-                brightness_target=parse_f32(event["brightness_target"]),
-                pid=read_pid(event['pid']),
-                motor_correction=0.0,
-            )
-        
-
-    elif event_type == "PIDHold":
-        return PIDHold(
-                event=read_event(event),
-                pid=read_pid(event['pid']),
-                motor_correction=0.0,
-            )
-        
 
     elif event_type == "Timer":
         return Timer(
@@ -129,7 +107,7 @@ def match_event(event, notetaker):
                 time=parse_f32(event["time"]),
                 time_prev=-1.0,
             )
-        
+
 
     elif event_type == "ComputeMotorStall":
         return ComputeMotorStall(
@@ -138,16 +116,16 @@ def match_event(event, notetaker):
                 buffer_size=parse_int(event["buffer_size"]),
                 motor_id=parse_int(event["motor_id"]),
             )
-        
-        
+
+
     elif event_type == "HaltProcessLoop":
         return HaltProcessLoop(
                 event=read_event(event),
             )
-        
-        
+
+
     else:
-        notetaker.error(f"Unknown event type {event_type}")
+        notetaker.error("Unknown event type {}".format(event_type))
 
 
 
@@ -164,42 +142,42 @@ def match_cond(condition, notetaker):
             watch_cond_id0=parse_int(condition["watch_cond_id0"]),
             watch_cond_id1=parse_int(condition["watch_cond_id1"]),
         )
-        
+
     elif condition_type == "Or":
         return Or(
             cond=read_cond(condition),
             watch_cond_id0=parse_int(condition["watch_cond_id0"]),
             watch_cond_id1=parse_int(condition["watch_cond_id1"]),
         )
-    
+
     elif condition_type == "Not":
         return Not(
             cond=read_cond(condition),
             watch_cond_id=parse_int(condition["watch_cond_id"]),
         )
-        
+
     elif condition_type == "StartImmediately":
         return StartImmediately(
             cond=read_cond(condition),
         )
-        
+
     elif condition_type == "StopImmediately":
         return StopImmediately(
             cond=read_cond(condition),
         )
-        
+
     elif condition_type == "SensorValue":
         return SensorValueCond(
             cond=read_cond(condition),
         )
-        
+
     elif condition_type == "Placeholder":
         return PlaceholderCond(
             cond=read_cond(condition),
         )
-        
+
     else:
-        raise notetaker.error(f"Unknown condition type {condition_type}")
+        raise notetaker.error("Unknown condition type {}".format(condition_type))
 
 
 
@@ -209,29 +187,35 @@ def read_instructions(file_path, notetaker):
     event_list = []
     spawn_list = []
     term_list = []
-    time_now = time.time()
+    time_now = time.ticks_ms()/1000
 
     with open(file_path, 'r') as file:
         # Parse the JSON file
-        data = json.load(file)
+        data = ujson.load(file)
 
     name = generate_name(data["name"])
 
-    notetaker.log(f'================== {name} ====================')
+    notetaker.log('================== {} ===================='.format(name))
     notetaker.log('Reading JSON file {}'.format(file_path))
 
     for event in data["EventList"]:
         event_list.append(match_event(event, notetaker))
+    del data["EventList"]
 
     for cond in data['SpawnList']:
         spawn_list.append(match_cond(cond, notetaker))
+    del data["SpawnList"]
 
     for cond in data['TermList']:
         term_list.append(match_cond(cond, notetaker))
+    del data["TermList"]
 
-    notetaker.log(f"Finished reading JSON. This took {time.time()-time_now}s")
-
+    notetaker.log("Finished reading JSON. This took {}s".format(time.ticks_ms()/1000-time_now))
+    
     return name, parse_f32(data["round_timeout"]), parse_f32(data["speed_p"]), parse_f32(data["speed_i"]), parse_f32(data["speed_d"]), data["file_forward"], event_list, spawn_list, term_list
+
+
+
 
 def generate_name(round_name):
     adjectives = ["Happy", "Sad", "Angry", "Beautiful", "Ugly", "Tall", "Short", "Long", "Thin", "Fat",
@@ -267,5 +251,6 @@ def generate_name(round_name):
         "Remote control",]
     random_adj = random.choice(adjectives)
     random_obj = random.choice(objects)
-    current_timestamp = int(time.time())
-    return f"{current_timestamp}-{round_name}-{random_adj}-{random_obj}"
+    current_timestamp = int(time.ticks_ms()/1000)
+    return "{}-{}-{}-{}".format(current_timestamp, round_name, random_adj, random_obj)
+
