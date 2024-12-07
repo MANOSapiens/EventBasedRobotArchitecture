@@ -1,4 +1,4 @@
-![robot](https://github.com/user-attachments/assets/46471bda-5536-4269-a9c3-38c331b97ef5)
+![robot](https://github.com/user-attachments/assets/db4a4495-39c6-46ef-824c-34b93330899a)
 
 # 🦎EventBasedRobotArchitecture
 
