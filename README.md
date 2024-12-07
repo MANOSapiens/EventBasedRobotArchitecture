@@ -2,7 +2,7 @@
 
 # 🦎EventBasedRobotArchitecture
 
-EventBasedRobotArchitecture is a custom backend for LEGO EV3 robots based on the ev3dev operating system. Designed by Chenpan Li from the **MANOSapiens Team** at the Martin-Andersen-Nexö Gymnasium Dresden, this innovative firmware introduces an event-driven architecture that enables highly efficient and precise task execution for robotic systems.
+EventBasedRobotArchitecture is a custom backend for LEGO EV3 robots based on the ev3dev operating system. Designed by Chenpan Li from the 🦎**MANOSapiens Team** at the Martin-Andersen-Nexö Gymnasium Dresden, this innovative firmware introduces an event-driven architecture that enables highly efficient and precise task execution for robotic systems.
 
 ## Key Features
 
@@ -25,7 +25,7 @@ EventBasedRobotArchitecture is a custom backend for LEGO EV3 robots based on the
 
 ## Achievements
 
-Using EventBasedRobotArchitecture, the **MANOSapiens Team** reached the **FLL DACH-Finale 2024** in Davos, Switzerland. This firmware played a pivotal role in their success by enabling efficient and precise robot performance during competition rounds.
+Using EventBasedRobotArchitecture, the 🦎**MANOSapiens Team** reached the **FLL DACH-Finale 2024** in Davos, Switzerland. This firmware played a pivotal role in their success by enabling efficient and precise robot performance during competition rounds.
 
 ---
 
