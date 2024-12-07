@@ -54,6 +54,7 @@ def read_sensors(motors_sensors, sensor_act_values, start_time, writer):
 
     if sensor_act_values[RIGHTBUTTONREAD]:
         sensor_act_values[RIGHTBUTTON] = motors_sensors.buttons.pressed(2)
+        
 
     if DEBUG_:
         log_csv(writer, sensor_act_values)

@@ -1,3 +1,4 @@
+def const(x): return x
 
 # Adjustable parameters
 DEBUG_ = const(False)

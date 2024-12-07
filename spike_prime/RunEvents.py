@@ -33,6 +33,8 @@ def set_read_sensor(sensor_id, sensor_act_values):
     elif sensor_id == DRIVESPEED:
         sensor_act_values[LDRIVESPEEDREAD] = True
         sensor_act_values[RDRIVESPEEDREAD] = True
+    elif sensor_id == RIGHTBUTTON:
+        sensor_act_values[RIGHTBUTTONREAD] = True
     
    
 

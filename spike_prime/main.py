@@ -14,12 +14,7 @@ def main():
         colour_port=None,
     )
 
-    paths = []
-
-    # Glob for instruction files
-    for path in os.listdir('/flash/instructions/'):
-        if '.json' in path:
-            paths.append('/flash/instructions/'+path)
+    number_of_rounds = const(1)
 
     # Read boolean table lengths
     with open(TABLELENGTHSFILE, 'r') as file:
@@ -37,13 +32,12 @@ def main():
     while True:
 
         if button.pressed(button.LEFT):
-            print('start')
             notetaker.log("Starting execution!")
-            result = start_execution(paths[index], port_definitions, active_table, terminated_table, cond_table, notetaker)
-            if result == 0 and index < len(paths) - 1:
+            result = start_execution(index, port_definitions, active_table, terminated_table, cond_table, notetaker)
+            if result == 0 and index < number_of_rounds - 1:
                 index += 1
 
-        if button.pressed(button.RIGHT) and index < len(paths) - 1:
+        if button.pressed(button.RIGHT) and index < number_of_rounds - 1:
             index += 1
             
 

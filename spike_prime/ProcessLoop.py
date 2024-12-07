@@ -63,3 +63,4 @@ def process_loop(spawn_list, event_list, term_list, motors_sensors, active_table
 
         # Perform check
         Check(round_summary, sensor_act_values)
+        

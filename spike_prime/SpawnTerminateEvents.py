@@ -5,6 +5,7 @@ def set_var_spawn(result, cond, active_table, cond_table, sensor_act_values):
     cond_table[cond.cond_id] = result
     if result:
         if cond.process_id != 0:
+            
             active_table[cond.process_id] = True
             set_read_sensor(cond.sensor_needed, sensor_act_values)
 

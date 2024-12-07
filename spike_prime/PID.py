@@ -1,4 +1,4 @@
-from Events import PID; from math import sin, radians
+from math import sin, radians
 
 def compute_pid(value, target, delta_t, pid):
     error = target - value
